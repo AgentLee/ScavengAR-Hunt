@@ -16,6 +16,18 @@ One of the goals for today was to be able to manipulate objects that get project
 Here's a screenshot of the current state. Users can click on as many cubes as they want and move/scale them to their liking.
 ![Floating Cubes](Images/floatingCubes.png)
 
+Build: MoveObjects1
+
+### 2/12/18
+Todo
+- Inventory menu
+    - ~~open/close~~
+    - ~~click object, shows up in menu~~
+- Multiple objects to menu
+- Video
+
+Build: MoveObjects2
+
 ## Resources
 - [Unity 2017.3](https://unity3d.com/)
 - [Vuforia](https://www.vuforia.com/)
