@@ -29,6 +29,8 @@ sysinfo.txt
 .consulo/
 /*.tmp
 /*.svd
+.vscode/
+.idea/
  
 # ============ #
 # OS generated #
