@@ -6,9 +6,14 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour 
 {
 	private List<GameObject> items;
-	private int totalItems = 1;
 
-	public Image img;
+	// Inventory 
+	public GameObject inventory;
+	public Image cubeImage, sphereImage;
+
+	// Show these if player comes back to the marker
+	public GameObject collectedCube;
+	public GameObject collectedSphere;
 
 	// Use this for initialization
 	void Start () 
@@ -19,12 +24,7 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		// if(items.Count == totalItems) {
-		// 	// Debug.Log("COLLECTED ALL");
-		// 	for(int i = 0; i < items.Count; ++i) {
-		// 		Debug.Log(items[i].tag);
-		// 	}
-		// }	
+
 	}
 
 	public void collectItem(GameObject item)
@@ -35,7 +35,16 @@ public class Player : MonoBehaviour
 		item.SetActive(false);
 
 		// Update Inventory UI
-		img.enabled = true;
+		if(item.name == "Cube") {
+			collectedCube.SetActive(true);
+			cubeImage.enabled = true;
+		}
+		else if(item.name == "Sphere") {
+			collectedSphere.SetActive(true);
+			sphereImage.enabled = true;
+		}
+
+		inventory.SetActive(true);
 
 		Debug.Log("Add to inventory");
 	}

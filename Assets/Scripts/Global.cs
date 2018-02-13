@@ -9,12 +9,23 @@ public class Global : MonoBehaviour
 
 	public DeviceType device;
 	
+	private float lastClickTime = 0;
+	private float catchTime = .25f;
+	
+	bool oneClick = false;
+	bool timerRunning;
+	float timerDoubleClick;
+	float delay = .25f;
+	int clicks = 0;
+
+	public GameObject collectedCanvas;
+
 	// Use this for initialization
 	void Start () 
 	{
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		device = SystemInfo.deviceType;
-		GameObject.FindGameObjectWithTag("Canvas").SetActive(true);
+		collectedCanvas = GameObject.Find("Collected");
 	}
 	
 	// Update is called once per frame
@@ -22,8 +33,6 @@ public class Global : MonoBehaviour
 	{
 		// This might hinder performance. Need to test.
 		if(device.Equals(DeviceType.Handheld)) {
-			Debug.Log("smartphone");
-
 			// Loop through all the touch points
 			for(int i = 0; i < Input.touchCount; ++i) {
 				if(Input.GetTouch(i).phase == TouchPhase.Began) {
@@ -32,26 +41,84 @@ public class Global : MonoBehaviour
 
 					RaycastHit objectHit;
 					if(Physics.Raycast(ray, out objectHit)) {
-						GameObject cubeUI = GameObject.FindGameObjectWithTag("CubeUI");
-						if(!cubeUI) Debug.Log("couldnt' find");
-						// cubeUI.SetActive(true);
-						
-						Destroy(objectHit.collider.gameObject);
+						player.collectItem(objectHit.collider.gameObject);
 					}
 				}
 			}
 		}
 		else {
 			if(Input.GetMouseButtonDown(0)) {
-				Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+				float dT = Time.time - timerDoubleClick;
 
-				RaycastHit hit;
-				if(Physics.Raycast(ray, out hit)) {
-					if(hit.collider.gameObject.tag == "Cube") {
+				++clicks;
+
+				// Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+				// RaycastHit hit;	
+
+				// if(clicks == 2 && dT < 0.25f) {
+				// 	Debug.Log("DOUBLE");
+				// 	// Update time
+				// 	timerDoubleClick = Time.time;
+				// 	clicks = 0;
+
+				// 	if(Physics.Raycast(ray, out hit)) {
+				// 		if(hit.collider.gameObject.tag == "Cube") {
+				// 			player.collectItem(hit.collider.gameObject);
+				// 			Debug.Log(player.numItems());
+				// 		}
+				// 	}
+				// }
+				// else {
+				// 	Debug.Log("SINLGE");
+				// }
+
+
+				// if(dT > 0.25f) {
+				// 	// Double click
+				// }
+
+				// if(!oneClick) {
+				// 	oneClick = true;
+				// 	timerDoubleClick = Time.time;
+				// 	Debug.Log("ONE CLICK");
+				// }
+				// else {
+				// 	Debug.Log("Delta " + (Time.time - timerDoubleClick).ToString());
+				// 	oneClick = false;
+				// 	Debug.Log("DOUBLE CLICK");
+
+				// 	Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+				// 	RaycastHit hit;	
+
+				// 	if(Physics.Raycast(ray, out hit)) {
+				// 		if(hit.collider.gameObject.tag == "Cube") {
+				// 			player.collectItem(hit.collider.gameObject);
+				// 			Debug.Log(player.numItems());
+				// 		}
+				// 	}
+				// }
+				// if(oneClick) {
+				// 	// Debug.Log("Delta " + (Time.time - timerDoubleClick).ToString());
+				// 	if((Time.time - timerDoubleClick) > .02f) {
+				// 		oneClick = false;
+				// 	}
+				// }
+
+				Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+				RaycastHit hit;	
+
+				// if(Time.time - lastClickTime < catchTime) {
+				// 	Debug.Log("Double Click");
+					
+					if(Physics.Raycast(ray, out hit)) {
 						player.collectItem(hit.collider.gameObject);
-						Debug.Log(player.numItems());
 					}
-				}
+				// }
+				// else {
+				// 	Debug.Log("Click");
+				// }
+
+				// lastClickTime = Time.time;
 			}	
 		}
 	}
