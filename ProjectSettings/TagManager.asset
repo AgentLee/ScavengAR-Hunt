@@ -9,6 +9,10 @@ TagManager:
   - GameManager
   - CollectedSphere
   - CollectedCube
+  - Enemy
+  - Bullet
+  - EnemiesHolder
+  - Ground
   layers:
   - Default
   - TransparentFX

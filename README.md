@@ -20,6 +20,8 @@ Here's a screenshot of the current state. Users can click on as many cubes as th
 Build: MoveObjects1
 
 ### 2/12/18
+Goal: Game management, player, inventory systems
+
 Today I was able to implement a basic inventory UI and multiple targets. This is the basis of the game. Each marker will have a different object or video associated with it for the player to collect. What I want to get working is to make the objects more interactive. The objects can move and scale based on the yesterday's work. To combine that with the UI requires double clicking, which I wasn't able to figure yet.
 ![Targets](Images/targets.png)
 
@@ -34,6 +36,23 @@ Todo
 - Video
 
 Build: MoveObjects2, MoveObjects3
+
+### 2/13/18
+Met with Dr. Lane and Dr. Arriata to discuss the project further. We settled on a way to make the scavenger hunt more enticing for players. Each poster they go to provides them with a power up. This power up will make the game easier as they progress. In order to be able to win prizes, the player must get the top three scores of the night. 
+
+See [Workplan](workplan.md) for more details.
+
+### 2/14/18
+Goals
+- Set up Space Invaders for mobile.
+    - I think the challenge would be UI for the controls.
+- Stretch: Get it in AR. Doesn't have to look good, just see basic idea.
+
+Note: You have to turn off render from webcam in the Vuforia project settings.
+
+TODO
+- Enemy Bullet physics
+- Move enemies down 
 
 ## Resources
 - [Unity 2017.3](https://unity3d.com/)
