@@ -77,7 +77,12 @@ Classes created:
 - Win/lose
 
 ### 2/15/18
-
+Goals:
+- ~~Move enemies down~~
+- ~~Check bullet-bullet interaction~~ *This should be inherent*
+- Move to AR
+- Player lives
+- Win/lose
 
 ## Resources
 - [Unity 2017.3](https://unity3d.com/)
