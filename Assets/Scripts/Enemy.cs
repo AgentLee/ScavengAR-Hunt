@@ -29,8 +29,6 @@ public class Enemy : MonoBehaviour
 
 			// Unparent 
 			enemy.parent = null;
-
-			Debug.Log("Turn on Gravity");
 		}
 	}
 
@@ -41,29 +39,24 @@ public class Enemy : MonoBehaviour
 
 	void FireBullet()
 	{
-		// if(Time.deltaTime - lastShot >= dT) {
-		// 	GameObject spawnedBullet = Instantiate(bullet, transform.position, transform.rotation);
-		// 	// Ignore collisions from bullet
-		// 	Physics.IgnoreCollision(spawnedBullet.GetComponent<Collider>(), GetComponent<Collider>());
-		
-		// } 
-		// else {
-		// 	lastShot = Time.deltaTime;			
-		// }
-
 		if(Random.value > 0.997f) {
 			GameObject spawnedBullet = Instantiate(bullet, transform.position, transform.rotation);
 			// Ignore collisions from bullet
 			Physics.IgnoreCollision(spawnedBullet.GetComponent<Collider>(), GetComponent<Collider>());	
+			Debug.Log("SPAWN");
 		}
 	}
 
 	void FixedUpdate () 
 	{
+		// Destroy enemy if it falls off below the plane.
 		if(wasHit && enemy.position.y < -3f) {
 			Destroy(gameObject);
 		}
-
-		FireBullet();
+		
+		// Only fire a bullet if it wasn't hit by the player.
+		if(!wasHit) {
+			FireBullet();
+		}
 	}
 }

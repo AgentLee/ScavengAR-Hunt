@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		float h = Input.GetAxis ("Horizontal");
 
-		// Stops player from going off screen
+		// Stops player from going out of bound
 		if (player.position.x < minBounds && h < 0) {
 			h = 0;
 		} 
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		if(Input.GetKeyDown(KeyCode.Space)) {
 			GameObject spawnedBullet = Instantiate(bullet, transform.position, transform.rotation);
-			// Ignore collisions from bullet
+			// Ignore collisions from bullet at launch
 			Physics.IgnoreCollision(spawnedBullet.GetComponent<Collider>(), GetComponent<Collider>());
 		}
 	}
@@ -45,7 +45,5 @@ public class PlayerController : MonoBehaviour {
 	{
 		MovePlayer();
 		Fire();
-
-		
 	}
 }

@@ -23,6 +23,7 @@ public class SpaceInvadersManager : MonoBehaviour {
 		foreach(Transform child in enemies.transform) {
 			Enemy enemy = child.gameObject.GetComponent<Enemy>();
 
+
 			// Unparent if too far
 			if(enemy.transform.position.x <= -10f || enemy.transform.position.x >= 10f) {
 				enemy.transform.parent = null;

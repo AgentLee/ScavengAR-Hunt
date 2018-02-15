@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33538194625346506}
   - component: {fileID: 136704230546868758}
   - component: {fileID: 23935714491908536}
-  - component: {fileID: 114102749845698394}
   - component: {fileID: 54761152006169570}
+  - component: {fileID: 114102749845698394}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
@@ -111,6 +111,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcbc7bcf8b00547278dfed8507b9ea9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
+  speed: 0
+  minY: 0
+  maxY: 0
 --- !u!136 &136704230546868758
 CapsuleCollider:
   m_ObjectHideFlags: 1

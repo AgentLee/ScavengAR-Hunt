@@ -31,7 +31,7 @@ When users collect items, they'll show up in the inventory. Users can access thi
 Bugs
 - *Double Click* - If you move the cube and then deselect, it wont' select again.
 
-Todo
+**TODO**
 - Double Click
 - Video
 
@@ -43,16 +43,32 @@ Met with Dr. Lane and Dr. Arriata to discuss the project further. We settled on 
 See [Workplan](workplan.md) for more details.
 
 ### 2/14/18
-Goals
-- Set up Space Invaders for mobile.
-    - I think the challenge would be UI for the controls.
-- Stretch: Get it in AR. Doesn't have to look good, just see basic idea.
+*Note: You have to turn off render from webcam in the Vuforia project settings.*
 
-Note: You have to turn off render from webcam in the Vuforia project settings.
+Today's goal was to set up Space Invaders with rigid bodies. This didn't take too long as I already had made a version last semester. Messing with the rigid bodies to get the behavior that I wanted took a little bit of time mainly because I forgot that I turned off collisions for bullet-player and never turned it back on. The next goal is to port this to AR.
 
-TODO
-- Enemy Bullet physics
+Scene:
+- SpaceInvaders
+
+Classes created:
+- `SpaceInvadersManager`
+    - Manages enemy movement
+- `PlayerController`
+    - Manages player input for movement and shooting
+- `Enemy`
+    - Manages collisions and shooting
+- `BulletBase` 
+    - Manages movement
+    - `Bullet`
+    - `EnemyBullet`
+
+
+**TODO**
 - Move enemies down 
+- Move to AR
+- Check bullet-bullet interaction
+- Player lives
+- Win/lose
 
 ## Resources
 - [Unity 2017.3](https://unity3d.com/)
