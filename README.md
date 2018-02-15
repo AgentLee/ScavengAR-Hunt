@@ -47,6 +47,12 @@ See [Workplan](workplan.md) for more details.
 
 Today's goal was to set up Space Invaders with rigid bodies. This didn't take too long as I already had made a version last semester. Messing with the rigid bodies to get the behavior that I wanted took a little bit of time mainly because I forgot that I turned off collisions for bullet-player and never turned it back on. The next goal is to port this to AR.
 
+Here's how the game starts.
+![](images/spaceInvaders1.png)
+
+Here's a screenshot with the rigid body dynamic.
+![](images/spaceInvaders2.png)
+
 Scene:
 - SpaceInvaders
 
