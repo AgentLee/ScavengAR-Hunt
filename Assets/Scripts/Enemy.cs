@@ -4,21 +4,16 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour 
 {
-
 	private Transform enemy;
 	public GameObject bullet;
 	public float speed;
 	public bool wasHit;
-	public float lastShot;
-	public float dT;
 
 	// Use this for initialization
 	void Start () {
 		enemy = GetComponent<Transform>();
 		speed = .05f;
 		wasHit = false;
-		lastShot = Time.deltaTime;
-		dT = 1.25f;
 	}
 
 	void OnCollisionEnter(Collision collisionInfo)
@@ -30,11 +25,6 @@ public class Enemy : MonoBehaviour
 			// Unparent 
 			enemy.parent = null;
 		}
-	}
-
-	public void MoveEnemyX(int direction)
-	{
-		enemy.Translate(direction * Vector3.right * Time.deltaTime * speed);
 	}
 
 	void FireBullet()

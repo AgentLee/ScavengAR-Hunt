@@ -76,6 +76,9 @@ Classes created:
 - Player lives
 - Win/lose
 
+### 2/15/18
+
+
 ## Resources
 - [Unity 2017.3](https://unity3d.com/)
 - [Vuforia](https://www.vuforia.com/)

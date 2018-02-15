@@ -15,14 +15,15 @@ public class SpaceInvadersManager : MonoBehaviour {
 		
 	}
 	
+	// Moves the enemies left/right. 
+	// If they reach the end bound they move down and gain speed.
 	void MoveEnemies()
 	{
 		bool moveDown = false;
-		enemies.transform.Translate(Vector3.right * speed);
-		
 		foreach(Transform child in enemies.transform) {
 			Enemy enemy = child.gameObject.GetComponent<Enemy>();
 
+			enemy.transform.Translate(Vector3.right * speed);
 
 			// Unparent if too far
 			if(enemy.transform.position.x <= -10f || enemy.transform.position.x >= 10f) {
@@ -34,6 +35,15 @@ public class SpaceInvadersManager : MonoBehaviour {
 			if(enemy.transform.position.x <= -8f || enemy.transform.position.x >= 8f) {
 				speed = -speed;
 				moveDown = true;
+			}
+		}
+
+		if(moveDown) {
+			foreach(Transform child in enemies.transform) {
+				Enemy enemy = child.gameObject.GetComponent<Enemy>();
+
+				enemy.transform.Translate(new Vector3(0, -.35f, 0));
+				speed *= 1.25f;	
 			}
 		}
 	}
