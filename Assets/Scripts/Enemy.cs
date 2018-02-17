@@ -33,7 +33,6 @@ public class Enemy : MonoBehaviour
 			GameObject spawnedBullet = Instantiate(bullet, transform.position, transform.rotation);
 			// Ignore collisions from bullet
 			Physics.IgnoreCollision(spawnedBullet.GetComponent<Collider>(), GetComponent<Collider>());	
-			Debug.Log("SPAWN");
 		}
 	}
 

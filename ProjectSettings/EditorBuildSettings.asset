@@ -5,6 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MoveObjects.unity
     guid: f1327585709ec48acaed03a6ba87856f
+  - enabled: 0
+    path: Assets/Scenes/GroundPlane.unity
+    guid: fdce4907e7a794af79aebc2dd2f63832
+  - enabled: 1
+    path: Assets/Scenes/ARSpaceInvaders.unity
+    guid: 75b03de569e784a5d9daf458d966b5b0

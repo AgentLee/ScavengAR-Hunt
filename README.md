@@ -77,12 +77,46 @@ Classes created:
 - Win/lose
 
 ### 2/15/18
-Goals:
+**Goals:**
 - ~~Move enemies down~~
 - ~~Check bullet-bullet interaction~~ *This should be inherent*
+
+**TODO**
 - Move to AR
+    - Look into how other AR shooters work to make this as seemless as possible.
 - Player lives
 - Win/lose
+
+### 2/17/18
+I was able to port Space Invaders to AR. I utilized Vuforia's Ground Plane detection. This allows users to play anywhere as long as they specify the horizontal plane. 
+
+There was an issue with Vuforia's
+[Ground Plane Documentation](https://library.vuforia.com/articles/Solution/ground-plane-guide.html). When using their `DeployStageOnce` script, the Plane Finder doesn't call `OnInteractiveHitTest()`. To fix this, go to `Plane Finder->Plane Finder Behavior->Advanced`. Then drag the Plane Finder game object to the empty slot and set the function to `DeployStageOnce.OnInteractiveHitTest()`. This solution was found in [Matthew Hallberg's Tutorial](https://www.youtube.com/watch?v=0O6VxnNRFyg).
+
+**Notes**
+- The default set up for Vuforia's ground plane creates a new ground plane and object each time the user taps the screen. This was modified using the official Vuforia tutorial on ground planes. 
+- Another modification I set up was to allow LeanTouch to work. Whenever you set the position for tracking and then touch the joystick/fire buttons, the ground plane would move to that spot and would require you never lift your finger after setting the ground to use the buttons. In the `DeployStageOnce` script, I just set a flag for when the ground plane gets set so it doesn't reset after the first time.
+
+View from Unity Editor
+![](images/spaceInvadARs1.png)
+In game looking at the player (on the right)
+![](images/spaceInvadARs2.png)
+Looking up at the enemies
+![](images/spaceInvadARs3.png)
+Hitting an enemy
+![](images/spaceInvadARs5.png)
+
+**Bugs**
+- Game itself is way too big. Need to scale this down.
+- The game is currently scaled to iPhone 6 plus screens.
+
+**TODO**
+- Get the tracker to find the horizontal plane to work.
+- Player lives
+- Win/lose
+- Score count
+    - Write to databse
+- Test first person mode rather than moving the player ship. 
 
 ## Resources
 - [Unity 2017.3](https://unity3d.com/)

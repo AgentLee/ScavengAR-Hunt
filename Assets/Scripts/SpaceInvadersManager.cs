@@ -43,7 +43,7 @@ public class SpaceInvadersManager : MonoBehaviour {
 				Enemy enemy = child.gameObject.GetComponent<Enemy>();
 
 				enemy.transform.Translate(new Vector3(0, -.35f, 0));
-				speed *= 1.25f;	
+				speed *= 1.05f;	
 			}
 		}
 	}
