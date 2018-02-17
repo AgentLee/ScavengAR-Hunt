@@ -98,13 +98,16 @@ There was an issue with Vuforia's
 - Another modification I set up was to allow LeanTouch to work. Whenever you set the position for tracking and then touch the joystick/fire buttons, the ground plane would move to that spot and would require you never lift your finger after setting the ground to use the buttons. In the `DeployStageOnce` script, I just set a flag for when the ground plane gets set so it doesn't reset after the first time.
 
 View from Unity Editor
-![](images/spaceInvadARs1.png)
+![](Images/spaceInvadARs1.png)
+
 In game looking at the player (on the right)
-![](images/spaceInvadARs2.png)
+![](Images/spaceInvadARs2.png)
+
 Looking up at the enemies
-![](images/spaceInvadARs3.png)
+![](Images/spaceInvadARs3.png)
+
 Hitting an enemy
-![](images/spaceInvadARs5.png)
+![](Images/spaceInvadARs5.png)
 
 **Bugs**
 - Game itself is way too big. Need to scale this down.
