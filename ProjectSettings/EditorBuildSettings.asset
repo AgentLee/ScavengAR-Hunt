@@ -11,6 +11,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/GroundPlane.unity
     guid: fdce4907e7a794af79aebc2dd2f63832
-  - enabled: 1
-    path: Assets/Scenes/ARSpaceInvaders.unity
+  - enabled: 0
+    path: Assets/Scenes/ARSpaceInvaders-GroundPlane.unity
     guid: 75b03de569e784a5d9daf458d966b5b0
+  - enabled: 0
+    path: Assets/Scenes/ARSpaceINvaders-MidAirPlane.unity
+    guid: ffee0b6f55c8a4ab282d27c4d0354454
+  - enabled: 0
+    path: Assets/SpaceInvadARs/main.unity
+    guid: 42b7b0088d22e4d5bb051aad47637f27
+  - enabled: 0
+    path: Assets/Scenes/SpaceInvadARs.unity
+    guid: d3321e94056314dc293da5fd67f4a343
+  - enabled: 1
+    path: Assets/Scenes/SpaceInvaders.unity
+    guid: 14eedfb6768c641c8aca037615d5e8ed

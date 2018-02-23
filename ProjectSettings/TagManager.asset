@@ -15,6 +15,7 @@ TagManager:
   - Ground
   - EnemyBullet
   - Cylinder
+  - Wall
   layers:
   - Default
   - TransparentFX

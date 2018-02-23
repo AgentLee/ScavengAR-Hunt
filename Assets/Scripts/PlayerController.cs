@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour {
 	{
 		player = GetComponent<Transform>();
 		speed = .15f;
-		minBounds = -5f;
-		maxBounds = 5f;
+		minBounds = -4f;
+		maxBounds = 4f;
 	}
 
 	public void MovePlayer()
