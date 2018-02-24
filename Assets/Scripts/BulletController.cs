@@ -19,10 +19,6 @@ public class BulletController : MonoBehaviour
 		player = GameObject.Find("Player").GetComponent<PlayerController>();
 		speed = 500f;
 		
-		// bullet = GetComponent<Transform>();
-		// bullet.rotation = Camera.main.transform.rotation;
-		// bullet.position = Camera.main.transform.position;
-
 		destroyTime = 7;
 		hit = false;
 
@@ -48,9 +44,10 @@ public class BulletController : MonoBehaviour
 
 			hit = true;
 
-			// if(!collisionInfo.collider.GetComponent<EnemyController>().grounded) {
-			// 	++player.score;
-			// }
+			// Don't want to add to the score if the player already hit the drone.
+			if(!collisionInfo.collider.GetComponent<EnemyController>().grounded) {
+				++player.score;
+			}
 		}
 	}
 }

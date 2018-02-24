@@ -16,6 +16,7 @@ TagManager:
   - EnemyBullet
   - Cylinder
   - Wall
+  - Score
   layers:
   - Default
   - TransparentFX

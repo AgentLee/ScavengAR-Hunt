@@ -10,6 +10,8 @@ public class EnemyController : MonoBehaviour
 
 	public bool hit;
 
+	public bool grounded;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -23,6 +25,7 @@ public class EnemyController : MonoBehaviour
 		transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1);
 
 		hit = false;
+		grounded = false;
 	}
 	
 	// Update is called once per frame
@@ -41,6 +44,9 @@ public class EnemyController : MonoBehaviour
 			// Unparent to stop moving
 			transform.parent = null;
 			hit = true;
+		}
+		else if(collisionInfo.collider.tag == "Ground") {
+			grounded = true;
 		}
 	}
 }
