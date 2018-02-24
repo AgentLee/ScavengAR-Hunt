@@ -8,6 +8,7 @@ public class BulletController : MonoBehaviour
 	Rigidbody rb;
 	Transform bullet;
 	PlayerController player;
+	EnemyController enemy;
 
 	bool hit;
 
@@ -17,6 +18,8 @@ public class BulletController : MonoBehaviour
 	void Start () 
 	{
 		player = GameObject.Find("Player").GetComponent<PlayerController>();
+		enemy = GameObject.Find("Drone").GetComponent<EnemyController>();
+
 		speed = 500f;
 		
 		destroyTime = 7;
@@ -30,9 +33,19 @@ public class BulletController : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	void FixedUpdate () 
 	{
-		
+		float distEnemyLeft = Vector3.Distance(this.transform.position, enemy.leftEye.transform.position);
+		float distEnemyRight = Vector3.Distance(this.transform.position, enemy.rightEye.transform.position);
+
+		if(!enemy.dodging && distEnemyLeft < 0.5 && distEnemyLeft < distEnemyRight) {
+			enemy.DodgeBullet(-1);
+			enemy.dodging = true;
+		}
+		else if(!enemy.dodging && distEnemyRight < 0.5 && distEnemyRight < distEnemyLeft) {
+			enemy.DodgeBullet(1);
+			enemy.dodging = true;
+		}
 	}
 	
 	void OnCollisionEnter(Collision collisionInfo)
