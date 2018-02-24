@@ -8,7 +8,8 @@ public class BulletController : MonoBehaviour
 	Rigidbody rb;
 	Transform bullet;
 	PlayerController player;
-	EnemyController enemy;
+	// EnemyController enemy;
+	public GameObject[] enemies;
 
 	bool hit;
 
@@ -18,7 +19,9 @@ public class BulletController : MonoBehaviour
 	void Start () 
 	{
 		player = GameObject.Find("Player").GetComponent<PlayerController>();
-		enemy = GameObject.Find("Drone").GetComponent<EnemyController>();
+		// enemy = GameObject.Find("Drone").GetComponent<EnemyController>();
+
+		enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
 		speed = 500f;
 		
@@ -35,17 +38,22 @@ public class BulletController : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
-		float distEnemyLeft = Vector3.Distance(this.transform.position, enemy.leftEye.transform.position);
-		float distEnemyRight = Vector3.Distance(this.transform.position, enemy.rightEye.transform.position);
+		foreach(GameObject e in enemies) {
+			EnemyController enemy = e.GetComponent<EnemyController>();
+			
+			float distEnemyLeft = Vector3.Distance(this.transform.position, enemy.leftEye.transform.position);
+			float distEnemyRight = Vector3.Distance(this.transform.position, enemy.rightEye.transform.position);
 
-		if(!enemy.dodging && distEnemyLeft < 0.5 && distEnemyLeft < distEnemyRight) {
-			enemy.DodgeBullet(-1);
-			enemy.dodging = true;
+			if(!enemy.dodging && distEnemyLeft < 0.5 && distEnemyLeft < distEnemyRight) {
+				enemy.DodgeBullet(-1);
+				enemy.dodging = true;
+			}
+			else if(!enemy.dodging && distEnemyRight < 0.5 && distEnemyRight < distEnemyLeft) {
+				enemy.DodgeBullet(1);
+				enemy.dodging = true;
+			}
 		}
-		else if(!enemy.dodging && distEnemyRight < 0.5 && distEnemyRight < distEnemyLeft) {
-			enemy.DodgeBullet(1);
-			enemy.dodging = true;
-		}
+
 	}
 	
 	void OnCollisionEnter(Collision collisionInfo)
