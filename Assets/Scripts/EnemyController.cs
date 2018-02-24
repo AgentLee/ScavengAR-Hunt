@@ -26,9 +26,13 @@ public class EnemyController : MonoBehaviour
 	public bool dodging;
 	public float dodgeTime;
 
+	private Vector3 origPos;
+
 	// Use this for initialization
 	void Start () 
 	{
+		origPos = transform.position;
+		
 		player = GameObject.FindGameObjectWithTag("Player");
 		rb = GetComponent<Rigidbody>();
 
@@ -98,78 +102,37 @@ public class EnemyController : MonoBehaviour
 
 		if(Time.time - dodgeTime >= 0.75 && dodging) {
 			dodging = false;
+			rb.velocity = -rb.velocity;
+		}
+		
+		if(Vector3.Distance(origPos, transform.position) <= .0125f) {
+			rb.velocity = Vector3.zero;
+		}
+
+		if(DEBUG_TILT) {
+			float axis = Input.GetAxis("Horizontal");
+			// https://forum.unity.com/threads/smoothly-tilting-an-object-from-left-to-right.3262/
+			Quaternion target = Quaternion.Euler(0, 0, axis * -75.0f);
+			transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 2.0f);
 		}
 
 		if(DEBUG_DODGE) {
-			float axis = Input.GetAxis("Horizontal");
-			
-			if(DEBUG_TILT) {
-				// https://forum.unity.com/threads/smoothly-tilting-an-object-from-left-to-right.3262/
-				Quaternion target = Quaternion.Euler(0, 0, axis * -75.0f);
-				transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 2.0f);
-			}
-
 			GameObject bullet = GameObject.FindGameObjectWithTag("Bullet");
 			if(bullet != null) {
 				float leftDistance = Vector3.Distance(leftEye.transform.position, bullet.transform.position);
 				float rightDistance = Vector3.Distance(rightEye.transform.position, bullet.transform.position);
 
 				if(leftDistance < 1 && leftDistance < rightDistance) {
-					Debug.Log("LEFT");
 					Quaternion target = Quaternion.Euler(0, 0, -1.0f * -75.0f);
 					transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 2.0f);
 					rb.AddForce(Vector3.right * -1.0f * 1.0f);
 				}
 				else if(rightDistance < 1 && rightDistance < leftDistance) {
-					Debug.Log("RIGHT");
 					Quaternion target = Quaternion.Euler(0, 0, 1.0f * -75.0f);
 					transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 2.0f);
 					rb.AddForce(Vector3.right * 1.0f * 1.0f);
 				}
-
-
-
-			// GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
-			// GameObject closestBullet = null;
-				// 	float leftDistance = Vector3.Distance(leftEye.transform.position, bullet.transform.position);
-				// 	float rightDistance = Vector3.Distance(rightEye.transform.position, bullet.transform.position);
-
-				// 	if(leftDistance < Vector3.Distance(closestBullet.transform.position, leftEye.transform.position)) {
-						 
-				// 	}
-
-				// 	if(leftDistance < 1 && leftDistance < rightDistance) {
-				// 		Debug.Log("LEFT");
-				// 		Quaternion target = Quaternion.Euler(0, 0, -1.0f * -75.0f);
-				// 		transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 2.0f);
-				// 		rb.AddForce(Vector3.right * -1.0f * 1.0f);
-				// 	}
-				// 	else if(rightDistance < 1 && rightDistance < leftDistance) {
-				// 		Debug.Log("RIGHT");
-				// 		Quaternion target = Quaternion.Euler(0, 0, 1.0f * -75.0f);
-				// 		transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 2.0f);
-				// 		rb.AddForce(Vector3.right * 1.0f * 1.0f);
-				// 	}
-				// }
 			}
-
-			// if(bullet != null) {
-			// 	float leftDistance = Vector3.Distance(leftEye.transform.position, bullet.transform.position);
-			// 	float rightDistance = Vector3.Distance(rightEye.transform.position, bullet.transform.position);
-
-			// 	if(leftDistance < 1 && leftDistance < rightDistance) {
-			// 		Debug.Log("LEFT");
-			// 		Quaternion target = Quaternion.Euler(0, 0, -1.0f * -75.0f);
-			// 		transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 2.0f);
-			// 		rb.AddForce(Vector3.right * -1.0f * 1.0f);
-			// 	}
-			// 	else if(rightDistance < 1 && rightDistance < leftDistance) {
-			// 		Debug.Log("RIGHT");
-			// 		Quaternion target = Quaternion.Euler(0, 0, 1.0f * -75.0f);
-			// 		transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 2.0f);
-			// 		rb.AddForce(Vector3.right * 1.0f * 1.0f);
-			// 	}
-			// }
 		}
 	}
 
@@ -191,24 +154,7 @@ public class EnemyController : MonoBehaviour
 
 			dodgeTime = Time.time;
 		}
-
-		// if(bullet != null) {
-		// 	float leftDistance = Vector3.Distance(leftEye.transform.position, bullet.transform.position);
-		// 	float rightDistance = Vector3.Distance(rightEye.transform.position, bullet.transform.position);
-
-		// 	if(leftDistance < 1 && leftDistance < rightDistance) {
-		// 		Debug.Log("LEFT");
-		// 		Quaternion target = Quaternion.Euler(0, 0, -1.0f * -75.0f);
-		// 		transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 2.0f);
-		// 		rb.AddForce(Vector3.right * -1.0f * 1.0f);
-		// 	}
-		// 	else if(rightDistance < 1 && rightDistance < leftDistance) {
-		// 		Debug.Log("RIGHT");
-		// 		Quaternion target = Quaternion.Euler(0, 0, 1.0f * -75.0f);
-		// 		transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 2.0f);
-		// 		rb.AddForce(Vector3.right * 1.0f * 1.0f);
-		// 	}
-		// }
+		
 	}
 	void OnCollisionEnter(Collision collisionInfo)
 	{

@@ -668,11 +668,16 @@ Prefab:
     - target: {fileID: 114758389096730910, guid: 67cf542f3bcd34f80aeaf09d9f570a42,
         type: 2}
       propertyPath: DEBUG_DODGE
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 54693770037765098, guid: 67cf542f3bcd34f80aeaf09d9f570a42,
         type: 2}
       propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114758389096730910, guid: 67cf542f3bcd34f80aeaf09d9f570a42,
+        type: 2}
+      propertyPath: DEBUG_TILT
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1373,7 +1378,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4436286498975992, guid: 67cf542f3bcd34f80aeaf09d9f570a42, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.211
+      value: -0.135
       objectReference: {fileID: 0}
     - target: {fileID: 4436286498975992, guid: 67cf542f3bcd34f80aeaf09d9f570a42, type: 2}
       propertyPath: m_LocalPosition.y
