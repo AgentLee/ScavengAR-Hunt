@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour 
 {
 	public GameObject player;
 	public GameObject leftEye;
 	public GameObject rightEye;
+	public GameObject center;
+
+	public GameObject bullet;
 
 	private Rigidbody rb;
 
@@ -30,6 +34,10 @@ public class EnemyController : MonoBehaviour
 
 	public Transform targetPosition;
 
+	float fireTime;
+
+	public Transform cubeTarget;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -38,14 +46,17 @@ public class EnemyController : MonoBehaviour
 		player = GameObject.FindGameObjectWithTag("Player");
 		rb = GetComponent<Rigidbody>();
 
-		foreach(GameObject child in this.transform) {
-			if(child.name == "Left Eye") {
-				leftEye = child;
-			}
-			else if(child.name == "Right Eye") {
-				rightEye = child;
-			}
-		}
+		// foreach(GameObject child in this.transform) {
+		// 	if(child.name == "Left Eye") {
+		// 		leftEye = child;
+		// 	}
+		// 	else if(child.name == "Right Eye") {
+		// 		rightEye = child;
+		// 	}
+		// 	else if(child.name == "Center") {
+		// 		center = child;
+		// 	}
+		// }
 
 		// Orient the drone towards the player
 		// Vector3 lookAt = player.transform.position - transform.position;
@@ -58,16 +69,53 @@ public class EnemyController : MonoBehaviour
 		grounded = false;
 		launch = false;
 		dodging = false;
+		fireTime = 0;
 
+		// StartCoroutine(FlyToPoint(3.0f));
 		// flyByPos.position = this.transform.position + new Vector3(0,0, 10);
 		// flyByPos.position =
 		// speed = 50;
 		// Instantiate(GameObject.CreatePrimitive(PrimitiveType.Sphere), flyByPos.position, new Quaternion());
 	}
 	
+	// IEnumerator FlyToPoint(float duration)
+	// {
+	// 	float time = 0;
+
+	// 	while(time < duration) {
+	// 		time += Time.deltaTime;
+	// 		this.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.parent.transform.position, Time.deltaTime * 10.0f);		
+	// 		yield return null;
+	// 	}
+	// }
+
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
+		// if(GetComponent<NavMeshAgent>().pathStatus == NavMeshPathStatus.PathComplete) {
+		// 	GetComponent<NavMeshAgent>().destination = cubeTarget.position;
+		// }
+
+		// if(this.transform.parent.GetComponent<NavMeshAgent>().pathStatus == NavMeshPathStatus.PathComplete) {
+		// 	Debug.Log("COMPLETE");
+
+		// 	this.transform.position = Vector3.MoveTowards(this.transform.position, cubeTarget.position, speed * Time.deltaTime);
+		// }
+
+		// this.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.parent.transform.position, Time.deltaTime * 10.0f);
+
+		// if(fireTime < 5) {
+		// 	fireTime += Time.deltaTime;
+		// }
+		// else {
+			// fireTime = 0;
+			// GameObject spawnedBullt = Instantiate(bullet, center.transform.position, bullet.transform.rotation);
+			// spawnedBullt.GetComponent<Rigidbody>().AddForce(this.transform.forward * 10.0f);
+			// Destroy(spawnedBullt, 0.5f);
+		// }
+
+
+
 		// Check to see if the player is in the drone's fov
 		// RaycastHit hit;
 		// Vector3 playerPosCenter = player.transform.position - this.transform.position;

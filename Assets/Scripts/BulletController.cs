@@ -7,6 +7,7 @@ public class BulletController : MonoBehaviour
 	float speed;
 	Rigidbody rb;
 	Transform bullet;
+	Collider collider;
 	PlayerController player;
 	// EnemyController enemy;
 	public GameObject[] enemies;
@@ -30,6 +31,8 @@ public class BulletController : MonoBehaviour
 
 		rb = GetComponent<Rigidbody>();
 		rb.AddForce(Camera.main.transform.forward * speed);
+		collider = GetComponent<Collider>();
+		// Physics.IgnoreCollision(collider, GameObject.FindGameObjectWithTag("Shield").GetComponent<Collider>(), true);
 
 		// Need to tweak so that it will take longer to destroy after hitting an object
 		Destroy(gameObject, destroyTime);
@@ -76,5 +79,13 @@ public class BulletController : MonoBehaviour
 				++player.score;
 			}
 		}
+
+		// if(collisionInfo.collider.tag == "Shield") {
+		// 	collider.isTrigger = true;
+		// }
+		// else {
+		// 	collider.isTrigger = false;
+		// 	Debug.Log(collisionInfo.collider.tag);
+		// }
 	}
 }
