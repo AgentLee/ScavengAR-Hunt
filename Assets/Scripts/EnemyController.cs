@@ -38,6 +38,8 @@ public class EnemyController : MonoBehaviour
 
 	public Transform cubeTarget;
 
+	float distToCube;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -71,6 +73,10 @@ public class EnemyController : MonoBehaviour
 		dodging = false;
 		fireTime = 0;
 
+		prevParentPos = transform.parent.transform;
+		distToCube = Vector3.Distance(cubeTarget.position, transform.position);
+		// distToCube = Mathf.Abs(cubeTarget.position.z - transform.position.z);
+
 		// StartCoroutine(FlyToPoint(3.0f));
 		// flyByPos.position = this.transform.position + new Vector3(0,0, 10);
 		// flyByPos.position =
@@ -89,69 +95,92 @@ public class EnemyController : MonoBehaviour
 	// 	}
 	// }
 
+	float orientSpeed = 2.5f;
+	void OrientDrone()
+	{
+		Debug.Log("ORIENTING");
+		Vector3 dir = cubeTarget.position - this.transform.position;
+		dir.y = 0;
+
+		Quaternion rot = Quaternion.LookRotation(dir);
+		transform.rotation = Quaternion.Slerp(transform.rotation, rot, orientSpeed * Time.deltaTime);
+	}
+
+	void Update()
+	{
+
+	}
+
+	bool oriented = false;
+	Transform prevParentPos = null;
+
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
-		// if(GetComponent<NavMeshAgent>().pathStatus == NavMeshPathStatus.PathComplete) {
-		// 	GetComponent<NavMeshAgent>().destination = cubeTarget.position;
+		float dY = Mathf.Abs(transform.position.y - cubeTarget.position.y);
+		// float dX = Mathf.Abs(transform.position.z - cubeTarget.position.z);
+
+		float currDist = Vector3.Distance(cubeTarget.position, transform.position);
+		// Debug.Log("CURRENT: "+currDist+" | FULL: "+distToCube+" | PERCENT: "+(100.0f*currDist/distToCube));
+
+		// This only works during descents
+		// Need to find a way to do ascension
+		// if((currDist / distToCube) <= .90f) {
+		// 	Debug.Log(dY);
+		// 	if(dY > 0.1f)
+		// 		transform.position -= new Vector3(0, 2.0f * Time.deltaTime, 0);
 		// }
 
-		// if(this.transform.parent.GetComponent<NavMeshAgent>().pathStatus == NavMeshPathStatus.PathComplete) {
-		// 	Debug.Log("COMPLETE");
-
-		// 	this.transform.position = Vector3.MoveTowards(this.transform.position, cubeTarget.position, speed * Time.deltaTime);
-		// }
-
-		// this.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.parent.transform.position, Time.deltaTime * 10.0f);
-
-		// if(fireTime < 5) {
-		// 	fireTime += Time.deltaTime;
-		// }
-		// else {
-			// fireTime = 0;
-			// GameObject spawnedBullt = Instantiate(bullet, center.transform.position, bullet.transform.rotation);
-			// spawnedBullt.GetComponent<Rigidbody>().AddForce(this.transform.forward * 10.0f);
-			// Destroy(spawnedBullt, 0.5f);
-		// }
-
-
+		{
+			// if(fireTime < 5) {
+			// 	fireTime += Time.deltaTime;
+			// }
+			// else {
+				// fireTime = 0;
+				// GameObject spawnedBullt = Instantiate(bullet, center.transform.position, bullet.transform.rotation);
+				// spawnedBullt.GetComponent<Rigidbody>().AddForce(this.transform.forward * 10.0f);
+				// Destroy(spawnedBullt, 0.5f);
+			// }
+		}
 
 		// Check to see if the player is in the drone's fov
-		// RaycastHit hit;
-		// Vector3 playerPosCenter = player.transform.position - this.transform.position;
-		// Vector3 playerPosRight	= player.transform.position - rightEye.transform.position;
-		// Vector3 playerPosLeft	= player.transform.position - leftEye.transform.position;
+		{
+			// RaycastHit hit;
+			// Vector3 playerPosCenter = player.transform.position - this.transform.position;
+			// Vector3 playerPosRight	= player.transform.position - rightEye.transform.position;
+			// Vector3 playerPosLeft	= player.transform.position - leftEye.transform.position;
 
-		// Ray Rray = new Ray(rightEye.transform.position, playerPosRight);
-		// Ray Lray = new Ray(leftEye.transform.position, playerPosLeft);
-		// Ray Cray = new Ray(this.transform.position, playerPosCenter);
+			// Ray Rray = new Ray(rightEye.transform.position, playerPosRight);
+			// Ray Lray = new Ray(leftEye.transform.position, playerPosLeft);
+			// Ray Cray = new Ray(this.transform.position, playerPosCenter);
 
-		// Debug.DrawRay(Rray.origin, Rray.direction, Color.green);
-		// Debug.DrawRay(Lray.origin, Lray.direction, Color.red);
-		// Debug.DrawRay(Cray.origin, Cray.direction, Color.blue);
+			// Debug.DrawRay(Rray.origin, Rray.direction, Color.green);
+			// Debug.DrawRay(Lray.origin, Lray.direction, Color.red);
+			// Debug.DrawRay(Cray.origin, Cray.direction, Color.blue);
 
-		// float step = 5f * Time.deltaTime;
-		// transform.position = Vector3.MoveTowards(transform.position, flyByPos.position, step);
+			// float step = 5f * Time.deltaTime;
+			// transform.position = Vector3.MoveTowards(transform.position, flyByPos.position, step);
 
-		// float distTraveled = Vector3.Distance(origPos, transform.position);
-		// Debug.Log(Vector3.Distance(transform.position, targetPosition.position));
-		
-		// if(Vector3.Distance(transform.position, targetPosition.position) > 1) {
-		// 	transform.LookAt(targetPosition);
-		// 	rb.AddRelativeForce(Vector3.forward * 2.0f, ForceMode.Force);
-		// }
-		// else {
-		// 	rb.velocity = rb.velocity * 0.9f;
-		// 	// transform.LookAt(targetPosition);
-		// 	// rb.AddRelativeForce(Vector3.forward * 0.9f, ForceMode.Force);
-		// }
-		// else {
-		// 	if(!launch) {
-				
-		// 		rb.AddForce(transform.forward * 2.0f);
-		// 		launch = true;
-		// 	}
-		// }
+			// float distTraveled = Vector3.Distance(origPos, transform.position);
+			// Debug.Log(Vector3.Distance(transform.position, targetPosition.position));
+			
+			// if(Vector3.Distance(transform.position, targetPosition.position) > 1) {
+			// 	transform.LookAt(targetPosition);
+			// 	rb.AddRelativeForce(Vector3.forward * 2.0f, ForceMode.Force);
+			// }
+			// else {
+			// 	rb.velocity = rb.velocity * 0.9f;
+			// 	// transform.LookAt(targetPosition);
+			// 	// rb.AddRelativeForce(Vector3.forward * 0.9f, ForceMode.Force);
+			// }
+			// else {
+			// 	if(!launch) {
+					
+			// 		rb.AddForce(transform.forward * 2.0f);
+			// 		launch = true;
+			// 	}
+			// }
+		}
 
 		float distToTarget = Vector3.Distance(targetPosition.position, this.transform.position);
 		if(distToTarget > 0.125f) {
