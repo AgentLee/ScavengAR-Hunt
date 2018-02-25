@@ -38,6 +38,15 @@ public class EnemyController : MonoBehaviour
 		player = GameObject.FindGameObjectWithTag("Player");
 		rb = GetComponent<Rigidbody>();
 
+		foreach(GameObject child in this.transform) {
+			if(child.name == "Left Eye") {
+				leftEye = child;
+			}
+			else if(child.name == "Right Eye") {
+				rightEye = child;
+			}
+		}
+
 		// Orient the drone towards the player
 		// Vector3 lookAt = player.transform.position - transform.position;
 		// lookAt.y = 0;
