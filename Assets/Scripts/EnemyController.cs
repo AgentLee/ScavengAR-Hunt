@@ -109,53 +109,37 @@ public class EnemyController : MonoBehaviour
 			rb.velocity = Vector3.zero;
 		}
 
-		if(DEBUG_TILT) {
-			float axis = Input.GetAxis("Horizontal");
-			// https://forum.unity.com/threads/smoothly-tilting-an-object-from-left-to-right.3262/
-			Quaternion target = Quaternion.Euler(0, 0, axis * -75.0f);
-			transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 2.0f);
-		}
-
-		if(DEBUG_DODGE) {
-			GameObject bullet = GameObject.FindGameObjectWithTag("Bullet");
-			if(bullet != null) {
-				float leftDistance = Vector3.Distance(leftEye.transform.position, bullet.transform.position);
-				float rightDistance = Vector3.Distance(rightEye.transform.position, bullet.transform.position);
-
-				if(leftDistance < 1 && leftDistance < rightDistance) {
-					Quaternion target = Quaternion.Euler(0, 0, -1.0f * -75.0f);
-					transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 2.0f);
-					rb.AddForce(Vector3.right * -1.0f * 1.0f);
-				}
-				else if(rightDistance < 1 && rightDistance < leftDistance) {
-					Quaternion target = Quaternion.Euler(0, 0, 1.0f * -75.0f);
-					transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 2.0f);
-					rb.AddForce(Vector3.right * 1.0f * 1.0f);
-				}
-			}
-		}
+		// Reset rotations
+		// https://forum.unity.com/threads/smoothly-tilting-an-object-from-left-to-right.3262/
+		Quaternion target = Quaternion.Euler(0, 0, 0);
+		transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 2.0f);
 	}
 
-	public void DodgeBullet(int axis)
+	// Each bullet can call this function. If the bullet is close to the drone,
+	// the drone will try to dodge it.
+	// TODO
+	// Each new bullet makes it tilt. Need to remove this.
+	public void DodgeBullet(GameObject bullet)
 	{
-		// Left
-		if(axis == -1) {
+		float distLeft = Vector3.Distance(bullet.transform.position, this.leftEye.transform.position);
+		float distRight = Vector3.Distance(bullet.transform.position, this.rightEye.transform.position);
+
+		if(!dodging && distLeft < 0.5 && distLeft < distRight) {
 			Quaternion target = Quaternion.Euler(0, 0, -1.0f * -75.0f);
 			transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 2.0f);
 			rb.AddForce(Vector3.right * -1.0f * 1.0f);
 
 			dodgeTime = Time.time;
 		}
-		// Right
-		else if(axis == 1) {
+		else if(!dodging && distRight < 0.5 && distRight < distLeft) {
 			Quaternion target = Quaternion.Euler(0, 0, 1.0f * -75.0f);
 			transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 2.0f);
 			rb.AddForce(Vector3.right * 1.0f * 1.0f);
 
 			dodgeTime = Time.time;
 		}
-		
 	}
+
 	void OnCollisionEnter(Collision collisionInfo)
 	{
 		if(collisionInfo.collider.tag == "Bullet") {

@@ -35,75 +35,31 @@ public class BulletController : MonoBehaviour
 		Destroy(gameObject, destroyTime);
 	}
 	
-	GameObject FindClosestEnemy()
+	void FindClosestEnemy()
 	{
-		GameObject tMin = null;
+		GameObject closestEnemy = null;
 		float minDist = Mathf.Infinity;
-
-		Vector3 bulletPos = transform.position;
 		
+		// Find the closest enemy by comparing the distance to the bullet.
 		foreach(GameObject e in enemies) {
-			float dist = Vector3.Distance(e.transform.position, bulletPos);
+			float dist = Vector3.Distance(e.transform.position, this.transform.position);
 
 			if(dist < minDist) {
-				tMin = e;
+				closestEnemy = e;
 				minDist = dist;
 			}
 		}
 
-		return tMin;
+		// If we found an enemy, have it dodge the bullet
+		if(closestEnemy) {
+			closestEnemy.GetComponent<EnemyController>().DodgeBullet(this.gameObject);
+		}
 	}
 
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
-		// GameObject closestEnemy = null;
-		// float distLeft = 0;
-		// float distRight = 0;
-		// foreach(GameObject e in enemies) {
-		// 	EnemyController enemy = e.GetComponent<EnemyController>();
-			
-		// 	if(closestEnemy == null && e != null) {
-		// 		closestEnemy = e;
-		// 		distLeft = Vector3.Distance(this.transform.position, enemy.leftEye.transform.position);
-		// 		distRight = Vector3.Distance(this.transform.position, enemy.rightEye.transform.position);
-		// 		continue;
-		// 	}
-
-		// 	EnemyController closest = closestEnemy.GetComponent<EnemyController>();
-			
-		// 	float distEnemyLeft = Vector3.Distance(this.transform.position, enemy.leftEye.transform.position);
-		// 	float distEnemyRight = Vector3.Distance(this.transform.position, enemy.rightEye.transform.position);
-		// 	float closestEnemyLeft = Vector3.Distance(this.transform.position, closest.leftEye.transform.position);
-		// 	float closestEnemyRight = Vector3.Distance(this.transform.position, closest.rightEye.transform.position);
-
-		// 	if(distEnemyLeft > closestEnemyLeft || distEnemyRight > closestEnemyRight) {
-		// 		continue;
-		// 	} 
-		// 	else {
-		// 		closestEnemy = e;
-		// 		distLeft = distEnemyLeft;
-		// 		distRight = distEnemyRight;
-		// 	}
-		// }
-
-		GameObject closestEnemy = FindClosestEnemy();
-		if(closestEnemy != null) {
-			EnemyController enemy = closestEnemy.GetComponent<EnemyController>();
-
-			float distLeft = Vector3.Distance(this.transform.position, enemy.leftEye.transform.position);
-			float distRight = Vector3.Distance(this.transform.position, enemy.rightEye.transform.position);
-
-			if(!enemy.dodging && distLeft < 0.5 && distLeft < distRight) {
-				enemy.DodgeBullet(-1);
-				enemy.dodging = true;
-			}
-			else if(!enemy.dodging && distRight < 0.5 && distRight < distLeft) {
-				enemy.DodgeBullet(1);
-				enemy.dodging = true;
-			}
-		}
-
+		FindClosestEnemy();
 	}
 	
 	void OnCollisionEnter(Collision collisionInfo)
