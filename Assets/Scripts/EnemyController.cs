@@ -28,6 +28,8 @@ public class EnemyController : MonoBehaviour
 
 	private Vector3 origPos;
 
+	public Transform targetPosition;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -36,17 +38,16 @@ public class EnemyController : MonoBehaviour
 		player = GameObject.FindGameObjectWithTag("Player");
 		rb = GetComponent<Rigidbody>();
 
-		Vector3 lookAt = player.transform.position - transform.position;
-		lookAt.y = 0;
+		// Orient the drone towards the player
+		// Vector3 lookAt = player.transform.position - transform.position;
+		// lookAt.y = 0;
 
-		Quaternion rotation = Quaternion.LookRotation(lookAt);
-		transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1);
+		// Quaternion rotation = Quaternion.LookRotation(lookAt);
+		// transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1);
 
 		hit = false;
 		grounded = false;
-
 		launch = false;
-
 		dodging = false;
 
 		// flyByPos.position = this.transform.position + new Vector3(0,0, 10);
@@ -74,6 +75,39 @@ public class EnemyController : MonoBehaviour
 
 		// float step = 5f * Time.deltaTime;
 		// transform.position = Vector3.MoveTowards(transform.position, flyByPos.position, step);
+
+		// float distTraveled = Vector3.Distance(origPos, transform.position);
+		// Debug.Log(Vector3.Distance(transform.position, targetPosition.position));
+		
+		// if(Vector3.Distance(transform.position, targetPosition.position) > 1) {
+		// 	transform.LookAt(targetPosition);
+		// 	rb.AddRelativeForce(Vector3.forward * 2.0f, ForceMode.Force);
+		// }
+		// else {
+		// 	rb.velocity = rb.velocity * 0.9f;
+		// 	// transform.LookAt(targetPosition);
+		// 	// rb.AddRelativeForce(Vector3.forward * 0.9f, ForceMode.Force);
+		// }
+		// else {
+		// 	if(!launch) {
+				
+		// 		rb.AddForce(transform.forward * 2.0f);
+		// 		launch = true;
+		// 	}
+		// }
+
+		float distToTarget = Vector3.Distance(targetPosition.position, this.transform.position);
+		if(distToTarget > 0.125f) {
+			transform.LookAt(targetPosition);
+
+			if(distToTarget <= 0.025f) {
+				rb.velocity = rb.velocity * 0.9f;
+			}
+			else {
+				rb.AddRelativeForce(Vector3.forward * .75f, ForceMode.Force);
+			}
+		}
+
 
 		if(DEBUG_LAUNCH) {
 			float distance = Vector3.Distance(flyByPos.position, this.transform.position);

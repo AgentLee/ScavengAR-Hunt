@@ -8,15 +8,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -2067402452, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
+  m_Script: {fileID: -2067402452, guid: 8a9a760f95896c34689febc965510927, type: 3}
   m_Name: VuforiaConfiguration
   m_EditorClassIdentifier: 
   vuforia:
-    vuforiaLicenseKey: AWm+Ykf/////AAAAmRdXBTCA00+vrLCLl9tmaN4ZamBbZvcw2dTYrMlrhC2BFIV0mzjgzEoIvciCbfUT0kuNBwfhNv0M7DLuX4O5/+CC+MqhaEs4B7Iq6I8DcXvgt49nq5pLtQhPqfxAO+CflybcJsVD7wO2CSn0dOgrxhEtlzJ1aJf/9nANSSb0jCm3EjM0NHEScm4Sy2/K4gCnCp/xWROTepVEtsQ4wQHZrZ9NJIxWt5+VgI51A2hgCAg3HlZye8/HYPo9ONgmH4s7ZhnDGHSQ/NpdlPk43zI4DJ227dkNH8lYzQsPT6UFXrHj6Lssrwsih5A57VY9vm3V8KdiAYMdEMSZsAEoSTa65SNpcEEA2adT6HOGQsfbQz5c
-    ufoLicenseKey: QVVTdXBNci8vLy8vQUFBQUtIMEhkbzMyalVPRmdSVWJXNDQxUHB4bkpZbVRFcnRhTjluMmtmVnF4UkgvdmMvUkt6NTRMM2Rwcy84V1JPaWZkc2ZXSFR4Ni9rQVZ6RlRvcVRxK09Md29xMENFSEUrcGtXYVIxcjZ5QWU4TEx1NUE3K2RFZlVDaW1wbWRDeE9pK01hNVM5am9qdW9rd1BpaFVQZ0xJSUdwN3hHN3o4V21KRi9KSG9TU0huRnFXS3hMU1ppRUVUdkhIT3lQQzUzMGEwWHBqb2R2cy9WUDdaaHhsU3huUmJiSm04TG4rUXNMZ3YzYStxR1VJNFJwME85cWVwZFF4eGdpc0QvRnJ5YjdpeitmS3pTbGd5ZXhSVDByNndjVkxPb3d5VWxIUHhSRnhGSmNVV3dTZGtEd0RIRCtIcjU1amVBYUt1eHYraFN2cG1xaFdEUHR3ZHVwcHVmYnh5WFZXS280ZHdvVmhGMzhsTEdtTkZTdFh0ZUU=
+    vuforiaLicenseKey: 
+    ufoLicenseKey: QVptSVVkVC8vLy8vQUFBQUtDSzJ4LzJCOGtweWlZZzhHQUtDekdON0tPYjFHOUFsY2pGK1hyakdmVlpDdy9FK0FVN0xGeTRHcVpEVGRlN3V1TTlYNUJPL2RVM0MrRlMwVVphOGhtZ1pDc3EyejhlbXFTK3h3azgxWTZyNlpJbGFEN1ZSNjBTVVlXZUZqdDNHb0EwWkkvTnNYZVc3VUJHSktzbnRRcll0VURaeUV1Z3JWWTZHR1FvRjdTV3pYVFFHYWxhV3FJR2RkcTAwRXpDUTNoaEJiYXpCS2xiQUMyNHAzeGV2ZmpjditvSkZxcXVEVi8zOFR6eDI3cnE5N05NUW5PMmtic25IZzE2QnlhYlFpdVBUUERMdU5VY3k2dUlxTGF4NUlEOGNoeGprNm9MaTZkRVNoL2JGak9TTHBJc1dmWHU1bnRhTkdwNlpVRTlsYkJEZ2plRkN3bWtrSXZnNlBKb2pldE5xY09OTnRCOUd4Q0lGdlJ1Q3lkVzM=
     delayedInitialization: 0
     cameraDeviceModeSetting: -1
-    maxSimultaneousImageTargets: 1
+    maxSimultaneousImageTargets: 4
     maxSimultaneousObjectTargets: 1
     useDelayedLoadingObjectTargets: 0
     cameraDirection: 0
@@ -43,12 +43,8 @@ MonoBehaviour:
       FieldOfView: {x: 0, y: 0, z: 0, w: 0}
       ContainsMagnet: 0
   databaseLoad:
-    dataSetsToLoad:
-    - VuforiaMars_Images
-    - VuforiaMars_VuMark
-    dataSetsToActivate:
-    - VuforiaMars_Images
-    - VuforiaMars_VuMark
+    dataSetsToLoad: []
+    dataSetsToActivate: []
   videoBackground:
     clippingMode: 0
     numDivisions: 2
@@ -57,9 +53,9 @@ MonoBehaviour:
     matteShader: {fileID: 15310, guid: 0000000000000000f000000000000000, type: 0}
     videoBackgroundEnabled: 1
   deviceTracker:
-    autoInitTracker: 1
-    autoStartTracker: 1
-    trackingMode: 1
+    autoInitTracker: 0
+    autoStartTracker: 0
+    trackingMode: 0
     posePrediction: 0
     modelCorrectionMode: 0
     modelTransformEnabled: 0
@@ -68,7 +64,7 @@ MonoBehaviour:
     autoInitTracker: 0
     autoStartTracker: 0
   webcam:
-    deviceNameSetInEditor: 
+    deviceNameSetInEditor: Logitech Camera
     flipHorizontally: 0
     turnOffWebCam: 1
     renderTextureLayer: 30
