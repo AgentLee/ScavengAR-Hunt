@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SpaceInvadARs-UDT.unity
     guid: ce1b6a2c5cca4437e894d1ce7b2b169f
+  - enabled: 1
+    path: Assets/Scenes/DroneTest.unity
+    guid: 190d30ec763af4590a64da2f29b89289

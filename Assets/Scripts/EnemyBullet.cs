@@ -24,8 +24,10 @@ public class EnemyBullet : MonoBehaviour
 
 		bullet = GetComponent<Transform>();
 
-		rb = GetComponent<Rigidbody>();
-		rb.AddForce(bullet.up * speed);
+		// rb = GetComponent<Rigidbody>();
+		// rb.AddForce(bullet.up * speed);
+
+		Destroy(gameObject, 5.0f);
 	}
 
 	// Update is called once per frame
@@ -37,10 +39,11 @@ public class EnemyBullet : MonoBehaviour
 	void OnCollisionEnter(Collision collisionInfo)
 	{
 		if(collisionInfo.collider.tag == "Ground") {
-			Debug.Log("HIT");
-			rb.useGravity = true;
-			rb.velocity = Vector3.zero;
-			rb.angularVelocity = Vector3.zero;
+			// Debug.Log("HIT");
+			// rb.useGravity = true;
+			// rb.velocity = Vector3.zero;
+			// rb.angularVelocity = Vector3.zero;
+			Destroy(gameObject);
 		}	
 	}
 }

@@ -65,7 +65,7 @@ public class Shield : MonoBehaviour
 
 	void OnCollisionEnter(Collision collisionInfo)
 	{
-		if(collisionInfo.collider.tag == "Bullet") {
+		if(collisionInfo.collider.tag == "Bullet" || collisionInfo.collider.tag == "Enemy Bullet") {
 			// Physics.IgnoreCollision(collisionInfo.collider, this.GetComponent<Collider>());
 			if(!hit) {
 				StartCoroutine(Blink(3.0f, 0.2f, collisionInfo.collider));
