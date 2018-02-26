@@ -276,7 +276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ec0f68c37a54de088a9f008a13b056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iShield: {fileID: 10209811}
 --- !u!114 &10209817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2707,7 +2706,7 @@ SphereCollider:
   m_GameObject: {fileID: 1244682041}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -3567,6 +3566,27 @@ Prefab:
     - target: {fileID: 1903047222610220, guid: 6e13c6012b54c4752a5f687bc9b95fd9, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114651420687518336, guid: 6e13c6012b54c4752a5f687bc9b95fd9,
+        type: 2}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 1244682042}
+    - target: {fileID: 114651420687518336, guid: 6e13c6012b54c4752a5f687bc9b95fd9,
+        type: 2}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 1369157196033138, guid: d1d5a975abc7f4caa97055ef61db8173,
+        type: 2}
+    - target: {fileID: 135325137585629900, guid: 6e13c6012b54c4752a5f687bc9b95fd9,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 135497320856086976, guid: 6e13c6012b54c4752a5f687bc9b95fd9,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e13c6012b54c4752a5f687bc9b95fd9, type: 2}

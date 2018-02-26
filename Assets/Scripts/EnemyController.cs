@@ -117,6 +117,10 @@ public class EnemyController : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
+		// GameObject spawnedBullet = Instantiate(bullet, center.transform.position, bullet.transform.rotation);
+		// spawnedBullet.GetComponent<Rigidbody>().AddForce(Vector3.right * 10.0f);
+		// Destroy(spawnedBullet, 3.0f);
+
 		float dY = Mathf.Abs(transform.position.y - cubeTarget.position.y);
 		// float dX = Mathf.Abs(transform.position.z - cubeTarget.position.z);
 

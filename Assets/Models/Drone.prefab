@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 114606289110960258}
   - component: {fileID: 65838171435921974}
   - component: {fileID: 54361239599218016}
+  - component: {fileID: 114651420687518336}
   - component: {fileID: 114177816104798142}
   m_Layer: 0
   m_Name: Drone
@@ -273,6 +274,8 @@ MonoBehaviour:
   player: {fileID: 0}
   leftEye: {fileID: 1154568589682742}
   rightEye: {fileID: 1820157521111732}
+  center: {fileID: 0}
+  bullet: {fileID: 0}
   hit: 0
   grounded: 0
   flyByPos: {fileID: 0}
@@ -283,6 +286,7 @@ MonoBehaviour:
   dodging: 0
   dodgeTime: 0
   targetPosition: {fileID: 0}
+  cubeTarget: {fileID: 0}
 --- !u!114 &114606289110960258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -297,6 +301,19 @@ MonoBehaviour:
   player: {fileID: 0}
   enemy: {fileID: 0}
   speed: 50
+--- !u!114 &114651420687518336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1903047222610220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5b009619b4c04a8a8ba289e0551303b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 0}
+  bullet: {fileID: 0}
 --- !u!135 &135325137585629900
 SphereCollider:
   m_ObjectHideFlags: 1

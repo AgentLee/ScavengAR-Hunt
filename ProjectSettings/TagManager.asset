@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - EnemiesHolder
   - Shield
+  - Enemy Bullet
   layers:
   - Default
   - TransparentFX
