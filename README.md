@@ -121,6 +121,14 @@ Hitting an enemy
     - Write to databse
 - Test first person mode rather than moving the player ship. 
 
+### 2/27/18
+So a lot of my time was spent working on the ground plane. I realized really late that this was unsupported on a lot of devices. I resorted back to the image target AR experience. 
+
+Classic Space Invaders is level one. Drones flying around will be level two. Added a simple professor page that loads a power up. I have to write a manager script for the entire game in order for this to have any effect. 
+
+**TODO**
+- RNG for enemy shots.
+
 ## Resources
 - [Unity 2017.3](https://unity3d.com/)
 - [Vuforia](https://www.vuforia.com/)
