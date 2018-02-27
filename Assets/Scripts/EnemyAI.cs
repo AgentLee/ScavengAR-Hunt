@@ -83,10 +83,10 @@ public class EnemyAI : MonoBehaviour
 			fireTime += Time.deltaTime;
 		}
 
-		if(manager.level == 1) {
+		// if(manager.level == 1) {
 
-		}
-		else if(manager.level == 2) {
+		// }
+		// else if(manager.level == 2) {
 			float currDistToTarget = Vector3.Distance(transform.position, target.transform.position);
 			if(currDistToTarget > 1.5f) {
 				transform.LookAt(target.transform);
@@ -126,7 +126,7 @@ public class EnemyAI : MonoBehaviour
 							break;
 					}
 				}
-			}
+			// }
 
 			// Look at target
 			Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);

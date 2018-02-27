@@ -56,4 +56,14 @@ public class GameManager : MonoBehaviour
 			}
 		}
 	}
+
+	public void playScavengARHunt()
+	{
+		Application.LoadLevel(0);
+	}
+
+	public void playLevelTwo()
+	{
+		Application.LoadLevel(2);		
+	}
 }
