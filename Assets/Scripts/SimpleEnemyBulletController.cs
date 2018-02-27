@@ -33,7 +33,7 @@ public class SimpleEnemyBulletController : MonoBehaviour
 
 	void OnCollisionEnter(Collision collisionInfo)
 	{
-		if(collisionInfo.collider.tag == "Shield") {
+		if(collisionInfo.collider.tag == "Shield" || collisionInfo.collider.tag == "Player") {
 			rb.useGravity = true;
 			rb.velocity = Vector3.zero;
 			rb.angularVelocity = Vector3.zero;

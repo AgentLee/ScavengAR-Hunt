@@ -166,6 +166,17 @@ Prefab:
       propertyPath: m_Size.x
       value: 3.52
       objectReference: {fileID: 0}
+    - target: {fileID: 114459320415139644, guid: 00e06d55413c04c55bc809a45578bcab,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1943620098}
+    - target: {fileID: 114459320415139644, guid: 00e06d55413c04c55bc809a45578bcab,
+        type: 2}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 1708131200737222, guid: 68587bf4abb0f41b3ad105d9124a1fb7,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 00e06d55413c04c55bc809a45578bcab, type: 2}
   m_IsPrefabParent: 0
@@ -191,11 +202,6 @@ MonoBehaviour:
   maxHeadingChange: 30
   reachedHigh: 0
   fullCycle: 0
-  fireRate: 0
-  time: 0
-  bullet: {fileID: 1708131200737222, guid: 68587bf4abb0f41b3ad105d9124a1fb7, type: 2}
-  accuracy: 0
-  errorMargin: 1
 --- !u!1 &658648372
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,7 +20,9 @@ public class SimpleEnemyController : MonoBehaviour
 	public float accuracy;
 	public float shotEpsilon;
 	public int shotFOV;
-
+	public bool hit;
+	int id;
+	
 	// Use this for initialization
 	void Start () 
 	{
@@ -28,30 +30,64 @@ public class SimpleEnemyController : MonoBehaviour
 		rb = GetComponent<Rigidbody>();
 
 		// player = GameObject.FindGameObjectWithTag("Player").GetComponent<SimplePlayerController>();
+		// if(!player) {
+		// 	player = new GameObject().GetComponent<SimplePlayerController>();
+		// }
 
 		speed = 0.25f;
 		grounded = true;
 
-		fireRate = 3;
-
+		fireRate = Random.Range(0, 10);
 		shotEpsilon = 100;
 		accuracy = 0;
 		shotFOV = 45;
+		id = Random.Range(0,8);
+
+		hit = false;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if(fireTime >= fireRate) {
-			Fire();
-			fireTime = 0;
-		}
-		else {
-			fireTime += Time.deltaTime;
-		}
+		// This is used for DroneTest2
+		// if(fireTime >= fireRate) {
+		// 	Fire();
+		// 	fireTime = 0;
+		// }
+		// else {
+		// 	fireTime += Time.deltaTime;
+		// }
 
-		if(enemy.position.y < -25.0f) {
-			Destroy(gameObject);
+		// if(enemy.position.y < -25.0f) {
+		// 	Destroy(gameObject);
+		// }
+
+		if(!hit) {
+			RaycastHit intersection;
+			Ray ray = new Ray(enemy.position, -enemy.up);
+			if(Physics.Raycast(ray, out intersection)) {
+				if(intersection.collider.tag != "Enemy") {
+					if(fireTime >= fireRate && Random.Range(0,8) == id) {
+						Vector3 shotDir = (player.transform.position - transform.position).normalized;
+
+						GameObject spawnedBullet = Instantiate(bullet, transform.position, transform.rotation);
+
+						GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+						for(int i = 0; i < enemies.Length; ++i) {
+							Physics.IgnoreCollision(enemies[i].GetComponent<Collider>(), spawnedBullet.GetComponent<Collider>(), true);
+						}
+						spawnedBullet.GetComponent<SimpleEnemyBulletController>().shooter = gameObject;
+						spawnedBullet.GetComponent<Rigidbody>().AddForce(-enemy.up * 500.0f);
+
+						Debug.DrawRay(transform.position, -enemy.up * 10.0f, Color.red, 2);
+						fireTime = 0;
+						fireRate = Random.Range(0, 10);
+					}
+					else {
+						fireTime += Time.deltaTime;
+					}
+				}
+			}
 		}
 	}
 

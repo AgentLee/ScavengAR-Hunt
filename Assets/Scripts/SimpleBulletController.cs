@@ -45,6 +45,8 @@ public class SimpleBulletController : MonoBehaviour
 				Debug.Log(player.score);
 				++player.score;
 			}
+
+			collisionInfo.collider.GetComponent<SimpleEnemyController>().hit = true;
 		}
 		else if(collisionInfo.collider.tag == "Ground") {
 			grounded = true;
