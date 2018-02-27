@@ -9,7 +9,7 @@ public class BulletController : MonoBehaviour
 	Transform bullet;
 	Collider collider;
 	PlayerController player;
-	// EnemyController enemy;
+	public GameManager manager;
 	public GameObject[] enemies;
 
 	bool hit;
@@ -28,7 +28,7 @@ public class BulletController : MonoBehaviour
 		
 		destroyTime = 7;
 		hit = false;
-
+		
 		rb = GetComponent<Rigidbody>();
 		rb.AddForce(Camera.main.transform.forward * speed);
 		collider = GetComponent<Collider>();

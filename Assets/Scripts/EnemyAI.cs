@@ -25,6 +25,8 @@ public class EnemyAI : MonoBehaviour
 	public GameObject bottomRight;
 	public GameObject bottomLeft;
 
+	public GameManager manager;
+
 	bool reachedBase;
 
 	float degreesPerSec = 15.0f;
@@ -81,50 +83,55 @@ public class EnemyAI : MonoBehaviour
 			fireTime += Time.deltaTime;
 		}
 
-		float currDistToTarget = Vector3.Distance(transform.position, target.transform.position);
-		if(currDistToTarget > 1.5f) {
-			transform.LookAt(target.transform);
-			GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * 1.5f, ForceMode.Force);
+		if(manager.level == 1) {
 
-			Debug.Log(target.transform.position);
 		}
-		else {
-			GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity * 0.75f;			
+		else if(manager.level == 2) {
+			float currDistToTarget = Vector3.Distance(transform.position, target.transform.position);
+			if(currDistToTarget > 1.5f) {
+				transform.LookAt(target.transform);
+				GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * 1.5f, ForceMode.Force);
 
-			if(GetComponent<Rigidbody>().velocity.magnitude <= 0.15) {
-				int randomTarget = Random.Range(0, 5);
-				while(randomTarget == currentTarget) {
-					randomTarget = Random.Range(0, 5);
-				}
+				Debug.Log(target.transform.position);
+			}
+			else {
+				GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity * 0.75f;			
 
-				currentTarget = randomTarget;
+				if(GetComponent<Rigidbody>().velocity.magnitude <= 0.15) {
+					int randomTarget = Random.Range(0, 5);
+					while(randomTarget == currentTarget) {
+						randomTarget = Random.Range(0, 5);
+					}
 
-				switch(randomTarget) {
-					case 0:
-						target = topRight;
-						break;
-					case 1:
-						target = bottomRight;
-						break;
-					case 2:	
-						target = topLeft;
-						break;
-					case 3:
-						target = bottomLeft;
-						break;
-					case 4:
-						target = playerBase;
-						break;
-					default:
-						target = playerBase;
-						break;
+					currentTarget = randomTarget;
+
+					switch(randomTarget) {
+						case 0:
+							target = topRight;
+							break;
+						case 1:
+							target = bottomRight;
+							break;
+						case 2:	
+							target = topLeft;
+							break;
+						case 3:
+							target = bottomLeft;
+							break;
+						case 4:
+							target = playerBase;
+							break;
+						default:
+							target = playerBase;
+							break;
+					}
 				}
 			}
-		}
 
-		// Look at target
-		Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
-		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime);
+			// Look at target
+			Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
+			transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime);
+		}
 	}
 
 	void Hover()

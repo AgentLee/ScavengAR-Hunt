@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
 	public GameObject bullet;
 	public int score;
 
+	public GameManager manager;
+	public Joystick joystick;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -18,6 +21,9 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
+		Vector3 movement = new Vector3(joystick.InputDirection.x, 0, 0);
+		player.position += movement * 0.5f;
+
 		// Vector3 fwd = player.TransformDirection(Vector3.forward);
 
 		// RaycastHit hit;
@@ -37,6 +43,11 @@ public class PlayerController : MonoBehaviour
 
 	public void Fire()
 	{
-		Instantiate(bullet, Camera.main.transform.position, Camera.main.transform.rotation * Quaternion.Euler(-90, 0, 0));
+		if(manager.level == 1) {
+			Instantiate(bullet, player.position, new Quaternion());			
+		}
+		else if(manager.level == 2) {
+			Instantiate(bullet, Camera.main.transform.position, Camera.main.transform.rotation * Quaternion.Euler(-90, 0, 0));
+		}
 	}
 }
