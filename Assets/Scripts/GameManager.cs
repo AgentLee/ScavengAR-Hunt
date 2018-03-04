@@ -66,4 +66,9 @@ public class GameManager : MonoBehaviour
 	{
 		Application.LoadLevel(2);		
 	}
+
+	public void playTestLevel()
+	{
+		Application.LoadLevel(3);		
+	}
 }
