@@ -15,6 +15,9 @@ public class SimplePlayerController : MonoBehaviour
 	public float speed;
 	public float minBounds, maxBounds;
 
+	private bool hit;
+	public int numLives;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -28,6 +31,9 @@ public class SimplePlayerController : MonoBehaviour
 		rb = GetComponent<Rigidbody>();
 		rb.isKinematic = false;
 		rb.useGravity = true;
+
+		hit = false;
+		numLives = 5;
 	}
 	
 	// Update is called once per frame
@@ -54,6 +60,34 @@ public class SimplePlayerController : MonoBehaviour
 		if(collisionInfo.collider.tag == "Ground") {
 			rb.isKinematic = true;
 		} 
+		else if(collisionInfo.collider.tag == "Enemy Bullet") {
+			if(!hit && !collisionInfo.collider.GetComponent<SimpleEnemyBulletController>().grounded) {
+				StartCoroutine(Blink());
+			}
+		}
+	}
+
+	IEnumerator Blink()
+	{
+		// float time = 0.0f;
+		// while(time < 2.0f) {
+		// 	time += Time.deltaTime;
+		// 	GetComponent<MeshRenderer>().enabled = !GetComponent<MeshRenderer>().enabled; 
+		// }
+		hit = true;
+		for(int blink = 0; blink < 5; ++blink) {
+			yield return new WaitForSeconds(.05f);
+			GetComponent<MeshRenderer>().enabled = !GetComponent<MeshRenderer>().enabled; 
+			yield return new WaitForSeconds(.05f);
+		}
+
+		GetComponent<MeshRenderer>().enabled = true; 
+		hit = false;
+		--numLives;
+
+		if(numLives == 0) {
+			Destroy(gameObject);
+		}
 	}
 
 	public void UpdateScores()

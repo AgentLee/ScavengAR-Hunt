@@ -6,7 +6,7 @@ public class SimpleEnemyBulletController : MonoBehaviour
 {
 	Rigidbody rb;
 	
-	private bool grounded;
+	public bool grounded;
 
 	public GameObject shooter;
 	public GameObject playerBase;

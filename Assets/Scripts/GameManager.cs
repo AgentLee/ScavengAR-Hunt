@@ -17,6 +17,11 @@ public class GameManager : MonoBehaviour
 
 	public GameObject myHighScore;
 	public GameObject topScore;
+	public GameObject myLives;
+	public GameObject gameOver;
+	public GameObject mainMenu;
+	public GameObject joystick;
+	public GameObject fireButton;
 
 	public GameObject ground;
 	public GameObject drones;
@@ -68,6 +73,20 @@ public class GameManager : MonoBehaviour
 			topScore.GetComponent<Text>().text = PlayerPrefs.GetInt("PlayerScore").ToString();		
 		}
 
+		myLives.GetComponent<Text>().text = simplePlayer.numLives.ToString();
+		if(simplePlayer.numLives == 0) {
+			gameOver.SetActive(true);
+			mainMenu.SetActive(false);
+			joystick.SetActive(false);
+			fireButton.SetActive(false);
+		}
+		else {
+			gameOver.SetActive(false);
+			mainMenu.SetActive(true);
+			joystick.SetActive(true);
+			fireButton.SetActive(true);
+		}
+
 		drones.transform.position += Vector3.right * droneSpeed;
 		foreach(Transform drone in drones.transform) {
 			if(drone.position.x < droneMinBound || drone.position.x > droneMaxBound) {
@@ -95,5 +114,10 @@ public class GameManager : MonoBehaviour
 	public void LoadMainMenu()
 	{
 		SceneManager.LoadScene((int)LEVELS.MAIN_MENU);
+	}
+
+	public void RestartLevel()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 }

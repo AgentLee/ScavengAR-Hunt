@@ -148,6 +148,10 @@ Fixed issue with main menu. Added a continue overlay. The player can change thei
 
 Removed `PlayerStats.cs` completely. Too much to fiddle around, resorting to `PlayerPrefs` instead. Scores get updated to the server whenever the player beats their own score. 
 
+**Bugs**
+- Can't see high scores if player beats it
+- You need to restart the app
+
 ## Resources
 - [Unity 2017.3](https://unity3d.com/)
 - [Vuforia](https://www.vuforia.com/)

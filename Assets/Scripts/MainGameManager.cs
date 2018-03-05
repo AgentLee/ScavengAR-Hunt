@@ -33,12 +33,20 @@ public class MainGameManager : MonoBehaviour
 		// PlayerPrefs.DeleteAll();
 
 		// Only need to run the player prefs at main menu.
-		if(SceneManager.GetActiveScene().buildIndex != (int)LEVELS.MAIN_MENU) {
-			return;
-		}
+		// if(SceneManager.GetActiveScene().buildIndex != (int)LEVELS.MAIN_MENU) {
+		// 	return;
+		// }
 
 		// Get top score
-		GetComponent<HighScores>().RetrieveScores();
+		// GetComponent<HighScores>().RetrieveScores();
+
+		// if(PlayerPrefs.GetInt("FirstRun") != 1) {
+		// 	ShowMainMenuElements();
+		// }
+		// else {
+		// 	PlayerPrefs.SetInt("FirstRun", 1);
+		// 	ToggleContinue(true);
+		// }
 
 		if(PlayerPrefs.GetString("PlayerEmail") != "") {
 			ToggleContinue(true);

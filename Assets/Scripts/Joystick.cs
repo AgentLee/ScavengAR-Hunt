@@ -44,11 +44,24 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
 	public virtual void OnPointerDown(PointerEventData pointerEventData)
 	{
 		OnDrag(pointerEventData);
+
+		StartCoroutine(HideJoystick());
+	}
+
+	IEnumerator HideJoystick()
+	{
+		yield return new WaitForSeconds(.75f);
+		
+		bgImage.color = new Color(bgImage.color.r, bgImage.color.b, bgImage.color.g, 0.0f);
+		joystickImage.color = new Color(joystickImage.color.r, joystickImage.color.b, joystickImage.color.g, 0.0f);
 	}
 
 	public virtual void OnPointerUp(PointerEventData pointerEventData)
 	{
 		InputDirection = Vector3.zero;
 		joystickImage.rectTransform.anchoredPosition = Vector3.zero;
+
+		bgImage.color = new Color(bgImage.color.r, bgImage.color.b, bgImage.color.g, 1.0f);
+		joystickImage.color = new Color(joystickImage.color.r, joystickImage.color.b, joystickImage.color.g, 1.0f);
 	}
 }
