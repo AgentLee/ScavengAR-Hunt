@@ -129,6 +129,17 @@ Classic Space Invaders is level one. Drones flying around will be level two. Add
 **TODO**
 - RNG for enemy shots.
 
+### 3/4/18
+Completed:
+- Menu
+- Login/Registration
+- High scor database
+
+Resources:
+- [dreamlo](http://dreamlo.com/) for database
+- [TextMeshPro](https://assetstore.unity.com/packages/essentials/beta-projects/textmesh-pro-84126) for high quality texts
+
+
 ## Resources
 - [Unity 2017.3](https://unity3d.com/)
 - [Vuforia](https://www.vuforia.com/)
