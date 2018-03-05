@@ -11,6 +11,8 @@ sysinfo.txt
 /Assets/AssetStoreTools*
 *.apk
 *.unitypackage
+Assets/Scenes/HighScores.cs
+HighScores.cs
  
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
