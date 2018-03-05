@@ -11,8 +11,10 @@ sysinfo.txt
 /Assets/AssetStoreTools*
 *.apk
 *.unitypackage
-Assets/Scenes/HighScores.cs
+Assets/Scripts/HighScores.cs
+Assets/Scripts/Registration.cs
 HighScores.cs
+Registration.cs
  
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
