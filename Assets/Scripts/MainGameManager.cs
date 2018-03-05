@@ -32,6 +32,14 @@ public class MainGameManager : MonoBehaviour
 		// Debug -- Run this to test loading screen
 		// PlayerPrefs.DeleteAll();
 
+		// Only need to run the player prefs at main menu.
+		if(SceneManager.GetActiveScene().buildIndex != (int)LEVELS.MAIN_MENU) {
+			return;
+		}
+
+		// Get top score
+		GetComponent<HighScores>().RetrieveScores();
+
 		if(PlayerPrefs.GetString("PlayerEmail") != "") {
 			ToggleContinue(true);
 		}

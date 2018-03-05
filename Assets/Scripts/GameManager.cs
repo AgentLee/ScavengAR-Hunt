@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
 	public SimplePlayerController simplePlayer;
 	public GameObject scoreText;
 
+	public GameObject myHighScore;
+	public GameObject topScore;
+
 	public GameObject ground;
 	public GameObject drones;
 	public float droneMinBound, droneMaxBound;
@@ -52,9 +55,17 @@ public class GameManager : MonoBehaviour
 	void RunLevelOne()
 	{
 		scoreText.GetComponent<Text>().text = simplePlayer.score.ToString();		
+		myHighScore.GetComponent<Text>().text = PlayerPrefs.GetInt("PlayerScore").ToString();		
+		topScore.GetComponent<Text>().text = PlayerPrefs.GetInt("TopScore").ToString();		
 
 		if(simplePlayer.score > PlayerPrefs.GetInt("PlayerScore", simplePlayer.score)) {
 			simplePlayer.UpdateScores();
+			myHighScore.GetComponent<Text>().text = PlayerPrefs.GetInt("PlayerScore").ToString();		
+		}
+
+		if(simplePlayer.score > PlayerPrefs.GetInt("TopScore")) {
+			simplePlayer.UpdateScores();
+			topScore.GetComponent<Text>().text = PlayerPrefs.GetInt("PlayerScore").ToString();		
 		}
 
 		drones.transform.position += Vector3.right * droneSpeed;
