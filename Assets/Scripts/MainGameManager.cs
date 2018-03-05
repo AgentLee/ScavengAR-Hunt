@@ -22,23 +22,45 @@ public class MainGameManager : MonoBehaviour
 {
 	public GameObject welcome;
 
+	public GameObject play;
+	public GameObject highScores;
+	public GameObject continueAs;
+
 	// Use this for initialization
 	void Start () 
 	{
-		// Debug
+		// Debug -- Run this to test loading screen
 		// PlayerPrefs.DeleteAll();
 
-		// First time, have player register with email
-		if(PlayerPrefs.GetString("PlayerEmail") == "") {
-			welcome.SetActive(false);
-			LoadRegistration();
+		if(PlayerPrefs.GetString("PlayerEmail") != "") {
+			ToggleContinue(true);
 		}
 		else {
-			welcome.SetActive(true);
-			welcome.GetComponent<TMP_Text>().text = "Welcome back " + PlayerPrefs.GetString("PlayerName") + "!";
+			ShowMainMenuElements();
 		}
 	}
-	
+
+	void ToggleContinue(bool status)
+	{
+		continueAs.SetActive(status);
+		welcome.SetActive(status);
+
+		if(status)
+		{
+			welcome.GetComponent<TMP_Text>().text = "Continue as " + PlayerPrefs.GetString("PlayerName") + "?";			
+		}
+	}
+
+	public void ShowMainMenuElements()
+	{
+		ToggleContinue(false);
+
+		play.SetActive(true);
+		highScores.SetActive(true);
+
+		print(PlayerPrefs.GetString("PlayerName") + " " + PlayerPrefs.GetString("PlayerEmail") + " " + PlayerPrefs.GetString("PlayerPhone") + " " + PlayerPrefs.GetInt("PlayerScore"));
+	}
+
 	public void LoadRegistration()
 	{
 		SceneManager.LoadScene((int)LEVELS.REGISTRATION);
@@ -51,7 +73,12 @@ public class MainGameManager : MonoBehaviour
 
 	public void LoadSpaceInvaders()
 	{
-		SceneManager.LoadScene((int)LEVELS.SPACE_INVADERS);
+		if(PlayerPrefs.GetString("PlayerEmail") == "") {
+			LoadRegistration();
+		}
+		else {
+			SceneManager.LoadScene((int)LEVELS.SPACE_INVADERS);
+		}
 	}
 
 	public void LoadMainMenu()

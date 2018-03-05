@@ -55,4 +55,19 @@ public class SimplePlayerController : MonoBehaviour
 			rb.isKinematic = true;
 		} 
 	}
+
+	public void UpdateScores()
+	{
+		Debug.Log("Updating...");
+
+		PlayerPrefs.SetInt("PlayerScore", score);
+
+		string _name 	= PlayerPrefs.GetString("PlayerName");
+		string _phone 	= PlayerPrefs.GetString("PlayerPhone");
+		int _score 		= PlayerPrefs.GetInt("PlayerScore");
+		string _email 	= PlayerPrefs.GetString("PlayerEmail");
+
+		// Update the database
+		GetComponent<HighScores>().AddHighScore(_name, _score, int.Parse(_phone), _email);
+	}
 }

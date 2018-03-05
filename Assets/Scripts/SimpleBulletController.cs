@@ -44,6 +44,12 @@ public class SimpleBulletController : MonoBehaviour
 			if(!collisionInfo.collider.GetComponent<SimpleEnemyController>().grounded) {
 				Debug.Log(player.score);
 				++player.score;
+
+				// // Update personal high score and server score
+				// if(player.score > PlayerPrefs.GetInt("PlayerScore")) {
+				// 	PlayerPrefs.SetInt("PlayerScore", player.score);
+				// 	Debug.Log("NEW HIGH SCORE");
+				// }
 			}
 
 			collisionInfo.collider.GetComponent<SimpleEnemyController>().hit = true;

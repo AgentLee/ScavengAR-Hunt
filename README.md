@@ -139,6 +139,10 @@ Resources:
 - [dreamlo](http://dreamlo.com/) for database
 - [TextMeshPro](https://assetstore.unity.com/packages/essentials/beta-projects/textmesh-pro-84126) for high quality texts
 
+### 3/5/18
+
+Once Vuforia is enabled in one scene, it gets enabled for every scene, even if you don't want it there. To get around this, I had to add a `Vuforia Behavior` script to each camera and disable it in the inspector. 
+[Unity Forum Post](https://forum.unity.com/threads/do-not-run-vufory-when-the-application-starts.498351/)
 
 ## Resources
 - [Unity 2017.3](https://unity3d.com/)

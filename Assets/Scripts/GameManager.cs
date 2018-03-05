@@ -1,6 +1,11 @@
-﻿using System.Collections;
+﻿/*
+ * Space Invaders Manager
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -48,6 +53,10 @@ public class GameManager : MonoBehaviour
 	{
 		scoreText.GetComponent<Text>().text = simplePlayer.score.ToString();		
 
+		if(simplePlayer.score > PlayerPrefs.GetInt("PlayerScore", simplePlayer.score)) {
+			simplePlayer.UpdateScores();
+		}
+
 		drones.transform.position += Vector3.right * droneSpeed;
 		foreach(Transform drone in drones.transform) {
 			if(drone.position.x < droneMinBound || drone.position.x > droneMaxBound) {
@@ -70,5 +79,10 @@ public class GameManager : MonoBehaviour
 	public void playTestLevel()
 	{
 		Application.LoadLevel(3);		
+	}
+
+	public void LoadMainMenu()
+	{
+		SceneManager.LoadScene((int)LEVELS.MAIN_MENU);
 	}
 }
