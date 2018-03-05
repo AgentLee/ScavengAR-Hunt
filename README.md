@@ -144,6 +144,10 @@ Resources:
 Once Vuforia is enabled in one scene, it gets enabled for every scene, even if you don't want it there. To get around this, I had to add a `Vuforia Behavior` script to each camera and disable it in the inspector. 
 [Unity Forum Post](https://forum.unity.com/threads/do-not-run-vufory-when-the-application-starts.498351/)
 
+Fixed issue with main menu. Added a continue overlay. The player can change their email address or reregister on the same device.
+
+Removed `PlayerStats.cs` completely. Too much to fiddle around, resorting to `PlayerPrefs` instead. Scores get updated to the server whenever the player beats their own score. 
+
 ## Resources
 - [Unity 2017.3](https://unity3d.com/)
 - [Vuforia](https://www.vuforia.com/)
