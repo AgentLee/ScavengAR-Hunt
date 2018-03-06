@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 	public GameObject mainMenu;
 	public GameObject joystick;
 	public GameObject fireButton;
+	public GameObject instructions;
 
 	public GameObject ground;
 	public GameObject drones;
@@ -39,6 +40,8 @@ public class GameManager : MonoBehaviour
 		droneSpeed = 0.25f;
 
 		Physics.gravity = new Vector3(0, -150.0f, 0);
+
+		instructions.SetActive(true);
 	}
 	
 	// Update is called once per frame
@@ -94,6 +97,16 @@ public class GameManager : MonoBehaviour
 				return;
 			}
 		}
+	}
+
+	public void OpenInstructions()
+	{
+		instructions.SetActive(true);
+	}
+
+	public void CloseInstructions()
+	{
+		instructions.SetActive(false);
 	}
 
 	public void playScavengARHunt()
