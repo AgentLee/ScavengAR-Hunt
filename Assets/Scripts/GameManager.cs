@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
 	public GameObject ground;
 	public GameObject drones;
+	private bool moveDronesDown;
 	public float droneMinBound, droneMaxBound;
 	public float droneSpeed;
 
@@ -47,6 +48,8 @@ public class GameManager : MonoBehaviour
 		instructions.SetActive(false);
 
 		increased = false;
+
+		moveDronesDown = false;
 	}
 	
 	// Update is called once per frame
@@ -162,8 +165,18 @@ public class GameManager : MonoBehaviour
 		foreach(Transform drone in drones.transform) {
 			if(drone.position.x < droneMinBound || drone.position.x > droneMaxBound) {
 				droneSpeed = -droneSpeed;
+				moveDronesDown = true;
+				// drone.position -= new Vector3(0.0f, 2.0f, 0.0f);
 				return;
 			}
+		}
+
+		if(moveDronesDown) {
+			foreach(Transform drone in drones.transform) {
+				drone.position -= new Vector3(0.0f, 0.75f, 0.0f);			
+			}
+
+			moveDronesDown = false;
 		}
 	}
 
