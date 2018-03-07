@@ -1,19 +1,33 @@
-﻿using System.Collections;
+﻿/*
+ * This script is based on the script found on the Unity Wiki page. 
+ * http://wiki.unity3d.com/index.php?title=Shield
+ * 
+ * The main purpose of this is to test material properties of the base.
+ * This does not get used in the acutal game.
+ * Handling of the actual base is found in SimpleBase.cs
+ * 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- 
+
 public class Shield : MonoBehaviour 
 {
 	private Material material;
-
 	private bool hit;
- 
+	public int timesHit;
+	private int shieldLevel;
+
 	// Use this for initialization
 	void Start () 
 	{
 		material = this.GetComponent<Renderer>().material;
  
 		hit = false;
+		timesHit = 0;
+
+		shieldLevel = 3;
 	}
  
 	// Update is called once per frame
@@ -29,8 +43,11 @@ public class Shield : MonoBehaviour
 		}
 
 		if(Input.GetKeyDown(KeyCode.P)) {
-			StartCoroutine(RegenShield(3.0f));
+			// StartCoroutine(RegenShield(3.0f));
+			// Debug.Log(material.color + " " + Color.yellow + " " + Color.red);
+			StartCoroutine(ChangeShieldLevel());
 		}
+		
 	}
 
 	IEnumerator RegenShield(float duration)
@@ -69,6 +86,13 @@ public class Shield : MonoBehaviour
 			// Physics.IgnoreCollision(collisionInfo.collider, this.GetComponent<Collider>());
 			if(!hit) {
 				StartCoroutine(Blink(3.0f, 0.2f, collisionInfo.collider));
+
+				if(++timesHit > 2) {
+					// Change color to indicate shield level.
+					// material.SetColor("_Color", Color.red);
+
+					StartCoroutine(ChangeShieldLevel());
+				}
 			}
 			else {
 				// Need to figure out how to bounce the bullets off.
@@ -76,6 +100,39 @@ public class Shield : MonoBehaviour
 				Destroy(collisionInfo.collider.gameObject);
 			}
 		}
+	}
+
+	IEnumerator ChangeShieldLevel()
+	{
+		// StartCoroutine(Blink(3.0f, 0.2f, null));
+		
+		Color changeTo;
+
+		// Level 3
+		if(shieldLevel == 3) {
+			changeTo = Color.yellow;
+		}
+		// Level 2
+		else if(shieldLevel == 2) {
+			changeTo = Color.red;
+		}
+		// Level 1
+		else {
+			// Already red don't have to change colors.
+			yield break;
+		}
+
+		float time = 0;
+		while(material.color != changeTo) {
+			time += Time.deltaTime;
+			material.color = Color.Lerp(material.color, changeTo, time);
+
+			yield return null;
+		}
+
+		--shieldLevel;
+		timesHit = 0;
+		// StartCoroutine(Blink(3.0f, 0.2f, null));
 	}
 
 	// void OnTriggerEnter(Collider collider)
@@ -89,7 +146,10 @@ public class Shield : MonoBehaviour
 	{
 		hit = true;
 
-		Destroy(collider.gameObject);
+		if(collider != null) {
+			Destroy(collider.gameObject);
+		}
+
 		while(duration >= 0f) {
 			// duration -= Time.deltaTime;
 			duration -= 0.5f;

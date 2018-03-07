@@ -152,6 +152,30 @@ Removed `PlayerStats.cs` completely. Too much to fiddle around, resorting to `Pl
 - Can't see high scores if player beats it
 - You need to restart the app
 
+### 3/6/18
+
+**Pushed Beta Version to [https://play.google.com/store/apps/details?id=com.JonathanLee.DRONE](Google Play)!** I need developer access to push to the App Store. :/
+
+Fixed an issue where scores weren't being pushed to the database - needed a loop for the `WWW` class so mobile won't time out.
+
+Fixed an issue where players can get `max int` as their score causing `long` numbers and thus can't save to `PlayerPrefs`. Drones won't count towards the score when they collide with another drone or get hit with a bullet.  
+
+The player ship rigid body disappears on mobile. (*hack*) had to make the player a kinematic body without gravity and is close to the ground.
+
+Fixed game over screen. `numLives` didn't update to 0 on the loss screen. 
+
+Changed the image target to the Penn shield. Tested on a few shields and they seem to work just fine. 
+
+**TODO**
+- Add complexity to the drones at the end of each level.
+- Add Red UFO drone
+- Create the different power up capabilities for the player.
+- Map out the scavenger hunt
+    - Use the Penn Teach In posters
+    - Decide on QR codes or something to differentiate the posters for different professors.
+- Need to model/find shield components.
+- Vuforia Text Recognition.
+
 ## Resources
 - [Unity 2017.3](https://unity3d.com/)
 - [Vuforia](https://www.vuforia.com/)
