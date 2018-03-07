@@ -95,7 +95,12 @@ public class SimpleEnemyController : MonoBehaviour
 	{
 		transform.parent = null;
 
+		if(collisionInfo.collider.tag == "Enemy") {
+			hit = true;
+		}
+
 		if(collisionInfo.collider.tag == "Bullet" || transform.parent == null) {
+			hit = true;
 			rb.useGravity = true;
 			rb.velocity = Vector3.zero;
 			rb.angularVelocity = Vector3.zero;

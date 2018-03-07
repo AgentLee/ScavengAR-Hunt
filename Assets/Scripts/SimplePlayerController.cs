@@ -29,8 +29,8 @@ public class SimplePlayerController : MonoBehaviour
 		maxBounds = 12.0f;
 
 		rb = GetComponent<Rigidbody>();
-		rb.isKinematic = false;
-		rb.useGravity = true;
+		// rb.isKinematic = false;
+		// rb.useGravity = true;
 
 		hit = false;
 		numLives = 5;
@@ -57,37 +57,36 @@ public class SimplePlayerController : MonoBehaviour
 
 	void OnCollisionEnter(Collision collisionInfo)
 	{
-		if(collisionInfo.collider.tag == "Ground") {
-			rb.isKinematic = true;
-		} 
-		else if(collisionInfo.collider.tag == "Enemy Bullet") {
+		// if(collisionInfo.collider.tag == "Ground") {
+		// 	rb.isKinematic = true;
+		// } 
+		if(collisionInfo.collider.tag == "Enemy Bullet") {
 			if(!hit && !collisionInfo.collider.GetComponent<SimpleEnemyBulletController>().grounded) {
-				StartCoroutine(Blink());
+				// Make sure there are enough lives for the player to blink
+				if(--numLives <= 0) {
+					Destroy(gameObject);
+					UpdateScores();
+				}
+				else {
+					StartCoroutine(Blink());
+				}
 			}
 		}
 	}
 
 	IEnumerator Blink()
 	{
-		// float time = 0.0f;
-		// while(time < 2.0f) {
-		// 	time += Time.deltaTime;
-		// 	GetComponent<MeshRenderer>().enabled = !GetComponent<MeshRenderer>().enabled; 
-		// }
 		hit = true;
+
 		for(int blink = 0; blink < 5; ++blink) {
 			yield return new WaitForSeconds(.05f);
 			GetComponent<MeshRenderer>().enabled = !GetComponent<MeshRenderer>().enabled; 
 			yield return new WaitForSeconds(.05f);
 		}
 
+		// Make sure the player is turned back on
 		GetComponent<MeshRenderer>().enabled = true; 
 		hit = false;
-		--numLives;
-
-		if(numLives == 0) {
-			Destroy(gameObject);
-		}
 	}
 
 	public void UpdateScores()
@@ -102,6 +101,6 @@ public class SimplePlayerController : MonoBehaviour
 		string _email 	= PlayerPrefs.GetString("PlayerEmail");
 
 		// Update the database
-		GetComponent<HighScores>().AddHighScore(_name, _score, int.Parse(_phone), _email);
+		GetComponent<HighScores>().AddHighScore(_name, _score, _phone, _email);
 	}
 }

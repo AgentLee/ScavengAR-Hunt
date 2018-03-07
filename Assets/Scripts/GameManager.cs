@@ -41,7 +41,8 @@ public class GameManager : MonoBehaviour
 
 		Physics.gravity = new Vector3(0, -150.0f, 0);
 
-		instructions.SetActive(true);
+		// Debug
+		instructions.SetActive(false);
 	}
 	
 	// Update is called once per frame

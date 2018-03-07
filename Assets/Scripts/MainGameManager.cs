@@ -21,10 +21,13 @@ enum LEVELS
 public class MainGameManager : MonoBehaviour 
 {
 	public GameObject welcome;
-
 	public GameObject play;
+	public GameObject about;
 	public GameObject highScores;
 	public GameObject continueAs;
+
+	public GameObject playMenu;
+	public GameObject continueMenu;
 
 	// Use this for initialization
 	void Start () 
@@ -52,29 +55,29 @@ public class MainGameManager : MonoBehaviour
 			ToggleContinue(true);
 		}
 		else {
+			// playMenu.SetActive(true);
+			// continueMenu.SetActive(false);
 			ShowMainMenuElements();
 		}
 	}
 
 	void ToggleContinue(bool status)
 	{
-		continueAs.SetActive(status);
-		welcome.SetActive(status);
-
 		if(status)
 		{
+			continueMenu.SetActive(status);
+			playMenu.SetActive(!status);
 			welcome.GetComponent<TMP_Text>().text = "Continue as " + PlayerPrefs.GetString("PlayerName") + "?";			
+		}
+		else {
+			ShowMainMenuElements();
 		}
 	}
 
 	public void ShowMainMenuElements()
 	{
-		ToggleContinue(false);
-
-		play.SetActive(true);
-		highScores.SetActive(true);
-
-		print(PlayerPrefs.GetString("PlayerName") + " " + PlayerPrefs.GetString("PlayerEmail") + " " + PlayerPrefs.GetString("PlayerPhone") + " " + PlayerPrefs.GetInt("PlayerScore"));
+		playMenu.SetActive(true);
+		continueMenu.SetActive(false);
 	}
 
 	public void LoadRegistration()
@@ -106,16 +109,21 @@ public class MainGameManager : MonoBehaviour
 	{
 		SceneManager.LoadScene((int)LEVELS.HIGH_SCORES);
 	}
+
+	public void PennTeachIn()
+	{
+		Application.OpenURL("http://www.upenn.edu/teachin/");
+	}
 }
 
 public struct PlayerScore 
 {
 	public string username;
 	public int score;
-	public int phone;
+	public string phone;
 	public string email;
 
-	public PlayerScore(string _username, int _score, int _phone, string _email)
+	public PlayerScore(string _username, int _score, string _phone, string _email)
 	{
 		username = _username;
 		score = _score;

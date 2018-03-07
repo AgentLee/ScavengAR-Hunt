@@ -29,3 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Registration.unity
     guid: 145ebbd0fcfc54ef98655841b93efec5
+  - enabled: 0
+    path: Assets/Scenes/PennTarget.unity
+    guid: 215197579ee63445e92fc52c9b32915e
