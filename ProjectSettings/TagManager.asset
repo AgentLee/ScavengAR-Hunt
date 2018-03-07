@@ -12,6 +12,7 @@ TagManager:
   - Shield
   - Enemy Bullet
   - Base
+  - RedUFO
   layers:
   - Default
   - TransparentFX
