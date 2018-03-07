@@ -48,6 +48,7 @@ public class SimpleBaseController : MonoBehaviour
 					}
 					else {
 						StartCoroutine(ChangeShieldLevel());
+						StartCoroutine(RegenShield(3.0f));
 					}
 				}
 			}
@@ -134,6 +135,6 @@ public class SimpleBaseController : MonoBehaviour
 		this.GetComponent<Renderer>().enabled = true;
 		hit = false;
 
-		StartCoroutine(RegenShield(3.0f));
+		// StartCoroutine(RegenShield(3.0f));
 	}
 }

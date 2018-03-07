@@ -39,7 +39,22 @@ public class SimplePlayerController : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
-		float h = joystick.InputDirection.x;
+		MovePlayer();
+
+		if(Input.GetKey(KeyCode.Space)) {
+			Fire();
+		}
+	}
+
+	public void MovePlayer()
+	{
+		float h;
+		if(Application.isEditor) {
+			h = Input.GetAxis("Horizontal");
+		}
+		else {
+			h = joystick.InputDirection.x;
+		}
 
 		if(player.position.x < minBounds && h < 0 ||
             player.position.x > maxBounds && h > 0)

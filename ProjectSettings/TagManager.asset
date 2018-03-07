@@ -11,6 +11,7 @@ TagManager:
   - EnemiesHolder
   - Shield
   - Enemy Bullet
+  - Base
   layers:
   - Default
   - TransparentFX

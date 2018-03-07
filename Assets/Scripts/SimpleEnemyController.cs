@@ -35,7 +35,8 @@ public class SimpleEnemyController : MonoBehaviour
 
 		id = Random.Range(0,8);
 		fireTime = 0;
-		fireRate = Random.Range(0, 10);
+		fireRate = Random.Range(10, 20);
+		// fireRate = Random.Range(0, 10);
 		shotEpsilon = 100;
 		accuracy = 0;
 		shotFOV = 45;

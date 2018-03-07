@@ -8,7 +8,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
 public class GameManager : MonoBehaviour 
 {
 	public PlayerController player;
@@ -29,7 +28,10 @@ public class GameManager : MonoBehaviour
 	public float droneMinBound, droneMaxBound;
 	public float droneSpeed;
 
+	public GameObject bases;
+
 	public int level;
+	private bool increased;
 
 	// Use this for initialization
 	void Start () 
@@ -37,12 +39,14 @@ public class GameManager : MonoBehaviour
 		level = 1;
 		droneMinBound = -18.0f;
 		droneMaxBound = 18.0f;
-		droneSpeed = 0.25f;
+		droneSpeed = 0.05f;
 
 		Physics.gravity = new Vector3(0, -150.0f, 0);
 
 		// Debug
 		instructions.SetActive(false);
+
+		increased = false;
 	}
 	
 	// Update is called once per frame
@@ -63,34 +67,97 @@ public class GameManager : MonoBehaviour
 
 	void RunLevelOne()
 	{
-		scoreText.GetComponent<Text>().text = simplePlayer.score.ToString();		
-		myHighScore.GetComponent<Text>().text = PlayerPrefs.GetInt("PlayerScore").ToString();		
-		topScore.GetComponent<Text>().text = PlayerPrefs.GetInt("TopScore").ToString();		
+		DisplayScores();				
 
+		UpdatePlayerLives();
+
+		if(!GameOver()) {
+			MoveDrones();
+			EnableControls();
+		}
+		else {
+			DisableControls();
+		}
+	}
+
+	private void DisplayScores()
+	{
+		scoreText.GetComponent<Text>().text 	= simplePlayer.score.ToString();		
+		myHighScore.GetComponent<Text>().text 	= PlayerPrefs.GetInt("PlayerScore").ToString();		
+		topScore.GetComponent<Text>().text 		= PlayerPrefs.GetInt("TopScore").ToString();
+
+		UpdateScores();
+	}
+
+	private void UpdateScores()
+	{
+		// Update scores on the server if the player beats their high score
 		if(simplePlayer.score > PlayerPrefs.GetInt("PlayerScore", simplePlayer.score)) {
 			simplePlayer.UpdateScores();
 			myHighScore.GetComponent<Text>().text = PlayerPrefs.GetInt("PlayerScore").ToString();		
 		}
 
+		// Update scores on the server if the player beats the top score
 		if(simplePlayer.score > PlayerPrefs.GetInt("TopScore")) {
 			simplePlayer.UpdateScores();
 			topScore.GetComponent<Text>().text = PlayerPrefs.GetInt("PlayerScore").ToString();		
 		}
+	}
 
+	private void UpdatePlayerLives()
+	{
+		// Update lives
 		myLives.GetComponent<Text>().text = simplePlayer.numLives.ToString();
-		if(simplePlayer.numLives == 0) {
+	}
+
+	private bool GameOver()
+	{
+		if(simplePlayer.numLives <= 0 || bases.transform.childCount <= 0) {
 			gameOver.SetActive(true);
 			mainMenu.SetActive(false);
-			joystick.SetActive(false);
-			fireButton.SetActive(false);
+
+			return true;
 		}
 		else {
 			gameOver.SetActive(false);
 			mainMenu.SetActive(true);
-			joystick.SetActive(true);
-			fireButton.SetActive(true);
+			
+			return false;
 		}
+	}
 
+	private void DisableControls()
+	{
+		joystick.SetActive(false);
+		fireButton.SetActive(false);
+	}
+
+	private void EnableControls()
+	{
+		joystick.SetActive(true);
+		fireButton.SetActive(true);
+	}
+
+	private void MoveDrones()
+	{
+		int droneCount = drones.transform.childCount;
+		if(droneCount <= 14 && droneCount > 7 && !increased) {
+			droneSpeed *= 2.0f;
+			increased = !increased;
+		}
+		else if(droneCount <= 7 && droneCount > 3 && increased) {
+			droneSpeed *= 2.25f;
+			increased = !increased;
+		}
+		else if(droneCount <= 3  && droneCount > 1 && !increased) {
+			droneSpeed *= 2.5f;
+			increased = !increased;
+		}
+		else if(droneCount == 1 && increased) {
+			droneSpeed *= 3.0f;
+			increased = !increased;
+		}
+		
 		drones.transform.position += Vector3.right * droneSpeed;
 		foreach(Transform drone in drones.transform) {
 			if(drone.position.x < droneMinBound || drone.position.x > droneMaxBound) {
