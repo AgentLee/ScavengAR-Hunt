@@ -9,7 +9,7 @@ public class SimpleEnemy : MonoBehaviour
     public Rigidbody rb;
     public bool hit;
     public bool grounded;
-
+    public int pointValue;
     public float speed;
 
     public void Fall()

@@ -23,7 +23,7 @@ public class SimpleBaseController : MonoBehaviour
 	{
 		material 		= this.GetComponent<Renderer>().material;
 		hit 			= false;
-		vulnerability 	= 2;
+		vulnerability 	= 10;
 		timesHit 		= 0;
 		shieldLevel 	= 3;
 	}
@@ -85,10 +85,12 @@ public class SimpleBaseController : MonoBehaviour
 		{
 			// Level 3
 			case 3:
+				vulnerability = 5;
 				changeTo = Color.yellow;
 				break;
 			// Level 2
 			case 2:
+				vulnerability = 2;
 				changeTo = Color.red;
 				break;
 			// Level 1

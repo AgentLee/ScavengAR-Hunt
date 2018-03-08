@@ -40,11 +40,12 @@ public class SimpleBulletController : MonoBehaviour
 			rb.velocity 		= Vector3.zero;
 			rb.angularVelocity 	= Vector3.zero;
 
+			// Need to adjust the row distribution
 			SimpleEnemyController enemy = collisionInfo.gameObject.GetComponent<SimpleEnemyController>();
 			// Only want to give the player points if they hit the drone. 
 			// If the drone collides with another drone, they're out of luck.
 			if(!enemy.hit) {
-				++player.score;
+				player.score += enemy.pointValue;
 			}
 
 
@@ -60,8 +61,22 @@ public class SimpleBulletController : MonoBehaviour
 			// }
 			// collisionInfo.collider.GetComponent<SimpleEnemyController>().hit = true;
 		}
+		else if(collisionInfo.collider.tag == "RedUFO") {
+			rb.useGravity 		= true;
+			rb.velocity 		= Vector3.zero;
+			rb.angularVelocity 	= Vector3.zero;
+
+			SimpleRedUFOController enemy = collisionInfo.gameObject.GetComponent<SimpleRedUFOController>();
+			// Only want to give the player points if they hit the drone. 
+			// If the drone collides with another drone, they're out of luck.
+			if(!enemy.hit) {
+				player.score += enemy.pointValue;
+			}
+		}
 		else if(collisionInfo.collider.tag == "Ground") {
 			grounded = true;
 		}
+
+
 	}
 }

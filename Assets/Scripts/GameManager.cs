@@ -23,16 +23,19 @@ public class GameManager : MonoBehaviour
 	public GameObject fireButton;
 	public GameObject instructions;
 
-	public GameObject ground;
+	public GameObject redUFO;
+	public GameObject currRedUFO;
 	public GameObject drones;
 	private bool moveDronesDown;
 	public float droneMinBound, droneMaxBound;
 	public float droneSpeed;
 
 	public GameObject bases;
+	public GameObject ground;
 
 	public int level;
 	private bool increased;
+	private bool showingInstructions;
 
 	// Use this for initialization
 	void Start () 
@@ -45,17 +48,41 @@ public class GameManager : MonoBehaviour
 		Physics.gravity = new Vector3(0, -150.0f, 0);
 
 		// Debug
-		instructions.SetActive(false);
+		// PlayerPrefs.SetInt("PlayerPlayed", 0);
+		if(PlayerPrefs.GetInt("PlayerPlayed") == 1) {
+			showingInstructions = false;		
+		}
+		else {
+			// instructions.SetActive(true);
+			showingInstructions = true;
+			StartCoroutine(ShowInstructions());
+			PlayerPrefs.SetInt("PlayerPlayed", 1);
+		}
 
 		increased = false;
-
 		moveDronesDown = false;
+		currRedUFO = Instantiate(redUFO, redUFO.transform.position, redUFO.transform.rotation);
+	}
+
+	IEnumerator ShowInstructions()
+	{
+		// If the user clicks out of the instructions,
+		// don't need to wait all 5 seconds.
+		float t = 0;
+		instructions.SetActive(true);
+		while(t <= 3.0f || !instructions.activeSelf) {
+			t += Time.deltaTime;
+
+			yield return null;
+		}
+		instructions.SetActive(false);
+		showingInstructions = false;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{	
-		if(level == 1) {
+		if(level == 1 && !showingInstructions) {
 			RunLevelOne();
 			return;
 		}
@@ -75,6 +102,13 @@ public class GameManager : MonoBehaviour
 		UpdatePlayerLives();
 
 		if(!GameOver()) {
+			if(currRedUFO.GetComponent<SimpleRedUFOController>().hit) {
+				float moveTime = currRedUFO.GetComponent<SimpleRedUFOController>().moveTime;
+				currRedUFO = Instantiate(redUFO, redUFO.transform.position, redUFO.transform.rotation);
+				// Might have to tweak this a bit.
+				currRedUFO.GetComponent<SimpleRedUFOController>().moveTime += moveTime;
+			}
+
 			MoveDrones();
 			EnableControls();
 		}
@@ -183,11 +217,13 @@ public class GameManager : MonoBehaviour
 	public void OpenInstructions()
 	{
 		instructions.SetActive(true);
+		showingInstructions = true;
 	}
 
 	public void CloseInstructions()
 	{
 		instructions.SetActive(false);
+		showingInstructions = false;
 	}
 
 	public void playScavengARHunt()

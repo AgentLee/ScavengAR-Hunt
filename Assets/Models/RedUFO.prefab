@@ -73,9 +73,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1231819220437308}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -30, y: 7.57, z: 0}
-  m_LocalScale: {x: 0.94995546, y: 0.9499562, z: 0.94995517}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -22.78, y: 8, z: 0}
+  m_LocalScale: {x: 0.94995594, y: 0.9499562, z: 0.94995564}
   m_Children:
   - {fileID: 4480037115701890}
   - {fileID: 4871408072098438}
@@ -269,6 +269,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7b165a400e940b298a609329821043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  collider: {fileID: 0}
+  rb: {fileID: 0}
+  hit: 0
+  grounded: 0
+  pointValue: 0
+  speed: 0
+  moveTime: 0
 --- !u!135 &135354399417545354
 SphereCollider:
   m_ObjectHideFlags: 1

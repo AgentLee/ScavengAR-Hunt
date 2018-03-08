@@ -21,6 +21,7 @@ public class SimpleEnemyController : MonoBehaviour
 	public float shotEpsilon;
 	public int shotFOV;
 	public bool hit;
+	public int pointValue;
 	
 	// Use this for initialization
 	void Start () 
@@ -40,6 +41,7 @@ public class SimpleEnemyController : MonoBehaviour
 		shotEpsilon = 100;
 		accuracy = 0;
 		shotFOV = 45;
+		pointValue = 10;
 
 		hit = false;
 	}

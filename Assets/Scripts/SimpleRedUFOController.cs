@@ -17,11 +17,31 @@ public class SimpleRedUFOController : SimpleEnemy
 		rb 			= GetComponent<Rigidbody>();
 		hit 		= false;
 		grounded 	= false;
-		speed 		= (enemy.position.x < 0) ? 0.15f : -0.15f;
+		speed 		= (enemy.position.x < 0) ? 0.0025f : -0.0025f;	// Handled in coroutine...might move this out
 		moveTime	= Random.Range(6, 20);
 		time 		= 0.0f;
+		pointValue 	= AssignPointValue();
 	}
 	
+	int AssignPointValue()
+	{
+		// Might need a strong RNG than this
+		switch(Random.Range(0, 4)) 
+		{
+			case 0:
+				return 50;
+			case 1:
+				return 100;
+			case 2:
+				return 150;
+			case 3:
+				return 300;
+			// Should never get to this.
+			default:
+				return 0;
+		}
+	}
+
 	void IgnoreEnemies()
 	{
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -54,8 +74,12 @@ public class SimpleRedUFOController : SimpleEnemy
 	void Update () 
 	{
 		time += Time.deltaTime;
-		if(time >= moveTime) {
+		if(time >= moveTime && (!grounded || !hit)) {
 			StartCoroutine(Move());
+		}
+
+		if(enemy.position.y < -15) {
+			Destroy(gameObject);
 		}
 	}
 
