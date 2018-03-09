@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour
 		fireButton.SetActive(true);
 	}
 
-	private void MoveDrones()
+	private void IncreaseDroneSpeed()
 	{
 		int droneCount = drones.transform.childCount;
 		if(droneCount <= 14 && droneCount > 7 && !increased) {
@@ -194,7 +194,19 @@ public class GameManager : MonoBehaviour
 			droneSpeed *= 3.0f;
 			increased = !increased;
 		}
+	}
+
+	private void RearrangeDrones()
+	{
 		
+	}
+
+	private void MoveDrones()
+	{
+		// Checks how many drones are left and increases speed as less are active
+		IncreaseDroneSpeed();
+
+		// Loop to actually move the drones left to right
 		drones.transform.position += Vector3.right * droneSpeed;
 		foreach(Transform drone in drones.transform) {
 			if(drone.position.x < droneMinBound || drone.position.x > droneMaxBound) {
@@ -205,6 +217,7 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
+		// If the drones reached the min/max bounds then the drones move down
 		if(moveDronesDown) {
 			foreach(Transform drone in drones.transform) {
 				drone.position -= new Vector3(0.0f, 0.75f, 0.0f);			

@@ -101,9 +101,17 @@ public class SimplePlayerController : MonoBehaviour
 			spawnedBulletR.GetComponent<Rigidbody>().AddForce((player.up + player.right/5) * 500.0f);
 		}
 
-		GameObject spawnedBullet = Instantiate(bullet, player.position, new Quaternion());			
-		Physics.IgnoreCollision(spawnedBullet.GetComponent<Collider>(), GetComponent<Collider>(), true);
-		spawnedBullet.GetComponent<Rigidbody>().AddForce(player.up * 500.0f);
+		bool FPS = true;
+		if(FPS) {
+			GameObject spawnedBullet = Instantiate(bullet, Camera.main.transform.position, new Quaternion());
+			Physics.IgnoreCollision(spawnedBullet.GetComponent<Collider>(), GetComponent<Collider>(), true);
+			spawnedBullet.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * 500.0f);
+		}
+		else {
+			GameObject spawnedBullet = Instantiate(bullet, player.position, new Quaternion());			
+			Physics.IgnoreCollision(spawnedBullet.GetComponent<Collider>(), GetComponent<Collider>(), true);
+			spawnedBullet.GetComponent<Rigidbody>().AddForce(player.up * 500.0f);
+		}
 	}
 
 	void OnCollisionEnter(Collision collisionInfo)
