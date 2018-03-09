@@ -62,6 +62,13 @@ public class SimplePlayerController : MonoBehaviour
 		if(Input.GetKey(KeyCode.Space)) {
 			Fire();
 		}
+
+		// Ray ray = new Ray(player.position, player.up);
+		// Ray ray2 = new Ray(player.position, player.up + player.right/3);
+		// Ray ray3 = new Ray(player.position, player.up - player.right/3);
+		// Debug.DrawRay(ray.origin, ray.direction, Color.red, 5.0f);
+		// Debug.DrawLine(ray2.origin, ray2.direction * 100, Color.green, 5.0f);
+		// Debug.DrawRay(ray3.origin, ray3.direction * 100, Color.blue, 5.0f);
 	}
 
 	public void MovePlayer()
@@ -85,13 +92,13 @@ public class SimplePlayerController : MonoBehaviour
 	{
 		// powerups.weaponSpread = true;
 		if(powerups.weaponSpread) {
-			GameObject spawnedBulletL = Instantiate(bullet, player.position - new Vector3(1.5f, 0, 0), new Quaternion());			
+			GameObject spawnedBulletL = Instantiate(bullet, player.position - new Vector3(0.5f, 0, 0), new Quaternion());			
 			Physics.IgnoreCollision(spawnedBulletL.GetComponent<Collider>(), GetComponent<Collider>(), true);
-			spawnedBulletL.GetComponent<Rigidbody>().AddForce((player.up - player.right) * 500.0f);
+			spawnedBulletL.GetComponent<Rigidbody>().AddForce((player.up - player.right/5) * 500.0f);
 
-			GameObject spawnedBulletR = Instantiate(bullet, player.position + new Vector3(1.5f, 0, 0), new Quaternion());			
+			GameObject spawnedBulletR = Instantiate(bullet, player.position + new Vector3(0.5f, 0, 0), new Quaternion());			
 			Physics.IgnoreCollision(spawnedBulletR.GetComponent<Collider>(), GetComponent<Collider>(), true);
-			spawnedBulletR.GetComponent<Rigidbody>().AddForce((player.up + player.right) * 500.0f);
+			spawnedBulletR.GetComponent<Rigidbody>().AddForce((player.up + player.right/5) * 500.0f);
 		}
 
 		GameObject spawnedBullet = Instantiate(bullet, player.position, new Quaternion());			
