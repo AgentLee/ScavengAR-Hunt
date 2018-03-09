@@ -5,8 +5,12 @@ using UnityEngine;
 // http://www.donovankeith.com/2016/05/making-objects-float-up-down-in-unity/
 public class TestScript : MonoBehaviour 
 {
+    float degPerSec = 15.0f;
     float amplitude = 5.0f;
     float frequency = 1.0f;
+
+    public bool rotate;
+    public bool bounce;
  
     // Position Storage Variables
     Vector3 posOffset = new Vector3 ();
@@ -21,7 +25,18 @@ public class TestScript : MonoBehaviour
      
     void Update () 
 	{
-		Bounce();
+        if(rotate) {
+            Rotate();
+        }
+
+        if(bounce) {
+		    Bounce();
+        }
+    }
+
+    void Rotate()
+    {
+        transform.Rotate(new Vector3(0f, Time.deltaTime * degPerSec, 0f));
     }
 
 	void Bounce()

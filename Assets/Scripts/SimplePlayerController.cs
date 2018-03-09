@@ -2,6 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct Powerups
+{
+	public bool weaponSpread;
+	public bool shields;
+	public bool control;
+
+	public Powerups(bool b)
+	{
+		weaponSpread = false;
+		shields = false;
+		control = false;
+	}
+};
+
 public class SimplePlayerController : MonoBehaviour 
 {
 	private Transform player;
@@ -17,6 +31,8 @@ public class SimplePlayerController : MonoBehaviour
 
 	private bool hit;
 	public int numLives;
+
+	public Powerups powerups;
 
 	// Use this for initialization
 	void Start () 
@@ -34,6 +50,8 @@ public class SimplePlayerController : MonoBehaviour
 
 		hit = false;
 		numLives = 5;
+
+		powerups = new Powerups(true);
 	}
 	
 	// Update is called once per frame
@@ -65,6 +83,17 @@ public class SimplePlayerController : MonoBehaviour
 
 	public void Fire()
 	{
+		// powerups.weaponSpread = true;
+		if(powerups.weaponSpread) {
+			GameObject spawnedBulletL = Instantiate(bullet, player.position - new Vector3(1.5f, 0, 0), new Quaternion());			
+			Physics.IgnoreCollision(spawnedBulletL.GetComponent<Collider>(), GetComponent<Collider>(), true);
+			spawnedBulletL.GetComponent<Rigidbody>().AddForce((player.up - player.right) * 500.0f);
+
+			GameObject spawnedBulletR = Instantiate(bullet, player.position + new Vector3(1.5f, 0, 0), new Quaternion());			
+			Physics.IgnoreCollision(spawnedBulletR.GetComponent<Collider>(), GetComponent<Collider>(), true);
+			spawnedBulletR.GetComponent<Rigidbody>().AddForce((player.up + player.right) * 500.0f);
+		}
+
 		GameObject spawnedBullet = Instantiate(bullet, player.position, new Quaternion());			
 		Physics.IgnoreCollision(spawnedBullet.GetComponent<Collider>(), GetComponent<Collider>(), true);
 		spawnedBullet.GetComponent<Rigidbody>().AddForce(player.up * 500.0f);
