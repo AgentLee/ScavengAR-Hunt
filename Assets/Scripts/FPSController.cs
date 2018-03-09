@@ -172,10 +172,9 @@ public class FPSController : MonoBehaviour
 
 	private void SpawnDrones()
 	{
-		Vector3 dronePos = new Vector3(Random.Range(-14, 15), Random.Range(-8, 9), 30);
+		Vector3 dronePos = new Vector3(Random.Range(-14f, 15f), Random.Range(-8f, 9f), 30f);
 		currDrone = Instantiate(drone, dronePos, drone.transform.rotation);
 		currDrone.SetActive(true);
-		// currDrone.GetComponent<SimpleEnemyController>().TurnOnFPS();
 		currDrone.GetComponent<SimpleEnemyController>().FPS = true;	
 	}
 

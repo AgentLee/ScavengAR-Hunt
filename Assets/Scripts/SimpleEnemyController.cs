@@ -58,6 +58,7 @@ public class SimpleEnemyController : MonoBehaviour
 	{
 		if(FPS) {
 			MoveDrone();
+			Fire();
 
 			if(enemy.position.z <= -50.0f) {
 				Destroy(gameObject);
@@ -141,22 +142,46 @@ public class SimpleEnemyController : MonoBehaviour
 		// float myIntz = (float)Random.Range(-accuracy,accuracy)/1000;
 		// Vector3 newVector = new Vector3(transform.forward.x + myIntx, transform.forward.y + myInty, transform.forward.z + myIntz);
 
-		// https://answers.unity.com/questions/180605/ai-enemy-shoot-precision.html
-		// shotEpsilon = 0 --> 100% accuracy
-		shotDir = target.transform.position + Random.insideUnitSphere * shotEpsilon - transform.position;  
-		// Makes no sense to have the enemy shoot from behind, clamp to positive x
-		shotDir.x = Mathf.Abs(shotDir.x);
-		
-		// Check to see the shot is within a reasonable shot range
-		float dot = Vector3.Dot(transform.forward, shotDir);
-		int theta = Mathf.RoundToInt(Mathf.Acos(dot) * 180 / Mathf.PI);
-
-		return theta <= shotFOV;
+		if(FPS) {
+			shotDir = enemy.forward;
+			return false;
+		}
+		else {
+			// https://answers.unity.com/questions/180605/ai-enemy-shoot-precision.html
+			// shotEpsilon = 0 --> 100% accuracy
+			shotDir = target.transform.position + Random.insideUnitSphere * shotEpsilon - transform.position;  
+			// Makes no sense to have the enemy shoot from behind, clamp to positive x
+			shotDir.x = Mathf.Abs(shotDir.x);
+			
+			// Check to see the shot is within a reasonable shot range
+			float dot = Vector3.Dot(transform.forward, shotDir);
+			int theta = Mathf.RoundToInt(Mathf.Acos(dot) * 180 / Mathf.PI);
+			
+			return theta <= shotFOV;
+		}
 	}
 
+	float shootTime;
+	float shootRate = 2.0f;
 	void Fire()
 	{
 		Vector3 shotDir = Vector3.zero;
+		if(FPS) {
+			if(shootTime >= shootRate) {
+				shootTime = 0;
+				shotDir = enemy.forward;
+				GameObject spawnedBullet = Instantiate(bullet, transform.position, transform.rotation);
+				spawnedBullet.GetComponent<SimpleEnemyBulletController>().shooter = gameObject;
+				spawnedBullet.GetComponent<Rigidbody>().AddForce(shotDir * 1500.0f);
+				Physics.IgnoreCollision(GetComponent<Collider>(), spawnedBullet.GetComponent<Collider>(), true);
+			}
+			else {
+				shootTime += Time.deltaTime;
+			}
+
+			return;
+		}
+
 		if(canShoot(out shotDir)) {
 			GameObject spawnedBullet = Instantiate(bullet, transform.position, transform.rotation);
 			spawnedBullet.GetComponent<SimpleEnemyBulletController>().shooter = gameObject;
@@ -164,8 +189,8 @@ public class SimpleEnemyController : MonoBehaviour
 			Physics.IgnoreCollision(GetComponent<Collider>(), spawnedBullet.GetComponent<Collider>(), true);
 		}
 
-		Debug.DrawRay(transform.position, transform.forward * 10000F, Color.cyan, 2);
-		Debug.DrawRay(transform.position, shotDir * 10000F, Color.red, 2);
+		// Debug.DrawRay(transform.position, transform.forward * 10000F, Color.cyan, 2);
+		// Debug.DrawRay(transform.position, shotDir * 10000F, Color.red, 2);
 		// Debug.DrawRay(transform.position, newVector * 1000F, Color.red, 2);  
 	}
 }

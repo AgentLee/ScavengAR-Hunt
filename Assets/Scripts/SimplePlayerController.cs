@@ -101,7 +101,7 @@ public class SimplePlayerController : MonoBehaviour
 			spawnedBulletR.GetComponent<Rigidbody>().AddForce((player.up + player.right/5) * 500.0f);
 		}
 
-		bool FPS = true;
+		bool FPS = false;
 		if(FPS) {
 			GameObject spawnedBullet = Instantiate(bullet, Camera.main.transform.position, new Quaternion());
 			Physics.IgnoreCollision(spawnedBullet.GetComponent<Collider>(), GetComponent<Collider>(), true);
