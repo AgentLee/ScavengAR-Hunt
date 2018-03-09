@@ -22,7 +22,14 @@ public class SimpleEnemyController : MonoBehaviour
 	public int shotFOV;
 	public bool hit;
 	public int pointValue;
+
+	public bool FPS;
 	
+	void Awake()
+	{
+		FPS = false;
+	}
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -49,6 +56,14 @@ public class SimpleEnemyController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		if(FPS) {
+			MoveDrone();
+
+			if(enemy.position.z <= -50.0f) {
+				Destroy(gameObject);
+			}
+		}
+
 		if(scene.name == "DroneTest2") {
 			if(fireTime >= fireRate) {
 				Fire();
@@ -92,6 +107,11 @@ public class SimpleEnemyController : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	void MoveDrone()
+	{
+		enemy.position += enemy.forward * speed;
 	}
 
 	void OnCollisionEnter(Collision collisionInfo)
