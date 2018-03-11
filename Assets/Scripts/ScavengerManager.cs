@@ -9,6 +9,7 @@ enum LOCATIONS
 {
 	START = 0,
 	ENIAC = 1,
+	GRASP = 2,
 }
 
 enum ANSWERS
@@ -49,7 +50,7 @@ public class ScavengerManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		LoadEvent();
+		LoadEvent(); 
 
 		// if(rothPowerup) {
 		// 	Debug.Log("COLLECTED ITEM");
@@ -270,6 +271,54 @@ public class ScavengerManager : MonoBehaviour
 	{
 		AIIntroPanel.SetActive(false);
 		nextENIACClue.SetActive(true);
+	}
+
+	// GRASP
+	public GameObject GRASPPanel;
+	public GameObject autonomousPanel;
+	public GameObject nextGRASPClue;
+	public GameObject nextGRASPCluePanel1;
+	public GameObject nextGRASPCluePanel2;
+	public GameObject fish;
+	public void ContinueGRASP()
+	{
+		GRASPPanel.SetActive(false);
+		autonomousPanel.SetActive(true);
+	}
+
+	public void NextClueGRASP()
+	{
+		autonomousPanel.SetActive(false);
+		nextGRASPClue.SetActive(true);
+	}
+
+	public void GRASP_A()
+	{
+		GameObject answers = GameObject.Find("Answers");
+		GameObject choice = answers.transform.Find("A").gameObject;  
+		GameObject text = choice.transform.Find("Text").gameObject;
+		text.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Strikethrough;
+	}
+
+	public void GRASP_B()
+	{
+		GameObject answers = GameObject.Find("Answers");
+		GameObject choice = answers.transform.Find("B").gameObject;  
+		GameObject text = choice.transform.Find("Text").gameObject;
+		text.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Strikethrough;
+	}
+
+	public void GRASP_C()
+	{
+		GameObject answers = GameObject.Find("Answers");
+		answers.transform.Find("C").gameObject.GetComponent<Image>().color = new Color(0, 1, 0, 1);		
+		fish.SetActive(true);
+	}
+
+	public void GRASPtoSIG()
+	{
+		nextGRASPCluePanel1.SetActive(false);
+		nextGRASPCluePanel2.SetActive(true);
 	}
 
 	public void openRothLink()

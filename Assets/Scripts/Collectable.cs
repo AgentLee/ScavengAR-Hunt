@@ -20,6 +20,6 @@ public class Collectable : MonoBehaviour
 	{
 		PlayerPrefs.SetInt(gameObject.name, 1);
 		Destroy(gameObject);
-		// GameObject.Find("Manager").GetComponent<ScavengerManager>().DisplayItems();
+		GameObject.Find("Manager").GetComponent<ScavengerManager>().DisplayItems();
 	}
 }
