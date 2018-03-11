@@ -21,7 +21,9 @@ enum LEVELS
 public class MainGameManager : MonoBehaviour 
 {
 	public GameObject welcome;
+
 	public GameObject play;
+	public GameObject explore;
 	public GameObject about;
 	public GameObject highScores;
 	public GameObject continueAs;
