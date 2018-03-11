@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/FPS Space InvadARs.unity
     guid: 97b0c46411e104c28a19f042373bf076
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Scavenger Hunt/2. ENIAC.unity
     guid: c95e44f6d14bc4769ab508b68afd395d
+  - enabled: 1
+    path: Assets/Scenes/Scavenger Hunt/4. Gaming.unity
+    guid: 4a26e94730b2d4be0bb03d15880e01e9

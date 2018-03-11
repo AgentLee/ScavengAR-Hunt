@@ -321,6 +321,12 @@ public class ScavengerManager : MonoBehaviour
 		nextGRASPCluePanel2.SetActive(true);
 	}
 
+	// Gaming
+	public void AlphaGoPhoto()
+	{
+		Application.OpenURL("http://www.escapistmagazine.com/news/view/166782-Lee-Sedol-vs-Google-DeepMinds-AlphaGo-Program#&gid=gallery_5939&pid=1");		
+	}
+
 	public void openRothLink()
 	{
 		Application.OpenURL("http://www.cis.upenn.edu/~aaroth/");
