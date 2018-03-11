@@ -60,7 +60,7 @@ public class SimpleEnemyController : MonoBehaviour
 			MoveDrone();
 			Fire();
 
-			if(enemy.position.z <= -50.0f) {
+			if(enemy.position.z <= -50.0f || enemy.position.y <= -50.0f) {
 				Destroy(gameObject);
 			}
 		}

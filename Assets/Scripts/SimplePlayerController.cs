@@ -90,24 +90,35 @@ public class SimplePlayerController : MonoBehaviour
 
 	public void Fire()
 	{
-		// powerups.weaponSpread = true;
-		if(powerups.weaponSpread) {
-			GameObject spawnedBulletL = Instantiate(bullet, player.position - new Vector3(0.5f, 0, 0), new Quaternion());			
-			Physics.IgnoreCollision(spawnedBulletL.GetComponent<Collider>(), GetComponent<Collider>(), true);
-			spawnedBulletL.GetComponent<Rigidbody>().AddForce((player.up - player.right/5) * 500.0f);
+		powerups.weaponSpread = false;
 
-			GameObject spawnedBulletR = Instantiate(bullet, player.position + new Vector3(0.5f, 0, 0), new Quaternion());			
-			Physics.IgnoreCollision(spawnedBulletR.GetComponent<Collider>(), GetComponent<Collider>(), true);
-			spawnedBulletR.GetComponent<Rigidbody>().AddForce((player.up + player.right/5) * 500.0f);
-		}
-
-		bool FPS = false;
+		bool FPS = true;
 		if(FPS) {
 			GameObject spawnedBullet = Instantiate(bullet, Camera.main.transform.position, new Quaternion());
 			Physics.IgnoreCollision(spawnedBullet.GetComponent<Collider>(), GetComponent<Collider>(), true);
-			spawnedBullet.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * 500.0f);
+			spawnedBullet.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * 5000.0f);
+
+			if(powerups.weaponSpread) {
+				GameObject spawnedBulletL = Instantiate(bullet, Camera.main.transform.position - new Vector3(0.5f, 0, 0), new Quaternion());			
+				Physics.IgnoreCollision(spawnedBulletL.GetComponent<Collider>(), GetComponent<Collider>(), true);
+				spawnedBulletL.GetComponent<Rigidbody>().AddForce((player.forward - player.right/5) * 500.0f);
+
+				GameObject spawnedBulletR = Instantiate(bullet, Camera.main.transform.position + new Vector3(0.5f, 0, 0), new Quaternion());			
+				Physics.IgnoreCollision(spawnedBulletR.GetComponent<Collider>(), GetComponent<Collider>(), true);
+				spawnedBulletR.GetComponent<Rigidbody>().AddForce((player.forward + player.right/5) * 500.0f);
+			}
 		}
 		else {
+			if(powerups.weaponSpread) {
+				GameObject spawnedBulletL = Instantiate(bullet, player.position - new Vector3(0.5f, 0, 0), new Quaternion());			
+				Physics.IgnoreCollision(spawnedBulletL.GetComponent<Collider>(), GetComponent<Collider>(), true);
+				spawnedBulletL.GetComponent<Rigidbody>().AddForce((player.up - player.right/5) * 500.0f);
+
+				GameObject spawnedBulletR = Instantiate(bullet, player.position + new Vector3(0.5f, 0, 0), new Quaternion());			
+				Physics.IgnoreCollision(spawnedBulletR.GetComponent<Collider>(), GetComponent<Collider>(), true);
+				spawnedBulletR.GetComponent<Rigidbody>().AddForce((player.up + player.right/5) * 500.0f);
+			}
+
 			GameObject spawnedBullet = Instantiate(bullet, player.position, new Quaternion());			
 			Physics.IgnoreCollision(spawnedBullet.GetComponent<Collider>(), GetComponent<Collider>(), true);
 			spawnedBullet.GetComponent<Rigidbody>().AddForce(player.up * 500.0f);

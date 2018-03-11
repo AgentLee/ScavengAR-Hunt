@@ -2,23 +2,238 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
+
+enum LOCATIONS
+{
+	START = 0,
+	ENIAC = 1,
+}
+
+enum ANSWERS
+{
+	A = 0,
+	B = 1,
+	C = 2,
+	D = 3
+}
 
 public class ScavengerManager : MonoBehaviour 
 {
 	public bool rothPowerup;
+	private int location;
+
+	private int currAnswer;
+
+	// Start
+	public GameObject starter;
 
 	// Use this for initialization
 	void Start () 
 	{
+		// Player just started
+		if(!PlayerPrefs.HasKey("Location")) {
+			PlayerPrefs.SetInt("Location", (int)LOCATIONS.START);
+			location = (int)LOCATIONS.START;
+		}
+		else {
+			location = PlayerPrefs.GetInt("Location");
+		}
+
+		currAnswer = -1;
+
 		rothPowerup = false;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if(rothPowerup) {
-			Debug.Log("COLLECTED ITEM");
+	void Update () 
+	{
+		LoadEvent();
+
+		// if(rothPowerup) {
+		// 	Debug.Log("COLLECTED ITEM");
+		// }
+	}
+
+	private void LoadEvent()
+	{
+		switch(PlayerPrefs.GetInt("Location")) 
+		{
+			case (int)LOCATIONS.START:
+				StartCoroutine(ShowStarter());
+				break;
+			case (int)LOCATIONS.ENIAC:
+				break;
+			default:
+				break;
 		}
 	}
+
+	IEnumerator WaitToShow(GameObject obj)
+	{
+		yield return new WaitForSeconds(3.0f);
+	}
+
+	IEnumerator ShowStarter()
+	{
+		int realAnswer = (int)ANSWERS.B;
+		starter.SetActive(true);
+
+		GameObject intro 		= starter.transform.Find("Intro").gameObject;
+		GameObject nextClue		= starter.transform.Find("Next Clue").gameObject;
+		GameObject title 		= intro.transform.Find("Title").gameObject;  
+		GameObject description 	= intro.transform.Find("Description").gameObject;  
+		GameObject question 	= intro.transform.Find("Question").gameObject;  
+		GameObject answers 		= intro.transform.Find("Answers").gameObject;
+
+		yield return new WaitForSeconds(3.0f);
+
+		description.SetActive(true);
+
+		if(description.GetComponent<TextReveal>().completed) {
+			// TODO
+			// Fix pause
+			// StartCoroutine(DramaticPause(question, 2.0f));
+			question.SetActive(true);
+		}
+	
+		if(question.GetComponent<TextReveal>().completed) {
+			// StartCoroutine(DramaticPause(answers, 1.5f));
+			answers.SetActive(true);
+
+			// TODO
+			// Figure out fade
+			// GameObject A = answers.transform.Find("A").gameObject;
+			// GameObject B = answers.transform.Find("B").gameObject;
+			// GameObject C = answers.transform.Find("C").gameObject;
+
+			// A.GetComponent<FadeEffect>().StartFadeIn();
+			// B.GetComponent<FadeEffect>().StartFadeIn();
+			// C.GetComponent<FadeEffect>().StartFadeIn();
+		}
+
+		switch(currAnswer) 
+		{
+			// Player didn't pick anything yet.
+			case -1:
+				break;
+			case (int)ANSWERS.A:
+				GameObject A = answers.transform.Find("A").gameObject;
+				TextMeshProUGUI choiceA = A.transform.Find("Text").GetComponent<TextMeshProUGUI>();
+				choiceA.fontStyle = FontStyles.Strikethrough;
+				
+				// answers.transform.Find("A").gameObject.SetActive(false);
+				break;
+			case (int)ANSWERS.B:
+				answers.transform.Find("B").gameObject.GetComponent<Image>().color = new Color(0, 1, 0, 1);		
+
+				// StartCoroutine(FadeIn(intro.GetComponent<CanvasGroup>(), 1, 0, 3.0f));
+				StartCoroutine(FadeOut(intro.GetComponent<CanvasGroup>(), nextClue, intro.GetComponent<CanvasGroup>().alpha, 0));
+
+				PlayerPrefs.SetInt("Location", PlayerPrefs.GetInt("Location") + 1);
+				
+				break;
+			case (int)ANSWERS.C:
+				GameObject C = answers.transform.Find("C").gameObject;
+				TextMeshProUGUI choiceC = C.transform.Find("Text").GetComponent<TextMeshProUGUI>();
+				choiceC.fontStyle = FontStyles.Strikethrough;
+
+				// answers.transform.Find("C").gameObject.SetActive(false);
+				break;
+			case (int)ANSWERS.D:
+				break;
+			default:
+				break;
+		}
+	}
+
+	// http://unity.grogansoft.com/fade-your-ui-in-and-out/
+	IEnumerator FadeIn(CanvasGroup canvas, float startAlpha, float endAlpha, float duration)
+    {
+         // keep track of when the fading started, when it should finish, and how long it has been running&lt;/p&gt; &lt;p&gt;&a
+         var startTime = Time.time;
+         var endTime = Time.time + duration;
+         var elapsedTime = 0f;
+ 
+         // set the canvas to the start alpha – this ensures that the canvas is ‘reset’ if you fade it multiple times
+         canvas.alpha = startAlpha;
+         // loop repeatedly until the previously calculated end time
+         while (Time.time <= endTime)
+         {
+             elapsedTime = Time.time - startTime; // update the elapsed time
+             var percentage = 1/(duration/elapsedTime); // calculate how far along the timeline we are
+             if (startAlpha > endAlpha) // if we are fading out/down 
+             {
+                  canvas.alpha = startAlpha - percentage; // calculate the new alpha
+             }
+             else // if we are fading in/up
+             {
+                 canvas.alpha = startAlpha + percentage; // calculate the new alpha
+             }
+ 
+             yield return new WaitForEndOfFrame(); // wait for the next frame before continuing the loop
+        }
+        canvas.alpha = endAlpha; // force the alpha to the end alpha before finishing – this is here to mitigate any rounding errors, e.g. leaving the alpha at 0.01 instead of 0
+	}
+
+
+	IEnumerator FadeOut(CanvasGroup group, GameObject next, float start, float end, float timeLerp = 0.5f)
+	{
+		float timeStartedLerp = Time.time;
+		float timeSinceStart = Time.time - timeStartedLerp;
+		float progress = timeSinceStart / timeLerp;
+
+		while(true) {
+			timeSinceStart = Time.time - timeStartedLerp;
+			progress = timeSinceStart / timeLerp;
+
+			float currVal = Mathf.Lerp(start, end, progress);
+
+			group.alpha = currVal;
+
+			if(progress >= 1) {
+				break;
+			}
+
+			yield return new WaitForSeconds(0.05f);
+		}
+
+		yield return new WaitForSeconds(2.0f);
+
+		next.SetActive(true);
+		// StartCoroutine(FadeIn(next.GetComponent<CanvasGroup>(), 0.75f, 1, 3.0f));
+	}
+
+	IEnumerator DramaticPause(GameObject obj, float seconds)
+	{
+		yield return new WaitForSeconds(seconds);
+		obj.SetActive(true);
+	}
+
+	public void ChoiceA()
+	{
+		currAnswer = (int)ANSWERS.A;
+	}
+
+	public void ChoiceB()
+	{
+		currAnswer = (int)ANSWERS.B;
+	}
+
+	public void ChoiceC()
+	{
+		currAnswer = (int)ANSWERS.C;
+	}
+
+	public void ChoiceD()
+	{
+		currAnswer = (int)ANSWERS.D;
+	}
+
+
+
+
 
 	public void openRothLink()
 	{

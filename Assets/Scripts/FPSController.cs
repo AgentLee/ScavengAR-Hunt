@@ -81,6 +81,8 @@ public class FPSController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{	
+		simplePlayer.GetComponent<MeshRenderer>().enabled = false;
+
 		if(level == 1 && !showingInstructions) {
 			RunLevelOne();
 			return;
@@ -88,7 +90,7 @@ public class FPSController : MonoBehaviour
 	}
 
 	float time = 0;
-	float spawnDroneTime = Random.Range(2, 5);
+	float spawnDroneTime = 1;
 	void RunLevelOne()
 	{
 		DisplayScores();				
@@ -102,7 +104,7 @@ public class FPSController : MonoBehaviour
 			else {
 				SpawnDrones();
 				time = 0;
-				spawnDroneTime = Random.Range(2, 5);
+				spawnDroneTime = Random.Range(2f, 5f);
 			}
 
 			EnableControls();
@@ -172,7 +174,7 @@ public class FPSController : MonoBehaviour
 
 	private void SpawnDrones()
 	{
-		Vector3 dronePos = new Vector3(Random.Range(-14f, 15f), Random.Range(-8f, 9f), 30f);
+		Vector3 dronePos = new Vector3(Random.Range(-2.5f, 2.5f), -2f, Random.Range(-1.25f, 1.25f));
 		currDrone = Instantiate(drone, dronePos, drone.transform.rotation);
 		currDrone.SetActive(true);
 		currDrone.GetComponent<SimpleEnemyController>().FPS = true;	
