@@ -64,6 +64,7 @@ public class ScavengerManager : MonoBehaviour
 				StartCoroutine(ShowStarter());
 				break;
 			case (int)LOCATIONS.ENIAC:
+				ShowENIAC();
 				break;
 			default:
 				break;
@@ -231,9 +232,45 @@ public class ScavengerManager : MonoBehaviour
 		currAnswer = (int)ANSWERS.D;
 	}
 
+	public void ShowENIAC()
+	{
+		
+	}
 
+	public void DisplayItems()
+	{
+		if(PlayerPrefs.HasKey("Shield")) {
+			Debug.Log("Shield");
+		}
 
+		if(PlayerPrefs.HasKey("Bar")) {
+			Debug.Log("Bar");
+		}
 
+		if(PlayerPrefs.HasKey("Fish")) {
+			Debug.Log("Fish");
+		}
+
+		if(PlayerPrefs.HasKey("Book")) {
+			Debug.Log("Book");
+		}
+	}
+
+	// ENIAC 
+	public GameObject ENIACPanel;
+	public GameObject AIIntroPanel;
+	public GameObject nextENIACClue;
+	public void ContinueENIAC()
+	{
+		ENIACPanel.SetActive(false);
+		AIIntroPanel.SetActive(true);
+	}
+
+	public void NextClueENIAC()
+	{
+		AIIntroPanel.SetActive(false);
+		nextENIACClue.SetActive(true);
+	}
 
 	public void openRothLink()
 	{
