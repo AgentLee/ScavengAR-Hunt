@@ -21,7 +21,18 @@ public class Collectable : MonoBehaviour
 
 	public void Collect()
 	{
-		PlayerPrefs.SetInt(gameObject.name, 1);
+		if(gameObject.name == "Shield") {
+			if(PlayerPrefs.HasKey("Shield")) {
+				PlayerPrefs.SetInt(gameObject.name, PlayerPrefs.GetInt("Shield") + 1);		
+			}
+			else {
+				PlayerPrefs.SetInt(gameObject.name, 1);
+			}
+		}
+		else {
+			PlayerPrefs.SetInt(gameObject.name, 1);
+		}
+		
 		Destroy(gameObject);
 		GameObject.Find("Manager").GetComponent<ScavengerManager>().DisplayItems();
 	}

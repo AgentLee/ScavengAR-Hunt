@@ -23,20 +23,48 @@ public class SimpleBaseController : MonoBehaviour
 	{
 		material 		= this.GetComponent<Renderer>().material;
 		hit 			= false;
-		vulnerability 	= 10;
 		timesHit 		= 0;
-		shieldLevel 	= 3;
+
+		// Debug.Log(PlayerPrefs.GetInt("Shield"));
+
+		// PlayerPrefs.DeleteKey("Shield");
+		if(PlayerPrefs.HasKey("Shield")) {
+			switch(PlayerPrefs.GetInt("Shield"))
+			{
+				case 1:
+					shieldLevel 	= 1;
+					vulnerability 	= 5;
+					material.color 	= Color.yellow;
+					break;
+				case 2:
+					shieldLevel 	= 2;
+					vulnerability 	= 10;
+					material.color 	= Color.green;
+					break;
+				// case 3:
+				// 	shieldLevel 	= 3;
+				// 	vulnerability 	= 10;
+				// 	material.color 	= Color.green;
+				// 	break;
+			}
+		}
+		else {
+			shieldLevel 	= 1;
+			vulnerability 	= 2;
+			material.color 	= Color.red;
+		}
 	}
  
-	// Update is called once per frame
-	void Update () 
-	{
-
-	}
-
 	void OnCollisionEnter(Collision collisionInfo)
 	{
 		if(collisionInfo.collider.tag == "Bullet" || collisionInfo.collider.tag == "Enemy Bullet") {
+			if(collisionInfo.collider.tag == "Bullet") {
+				// If it already hit an enemy, the debris shouldn't affect the shield.
+				if(collisionInfo.collider.GetComponent<SimpleBulletController>().hit) {
+					return;
+				}
+			}
+			
 			// Physics.IgnoreCollision(collisionInfo.collider, this.GetComponent<Collider>());
 			if(!hit) {
 				StartCoroutine(Blink(3.0f, 0.2f, collisionInfo.collider));

@@ -90,7 +90,7 @@ public class SimplePlayerController : MonoBehaviour
 
 	public void Fire()
 	{
-		powerups.weaponSpread = false;
+		powerups.weaponSpread = PlayerPrefs.HasKey("Fish");
 
 		bool FPS = false;
 		if(FPS) {

@@ -77,6 +77,9 @@ public class SimpleRedUFOController : SimpleEnemy
 		if(time >= moveTime && (!grounded || !hit)) {
 			StartCoroutine(Move());
 		}
+		// else {
+		// 	gameObject.SetActive(false);
+		// }
 
 		if(enemy.position.y < -15) {
 			Destroy(gameObject);
@@ -85,6 +88,11 @@ public class SimpleRedUFOController : SimpleEnemy
 
 	IEnumerator Move()
 	{
+		if(hit || grounded) {
+			yield break;
+		}
+
+		// gameObject.SetActive(true);
 		if(speed < 0) {
 			enemy.eulerAngles = new Vector3(0, -90, 0);
 			while(enemy.position.x >= -30) {

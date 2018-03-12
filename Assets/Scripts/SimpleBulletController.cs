@@ -9,6 +9,7 @@ public class SimpleBulletController : MonoBehaviour
 	private bool grounded;
 
 	public SimplePlayerController player;
+	public bool hit;
 
 	// Use this for initialization
 	void Start () 
@@ -48,6 +49,8 @@ public class SimpleBulletController : MonoBehaviour
 				player.score += enemy.pointValue;
 			}
 
+			hit = true;
+
 
 			// BROKEN CODE
 			// if(!collisionInfo.collider.GetComponent<SimpleEnemyController>().grounded && !collisionInfo.collider.GetComponent<SimpleEnemyController>().hit) {
@@ -72,6 +75,8 @@ public class SimpleBulletController : MonoBehaviour
 			if(!enemy.hit) {
 				player.score += enemy.pointValue;
 			}
+
+			hit = true;
 		}
 		else if(collisionInfo.collider.tag == "Ground") {
 			grounded = true;

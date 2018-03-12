@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 	public GameObject topScore;
 	public GameObject myLives;
 	public GameObject gameOver;
+	public GameObject gameCompleted;
 	public GameObject mainMenu;
 	public GameObject joystick;
 	public GameObject fireButton;
@@ -120,6 +121,7 @@ public class GameManager : MonoBehaviour
 				MoveDrones();
 			}
 			else {
+				GameComplete();
 				// PlayerPrefs.SetInt("CurrScore", simplePlayer.score);
 
 				// if(GameObject.Find("B1")) {
@@ -247,6 +249,12 @@ public class GameManager : MonoBehaviour
 			
 			return false;
 		}
+	}
+
+	private void GameComplete()
+	{
+		gameCompleted.SetActive(true);
+		mainMenu.SetActive(true);
 	}
 
 	private void DisableControls()
