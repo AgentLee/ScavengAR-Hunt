@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 	public int level;
 	private bool increased;
 	private bool showingInstructions;
+	public bool paused;
 
 	// Use this for initialization
 	void Start () 
@@ -53,10 +54,12 @@ public class GameManager : MonoBehaviour
 		// PlayerPrefs.SetInt("PlayerPlayed", 0);
 		if(PlayerPrefs.GetInt("PlayerPlayed") == 1) {
 			showingInstructions = false;		
+			paused = false;
 		}
 		else {
 			// instructions.SetActive(true);
 			showingInstructions = true;
+			paused = true;
 			StartCoroutine(ShowInstructions());
 			PlayerPrefs.SetInt("PlayerPlayed", 1);
 		}
@@ -79,12 +82,13 @@ public class GameManager : MonoBehaviour
 		}
 		instructions.SetActive(false);
 		showingInstructions = false;
+		paused = true;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{	
-		if(level == 1 && !showingInstructions) {
+		if(level == 1 && !showingInstructions && !paused) {
 			RunLevelOne();
 			return;
 		}
@@ -257,6 +261,46 @@ public class GameManager : MonoBehaviour
 		fireButton.SetActive(true);
 	}
 
+	public GameObject warning;
+	public GameObject pauseButtons;
+	public int buttonPressed;
+	public void LeaveSpaceWarning()
+	{
+		warning.SetActive(true);
+		pauseButtons.SetActive(false);
+		// foreach(Transform button in pauseButtons.transform) {
+		// 	button.GetComponent<Button>().interactable = false;
+		// }
+		// pauseButtons.GetComponent<CanvasGroup>().alpha = .05f;
+	}
+
+	public void ToExplore()
+	{
+		buttonPressed = (int)LEVELS.SCAVENGER_HUNT;
+		Debug.Log(buttonPressed);
+	}
+
+	public void ToMenu()
+	{
+		buttonPressed = (int)LEVELS.MAIN_MENU;
+		Debug.Log(buttonPressed);
+	}
+
+	public void CloseWarning()
+	{
+		warning.SetActive(false);
+		pauseButtons.SetActive(true);
+		// foreach(Transform button in pauseButtons.transform) {
+		// 	button.GetComponent<Button>().interactable = false;
+		// }
+		// pauseButtons.GetComponent<CanvasGroup>().alpha = 1.0f;
+	}
+
+	public void LeaveSpace()
+	{
+		SceneManager.LoadScene(buttonPressed);
+	}
+
 	private void IncreaseDroneSpeed()
 	{
 		int droneCount = drones.transform.childCount;
@@ -304,16 +348,31 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	public GameObject pauseMenu;
+	public void Pause()
+	{
+		paused = !paused;
+		pauseMenu.SetActive(paused);		
+	}
+
+	public void Resume()
+	{
+		paused = false;
+		pauseMenu.SetActive(false);
+	}
+
 	public void OpenInstructions()
 	{
 		instructions.SetActive(true);
 		showingInstructions = true;
+		pauseButtons.SetActive(false);
 	}
 
 	public void CloseInstructions()
 	{
 		instructions.SetActive(false);
 		showingInstructions = false;
+		pauseButtons.SetActive(true);
 	}
 
 	public void playScavengARHunt()
