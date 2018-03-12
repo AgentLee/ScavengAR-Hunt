@@ -342,4 +342,86 @@ public class ScavengerManager : MonoBehaviour
 	{
 		Application.LoadLevel(1);
 	}
+
+	public GameObject warning;
+	public int buttonPressed;
+	public void LeaveScavengeWarning()
+	{
+		warning.SetActive(true);
+		pauseButtons.SetActive(false);
+	}
+
+	public void ToSpace()
+	{
+		buttonPressed = (int)LEVELS.SPACE_INVADERS;
+		Debug.Log(buttonPressed);
+	}
+
+	public void ToMenu()
+	{
+		buttonPressed = (int)LEVELS.MAIN_MENU;
+		Debug.Log(buttonPressed);
+	}
+
+	public void CloseWarning()
+	{
+		warning.SetActive(false);
+		pauseButtons.SetActive(true);
+	}
+
+	public void LeaveScavenge()
+	{
+		SceneManager.LoadScene(buttonPressed);
+	}
+
+	public GameObject pauseMenu;
+	public GameObject instructions;
+	public GameObject pauseButtons;
+	public bool paused = false;
+	public void Pause()
+	{
+		paused = !paused;
+		pauseMenu.SetActive(paused);		
+	}
+
+	public void Resume()
+	{
+		paused = false;
+		pauseMenu.SetActive(false);
+	}
+
+	public void OpenInstructions()
+	{
+		instructions.SetActive(true);
+		pauseButtons.SetActive(false);
+	}
+
+	public void CloseInstructions()
+	{
+		instructions.SetActive(false);
+		pauseButtons.SetActive(true);
+	}
+
+	public void playScavengARHunt()
+	{
+		Application.LoadLevel(0);
+	}
+
+	public void playLevelTwo()
+	{
+		Application.LoadLevel(2);		
+	}
+
+	public void playTestLevel()
+	{
+		Application.LoadLevel(3);		
+	}
+
+	public void LoadMainMenu()
+	{
+		SceneManager.LoadScene((int)LEVELS.MAIN_MENU);
+	}
+
+
+
 }
