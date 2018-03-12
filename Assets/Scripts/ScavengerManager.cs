@@ -33,11 +33,16 @@ public class ScavengerManager : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		// PlayerPrefs.DeleteKey("Fish");
 		// Player just started
 		if(!PlayerPrefs.HasKey("Location")) {
 			PlayerPrefs.SetInt("Location", (int)LOCATIONS.START);
 			location = (int)LOCATIONS.START;
 		}
+		// FIX THIS SO THAT YOU CAN GO BACK TO IT
+		// THE PROBLEM IS THE LOCATION IS GETTING LOCATION++ 
+		// IF YOU GO BACK TO THE FIRST PICUTRE, IT WON'T DO ANYTHING
+		// BECAUSE THE LOADEVENT IS ON ENIAC.
 		else {
 			location = PlayerPrefs.GetInt("Location");
 		}
@@ -50,7 +55,7 @@ public class ScavengerManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		LoadEvent(); 
+		// LoadEvent(); 
 
 		// if(rothPowerup) {
 		// 	Debug.Log("COLLECTED ITEM");
@@ -216,16 +221,32 @@ public class ScavengerManager : MonoBehaviour
 	public void ChoiceA()
 	{
 		currAnswer = (int)ANSWERS.A;
+		GameObject answers = GameObject.Find("Answers");
+		GameObject choice = answers.transform.Find("A").gameObject;  
+		GameObject text = choice.transform.Find("Text").gameObject;
+		text.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Strikethrough;
 	}
 
 	public void ChoiceB()
 	{
+		GameObject intro 		= starter.transform.Find("Intro").gameObject;
+		GameObject nextClue		= starter.transform.Find("Next Clue").gameObject;
+		GameObject title 		= intro.transform.Find("Title").gameObject;  
+		GameObject description 	= intro.transform.Find("Description").gameObject;  
+		GameObject question 	= intro.transform.Find("Question").gameObject;  
+		GameObject answers 		= intro.transform.Find("Answers").gameObject;
 		currAnswer = (int)ANSWERS.B;
+		answers.transform.Find("B").gameObject.GetComponent<Image>().color = new Color(0, 1, 0, 1);		
+		StartCoroutine(FadeOut(intro.GetComponent<CanvasGroup>(), nextClue, intro.GetComponent<CanvasGroup>().alpha, 0));
 	}
 
 	public void ChoiceC()
 	{
 		currAnswer = (int)ANSWERS.C;
+		GameObject answers = GameObject.Find("Answers");
+		GameObject choice = answers.transform.Find("C").gameObject;  
+		GameObject text = choice.transform.Find("Text").gameObject;
+		text.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Strikethrough;
 	}
 
 	public void ChoiceD()
@@ -312,7 +333,6 @@ public class ScavengerManager : MonoBehaviour
 	{
 		GameObject answers = GameObject.Find("Answers");
 		answers.transform.Find("C").gameObject.GetComponent<Image>().color = new Color(0, 1, 0, 1);		
-		fish.SetActive(true);
 		GRASPtoSIG();
 	}
 

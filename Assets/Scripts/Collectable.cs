@@ -33,7 +33,8 @@ public class Collectable : MonoBehaviour
 			PlayerPrefs.SetInt(gameObject.name, 1);
 		}
 		
-		Destroy(gameObject);
+		gameObject.SetActive(false);
+		// Destroy(gameObject);
 		GameObject.Find("Manager").GetComponent<ScavengerManager>().DisplayItems();
 	}
 }

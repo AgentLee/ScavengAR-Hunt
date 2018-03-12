@@ -1482,17 +1482,6 @@ MonoBehaviour:
   OnSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 969611115}
-        m_MethodName: GRASPtoSIG
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 385647008}
         m_MethodName: Collect
         m_Mode: 1
@@ -3057,6 +3046,12 @@ MonoBehaviour:
   nextGRASPCluePanel1: {fileID: 732697617}
   nextGRASPCluePanel2: {fileID: 115864886}
   fish: {fileID: 385647003}
+  warning: {fileID: 0}
+  buttonPressed: 0
+  pauseMenu: {fileID: 0}
+  instructions: {fileID: 0}
+  pauseButtons: {fileID: 0}
+  paused: 0
 --- !u!4 &969611116
 Transform:
   m_ObjectHideFlags: 0
@@ -3829,8 +3824,8 @@ MonoBehaviour:
   mExtendedTracking: 1
   mAspectRatio: 1.7272727
   mImageTargetType: 0
-  mWidth: 2.4381316
-  mHeight: 4.211318
+  mWidth: 2.438132
+  mHeight: 4.211319
 --- !u!1 &1353847799
 GameObject:
   m_ObjectHideFlags: 0
