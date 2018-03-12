@@ -312,7 +312,13 @@ public class ScavengerManager : MonoBehaviour
 	{
 		GameObject answers = GameObject.Find("Answers");
 		answers.transform.Find("C").gameObject.GetComponent<Image>().color = new Color(0, 1, 0, 1);		
-		fish.SetActive(true);
+		if(PlayerPrefs.HasKey(fish.name)) {
+			fish.SetActive(false);
+		}
+		else {
+			fish.SetActive(true);
+		}
+		GRASPtoSIG();
 	}
 
 	public void GRASPtoSIG()

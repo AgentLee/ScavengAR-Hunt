@@ -7,7 +7,10 @@ public class Collectable : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-
+		if(PlayerPrefs.HasKey(gameObject.name)) {
+			Debug.Log("Already collected item");
+			Destroy(gameObject);
+		}
 	}
 	
 	// Update is called once per frame

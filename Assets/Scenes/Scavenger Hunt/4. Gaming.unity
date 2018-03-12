@@ -718,7 +718,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: PennShieldMaterial
+  m_Name: OxygenMaterial
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -731,7 +731,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 720e4f29544e42dba798e7245e219fc5, type: 3}
+        m_Texture: {fileID: 2800000, guid: aa91900b3d0343f7b6b7ed78b677e0f2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
@@ -2027,7 +2027,7 @@ Transform:
   m_LocalScale: {x: 0.16216105, y: 0.16216119, z: 0.16216119}
   m_Children: []
   m_Father: {fileID: 1304018972}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &582213968
 MonoBehaviour:
@@ -2534,7 +2534,7 @@ RectTransform:
   m_GameObject: {fileID: 838762172}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.00081246265, y: 0.0008124629, z: 0.0008124629}
+  m_LocalScale: {x: 0.0013229479, y: 0.001322949, z: 0.001322949}
   m_Children:
   - {fileID: 609840547}
   - {fileID: 1725273470}
@@ -2545,11 +2545,11 @@ RectTransform:
   - {fileID: 221260750}
   - {fileID: 493512942}
   m_Father: {fileID: 1304018972}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.7634273}
+  m_AnchoredPosition: {x: 0, y: 1.2431028}
   m_SizeDelta: {x: 2208, y: 1242}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &838762174
@@ -3596,7 +3596,7 @@ GameObject:
   - component: {fileID: 1304018974}
   - component: {fileID: 1304018973}
   m_Layer: 0
-  m_Name: Image Target
+  m_Name: GAMING SCENE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3610,10 +3610,10 @@ Transform:
   m_GameObject: {fileID: 1304018971}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 5.54}
-  m_LocalScale: {x: 6.708, y: 6.708, z: 6.708}
+  m_LocalScale: {x: 4.1195874, y: 4.1195874, z: 4.1195874}
   m_Children:
-  - {fileID: 838762173}
   - {fileID: 582213967}
+  - {fileID: 838762173}
   m_Father: {fileID: 1379994792}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -3691,15 +3691,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: PennShield
+  mTrackableName: Oxygen
   mPreserveChildSize: 0
   mInitializedInEditor: 1
-  mDataSetPath: Vuforia/Penn.xml
+  mDataSetPath: Vuforia/VuforiaMars_Images.xml
   mExtendedTracking: 1
-  mAspectRatio: 1.118
+  mAspectRatio: 1.7272727
   mImageTargetType: 0
-  mWidth: 6
-  mHeight: 6.708
+  mWidth: 2.3850243
+  mHeight: 4.1195874
 --- !u!1 &1307622139
 GameObject:
   m_ObjectHideFlags: 0
@@ -4164,7 +4164,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.44722718, y: 0, z: 0.5}
+      m_Extent: {x: 0.28947368, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -4217,7 +4217,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: f6fae4be00000000000000bf000000000000803f000000000000000000000000f6fae4be000000000000003f000000000000803f00000000000000000000803ff6fae43e00000000000000bf000000000000803f000000000000803f00000000f6fae43e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: e53594be00000000000000bf000000000000803f000000000000000000000000e53594be000000000000003f000000000000803f00000000000000000000803fe535943e00000000000000bf000000000000803f000000000000803f00000000e535943e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
