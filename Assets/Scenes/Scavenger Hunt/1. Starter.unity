@@ -3768,7 +3768,7 @@ RectTransform:
   - {fileID: 1867721705}
   - {fileID: 564088602}
   m_Father: {fileID: 1437190241}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -12168,11 +12168,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -12804,6 +12804,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: -0.00012838503}
   m_LocalScale: {x: 1.0000001, y: 0.9999994, z: 0.9999994}
   m_Children:
+  - {fileID: 1196351161}
   - {fileID: 1601628024}
   m_Father: {fileID: 2066798581}
   m_RootOrder: 2
@@ -14267,19 +14268,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1437190241}
+    m_TransformParent: {fileID: 1093467242}
     m_Modifications:
     - target: {fileID: 400000, guid: d6c0582a16dd6462fa35948a7f702545, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.204093
+      value: 5.2022
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d6c0582a16dd6462fa35948a7f702545, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 178.18951
+      value: 178.19182
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d6c0582a16dd6462fa35948a7f702545, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -473.49786
+      value: -473.49847
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d6c0582a16dd6462fa35948a7f702545, type: 3}
       propertyPath: m_LocalRotation.x
@@ -14303,15 +14304,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d6c0582a16dd6462fa35948a7f702545, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4501.808
+      value: 4501.8115
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d6c0582a16dd6462fa35948a7f702545, type: 3}
       propertyPath: m_LocalScale.y
-      value: 11167.245
+      value: 11167.258
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d6c0582a16dd6462fa35948a7f702545, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2277.0889
+      value: 2277.0935
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d6c0582a16dd6462fa35948a7f702545, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -14941,11 +14942,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -17257,7 +17258,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1196351161}
   - {fileID: 1720927108}
   - {fileID: 275330574}
   m_Father: {fileID: 2066798581}
@@ -18616,7 +18616,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1093467242}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -18966,11 +18966,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -19785,7 +19785,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1437190241}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -20538,11 +20538,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

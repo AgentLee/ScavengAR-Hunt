@@ -9,7 +9,7 @@ public class Collectable : MonoBehaviour
 	{
 		if(PlayerPrefs.HasKey(gameObject.name)) {
 			Debug.Log("Already collected item");
-			Destroy(gameObject);
+			// Destroy(gameObject);
 		}
 	}
 	

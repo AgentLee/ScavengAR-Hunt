@@ -338,6 +338,10 @@ public class ScavengerManager : MonoBehaviour
 
 	public void GRASPtoSIG()
 	{
+		if(PlayerPrefs.HasKey("Fish"))
+			fish.SetActive(true);
+		else
+			fish.SetActive(false);
 		nextGRASPCluePanel1.SetActive(false);
 		nextGRASPCluePanel2.SetActive(true);
 	}
