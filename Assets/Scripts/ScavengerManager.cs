@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using Vuforia;
 
 enum LOCATIONS
 {
@@ -17,7 +18,8 @@ enum ANSWERS
 	A = 0,
 	B = 1,
 	C = 2,
-	D = 3
+	D = 3,
+	NO_ANSWER = 4,
 }
 
 public class ScavengerManager : MonoBehaviour 
@@ -26,6 +28,8 @@ public class ScavengerManager : MonoBehaviour
 	private int location;
 
 	private int currAnswer;
+
+	public GameObject imageTarget;
 
 	// Start
 	public GameObject starter;
@@ -133,7 +137,7 @@ public class ScavengerManager : MonoBehaviour
 				// answers.transform.Find("A").gameObject.SetActive(false);
 				break;
 			case (int)ANSWERS.B:
-				answers.transform.Find("B").gameObject.GetComponent<Image>().color = new Color(0, 1, 0, 1);		
+				answers.transform.Find("B").gameObject.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 1, 0, 1);		
 
 				// StartCoroutine(FadeIn(intro.GetComponent<CanvasGroup>(), 1, 0, 3.0f));
 				StartCoroutine(FadeOut(intro.GetComponent<CanvasGroup>(), nextClue, intro.GetComponent<CanvasGroup>().alpha, 0));
@@ -236,7 +240,7 @@ public class ScavengerManager : MonoBehaviour
 		GameObject question 	= intro.transform.Find("Question").gameObject;  
 		GameObject answers 		= intro.transform.Find("Answers").gameObject;
 		currAnswer = (int)ANSWERS.B;
-		answers.transform.Find("B").gameObject.GetComponent<Image>().color = new Color(0, 1, 0, 1);		
+		answers.transform.Find("B").gameObject.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 1, 0, 1);		
 		StartCoroutine(FadeOut(intro.GetComponent<CanvasGroup>(), nextClue, intro.GetComponent<CanvasGroup>().alpha, 0));
 	}
 
@@ -332,7 +336,7 @@ public class ScavengerManager : MonoBehaviour
 	public void GRASP_C()
 	{
 		GameObject answers = GameObject.Find("Answers");
-		answers.transform.Find("C").gameObject.GetComponent<Image>().color = new Color(0, 1, 0, 1);		
+		answers.transform.Find("C").gameObject.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 1, 0, 1);		
 		GRASPtoSIG();
 	}
 
