@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Location : MonoBehaviour 
-{
+public class FutureFinale : MonoBehaviour {
+
 	// Use this for initialization
 	void Start () {
 		

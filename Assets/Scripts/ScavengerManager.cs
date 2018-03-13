@@ -283,72 +283,72 @@ public class ScavengerManager : MonoBehaviour
 	}
 
 	// ENIAC 
-	public GameObject ENIACPanel;
-	public GameObject AIIntroPanel;
-	public GameObject nextENIACClue;
-	public void ContinueENIAC()
-	{
-		ENIACPanel.SetActive(false);
-		AIIntroPanel.SetActive(true);
-	}
+	// public GameObject ENIACPanel;
+	// public GameObject AIIntroPanel;
+	// public GameObject nextENIACClue;
+	// public void ContinueENIAC()
+	// {
+	// 	ENIACPanel.SetActive(false);
+	// 	AIIntroPanel.SetActive(true);
+	// }
 
-	public void NextClueENIAC()
-	{
-		AIIntroPanel.SetActive(false);
-		nextENIACClue.SetActive(true);
-	}
+	// public void NextClueENIAC()
+	// {
+	// 	AIIntroPanel.SetActive(false);
+	// 	nextENIACClue.SetActive(true);
+	// }
 
 	// GRASP
-	public GameObject GRASPPanel;
-	public GameObject autonomousPanel;
-	public GameObject nextGRASPClue;
-	public GameObject nextGRASPCluePanel1;
-	public GameObject nextGRASPCluePanel2;
-	public GameObject fish;
-	public void ContinueGRASP()
-	{
-		GRASPPanel.SetActive(false);
-		autonomousPanel.SetActive(true);
-	}
+	// public GameObject GRASPPanel;
+	// public GameObject autonomousPanel;
+	// public GameObject nextGRASPClue;
+	// public GameObject nextGRASPCluePanel1;
+	// public GameObject nextGRASPCluePanel2;
+	// public GameObject fish;
+	// public void ContinueGRASP()
+	// {
+	// 	GRASPPanel.SetActive(false);
+	// 	autonomousPanel.SetActive(true);
+	// }
 
-	public void NextClueGRASP()
-	{
-		autonomousPanel.SetActive(false);
-		nextGRASPClue.SetActive(true);
-	}
+	// public void NextClueGRASP()
+	// {
+	// 	autonomousPanel.SetActive(false);
+	// 	nextGRASPClue.SetActive(true);
+	// }
 
-	public void GRASP_A()
-	{
-		GameObject answers = GameObject.Find("Answers");
-		GameObject choice = answers.transform.Find("A").gameObject;  
-		GameObject text = choice.transform.Find("Text").gameObject;
-		text.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Strikethrough;
-	}
+	// public void GRASP_A()
+	// {
+	// 	GameObject answers = GameObject.Find("Answers");
+	// 	GameObject choice = answers.transform.Find("A").gameObject;  
+	// 	GameObject text = choice.transform.Find("Text").gameObject;
+	// 	text.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Strikethrough;
+	// }
 
-	public void GRASP_B()
-	{
-		GameObject answers = GameObject.Find("Answers");
-		GameObject choice = answers.transform.Find("B").gameObject;  
-		GameObject text = choice.transform.Find("Text").gameObject;
-		text.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Strikethrough;
-	}
+	// public void GRASP_B()
+	// {
+	// 	GameObject answers = GameObject.Find("Answers");
+	// 	GameObject choice = answers.transform.Find("B").gameObject;  
+	// 	GameObject text = choice.transform.Find("Text").gameObject;
+	// 	text.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Strikethrough;
+	// }
 
-	public void GRASP_C()
-	{
-		GameObject answers = GameObject.Find("Answers");
-		answers.transform.Find("C").gameObject.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 1, 0, 1);		
-		GRASPtoSIG();
-	}
+	// public void GRASP_C()
+	// {
+	// 	GameObject answers = GameObject.Find("Answers");
+	// 	answers.transform.Find("C").gameObject.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 1, 0, 1);		
+	// 	GRASPtoSIG();
+	// }
 
-	public void GRASPtoSIG()
-	{
-		if(PlayerPrefs.HasKey("Fish"))
-			fish.SetActive(true);
-		else
-			fish.SetActive(false);
-		nextGRASPCluePanel1.SetActive(false);
-		nextGRASPCluePanel2.SetActive(true);
-	}
+	// public void GRASPtoSIG()
+	// {
+	// 	if(PlayerPrefs.HasKey("Fish"))
+	// 		fish.SetActive(true);
+	// 	else
+	// 		fish.SetActive(false);
+	// 	nextGRASPCluePanel1.SetActive(false);
+	// 	nextGRASPCluePanel2.SetActive(true);
+	// }
 
 	// Gaming
 	public void AlphaGoPhoto()

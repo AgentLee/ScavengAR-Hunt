@@ -1,5 +1,5 @@
 ﻿/*
- * This script starts the player with their first clue.
+ * This script handles events when the user's image target is at the GRASP Lab.
  */
 
 using System.Collections;
@@ -7,37 +7,56 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Starter : MonoBehaviour 
+public class Autonomy : MonoBehaviour 
 {
 	GameObject intro;
+	GameObject page1;
 	GameObject nextClue;
-	GameObject title;
-	GameObject description;
+	GameObject panel1;
+	GameObject panel2;
 	GameObject question;
 	GameObject answers;
 
+	int currPage;
+	
 	// Use this for initialization
 	void Start () 
 	{
-		intro 		= transform.Find("Intro").gameObject;
-		nextClue	= transform.Find("Next Clue").gameObject;
-		title 		= intro.transform.Find("Title").gameObject;  
-		description = intro.transform.Find("Description").gameObject;  
-		question 	= intro.transform.Find("Question").gameObject;  
-		answers 	= intro.transform.Find("Answers").gameObject;
-		
-		description.SetActive(true);
+		intro 		= transform.Find("GRASP").gameObject;
+		page1 		= transform.Find("Cars").gameObject;
+		nextClue 	= transform.Find("Next Clue").gameObject;
+		currPage 	= 0;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if(description.GetComponent<TextReveal>().completed) {
-			StartCoroutine(DelayText(question));
-		}
+		// On the clue page
+		if(currPage == 2) {
+			panel1	= nextClue.transform.Find("Panel1").gameObject;
+			panel2	= nextClue.transform.Find("Panel2").gameObject;
 
-		if(question.GetComponent<TextReveal>().completed) {
-			StartCoroutine(DelayText(answers));
+			question = panel1.transform.Find("Question").gameObject;
+			answers = panel1.transform.Find("Answers").gameObject;
+		}
+	}
+
+	public void Continue()
+	{
+		switch(currPage) 
+		{
+			case 0:
+				intro.SetActive(false);
+				page1.SetActive(true);
+				++currPage;
+				break;
+			case 1:
+				page1.SetActive(false);
+				nextClue.SetActive(true);
+				++currPage;
+				break;
+			default:
+				break;
 		}
 	}
 
@@ -56,20 +75,17 @@ public class Starter : MonoBehaviour
 
 	public void ChoiceB()
 	{
-		answers.transform.Find("B").gameObject.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 1, 0, 1);		
-		StartCoroutine(Fade(intro.GetComponent<CanvasGroup>(), nextClue, intro.GetComponent<CanvasGroup>().alpha, 0));
-	}
-
-	public void ChoiceC()
-	{
-		GameObject choice = answers.transform.Find("C").gameObject;  
+		GameObject choice = answers.transform.Find("B").gameObject;  
 		GameObject text = choice.transform.Find("Text").gameObject;
 		text.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Strikethrough;
 	}
 
-	public void ChoiceD()
+	public void ChoiceC()
 	{
+		GameObject answers = GameObject.Find("Answers");
+		answers.transform.Find("C").gameObject.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 1, 0, 1);		
 		
+		StartCoroutine(Fade(panel1.GetComponent<CanvasGroup>(), panel2, 1.0f, 0.0f));
 	}
 
 	// Fade In: start = 0.01, end = 1.0
