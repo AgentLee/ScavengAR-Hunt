@@ -4,41 +4,54 @@ using UnityEngine;
 
 public class ARCameraScript : MonoBehaviour 
 {
-	GameObject player, ground, bases;
+	GameObject player, ground, bases, drones;
 	Gyroscope gyro;
 
 	// x, y, z
 	float roll, pitch, yaw;
 
 	Quaternion prev;
-	bool DEBUG = false;
+
+	void Awake()
+	{
+		// roll = transform.rotation.eulerAngles.x;
+		// pitch = transform.rotation.eulerAngles.y;
+		// yaw = transform.rotation.eulerAngles.z;
+
+		// // prev = transform.rotation;
+
+		// player = transform.Find("Player").gameObject;
+		// player.GetComponent<SimplePlayerController>().
+		// ground = transform.Find("Ground").gameObject;
+		// bases = transform.Find("Bases").gameObject;
+		// drones = transform.Find("Drones").gameObject;
+	}
 
 	// Use this for initialization
 	void Start () 
 	{
-		player = transform.Find("Player").gameObject;
-		ground = transform.Find("Ground").gameObject;
-		bases = transform.Find("Bases").gameObject;
-
-		roll = transform.rotation.eulerAngles.x;
-		pitch = transform.rotation.eulerAngles.y;
-		yaw = transform.rotation.eulerAngles.z;
+		// player = transform.Find("Player").gameObject;
+		// ground = transform.Find("Ground").gameObject;
+		// bases = transform.Find("Bases").gameObject;
+		// drones = transform.Find("Drones").gameObject;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if(DEBUG) {
-			// Pitch should always stay the same. Only want to change Roll and Yaw.
-			roll = transform.rotation.eulerAngles.x;
-			yaw = transform.rotation.eulerAngles.z;
+		// bool DEBUG = true;
+		// if(DEBUG) {
+		// 	// Pitch should always stay the same. Only want to change Roll and Yaw.
+		// 	roll = transform.rotation.eulerAngles.x;
+		// 	yaw = transform.rotation.eulerAngles.z;
 			
-			Quaternion rot = Quaternion.Euler(roll, pitch, yaw);
+		// 	Quaternion rot = Quaternion.Euler(roll, pitch, yaw);
 
-			// Update player, ground, bases
-			player.transform.rotation = rot;
-			ground.transform.rotation = rot;
-			bases.transform.rotation = rot;
-		}
+		// 	// Update player, ground, bases
+		// 	player.transform.rotation = prev;
+		// 	ground.transform.rotation = prev;
+		// 	bases.transform.rotation = prev;
+		// 	drones.transform.rotation = rot;
+		// }
 	}
 }

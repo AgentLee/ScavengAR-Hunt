@@ -12,6 +12,7 @@ using UnityEngine;
 
 public class SimpleBaseController : MonoBehaviour 
 {
+	Quaternion rot;
 	private Material material;
 	public bool hit;
 	public int timesHit;
@@ -22,6 +23,8 @@ public class SimpleBaseController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		rot = transform.rotation;
+
 		material 		= this.GetComponent<Renderer>().material;
 		hit 			= false;
 		timesHit 		= 0;
@@ -57,6 +60,12 @@ public class SimpleBaseController : MonoBehaviour
 
 		shieldRegen = GetComponent<AudioSource>();
 	}
+
+	// void LateUpdate()
+	// {
+	// 	Quaternion quat = transform.rotation;
+	// 	transform.rotation = Quaternion.Euler(quat.eulerAngles.x, rot.eulerAngles.y, quat.eulerAngles.z);
+	// }
  
 	void OnCollisionEnter(Collision collisionInfo)
 	{

@@ -18,6 +18,7 @@ public struct Powerups
 
 public class SimplePlayerController : MonoBehaviour 
 {
+	Quaternion rot;
 	private Transform player;
 	private Rigidbody rb;
 
@@ -38,6 +39,7 @@ public class SimplePlayerController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		rot = transform.rotation;
 		player = this.transform;
 		score = 0;
 
@@ -53,6 +55,14 @@ public class SimplePlayerController : MonoBehaviour
 		numLives = 5;
 
 		powerups = new Powerups(true);
+	}
+
+	// Lock rotation on pitch (y)
+	void LateUpdate()
+	{
+		Quaternion quat = player.rotation;
+		player.rotation = Quaternion.Euler(quat.eulerAngles.x, rot.eulerAngles.y, quat.eulerAngles.z);
+		// player.rotation = rot;
 	}
 	
 	// Update is called once per frame
@@ -78,6 +88,12 @@ public class SimplePlayerController : MonoBehaviour
 
 	public void MovePlayer()
 	{
+		Touch touch = Input.GetTouch(0);
+		if(touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved) {
+			Vector3 touchPos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
+			transform.position = Vector3.Lerp(transform.position, touchPos, Time.deltaTime);
+		}
+
 		float h = 0;
 		// if(PlayerPrefs.GetInt("Tilt") == 1) {
 		// 	h = Input.acceleration.x;
@@ -93,7 +109,7 @@ public class SimplePlayerController : MonoBehaviour
 				// 	h = -delta.x;
 				// }
 
-				h = joystick.InputDirection.x;
+				// h = joystick.InputDirection.x;
 			}
 		// }
 		

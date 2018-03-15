@@ -365,6 +365,8 @@ public class GameManager : MonoBehaviour
 
 	private void MoveDrones()
 	{
+		// drones.transform.LookAt(Camera.main.transform.position);
+
 		// Checks how many drones are left and increases speed as less are active
 		IncreaseDroneSpeed();
 
