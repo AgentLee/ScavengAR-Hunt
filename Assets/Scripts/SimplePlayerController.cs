@@ -74,17 +74,24 @@ public class SimplePlayerController : MonoBehaviour
 	public void MovePlayer()
 	{
 		float h;
-		if(Application.isEditor) {
-			h = Input.GetAxis("Horizontal");
-		}
+		if(PlayerPrefs.GetInt("Tilt") == 1) {
+			h = Input.acceleration.x;
+		} 
 		else {
-			h = joystick.InputDirection.x;
-		}
+			if(Application.isEditor) {
+				h = Input.GetAxis("Horizontal");
+			}
+			else {
+				h = joystick.InputDirection.x;
+			}
 
-		if(player.position.x < minBounds && h < 0 ||
-            player.position.x > maxBounds && h > 0)
-			h = 0;
+			
+		}
 		
+		if(player.position.x < minBounds && h < 0 ||
+			player.position.x > maxBounds && h > 0)
+			h = 0;
+
 		player.position += Vector3.right * h * speed;
 	}
 
@@ -172,5 +179,28 @@ public class SimplePlayerController : MonoBehaviour
 
 		// Update the database
 		GetComponent<HighScores>().AddHighScore(_name, _score, _phone, _email);
+	}
+
+	// Player Prefs information ---------------
+	// dreamlo information: Name, Email, Number, Highest Score
+	// Local information: Tilt
+	// SH information: Collectables/Powerups, Visited Locations
+	// SI information: Bases, Lives, Current Score, Collectables/Powerups -- for continuation
+
+	// Delets all keys associated with the player.
+	public void ResetPlayer()
+	{
+		PlayerPrefs.DeleteAll();
+	}
+
+	public bool FirstTime()
+	{
+		if(PlayerPrefs.HasKey("FirstPlayed")) {
+			return false;
+		}
+		else {
+			PlayerPrefs.SetInt("FirstPlayed", 1);
+			return true;
+		}
 	}
 }

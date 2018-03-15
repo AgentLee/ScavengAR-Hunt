@@ -43,11 +43,12 @@ public class PlayerController : MonoBehaviour
 
 	public void Fire()
 	{
-		if(manager.level == 1) {
-			Instantiate(bullet, player.position, new Quaternion());			
-		}
-		else if(manager.level == 2) {
-			Instantiate(bullet, Camera.main.transform.position, Camera.main.transform.rotation * Quaternion.Euler(-90, 0, 0));
-		}
+		// if(manager.level == 1) {
+		// 	Instantiate(bullet, player.position, new Quaternion());			
+		// }
+		// else if(manager.level == 2) {
+		// 	Instantiate(bullet, Camera.main.transform.position, Camera.main.transform.rotation * Quaternion.Euler(-90, 0, 0));
+		// }
+
 	}
 }
