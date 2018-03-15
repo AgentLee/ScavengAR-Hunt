@@ -7100,42 +7100,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4274227621692826, guid: 00e06d55413c04c55bc809a45578bcab, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.1270041
-      objectReference: {fileID: 0}
-    - target: {fileID: 4274227621692826, guid: 00e06d55413c04c55bc809a45578bcab, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1.127005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4274227621692826, guid: 00e06d55413c04c55bc809a45578bcab, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1.1270039
-      objectReference: {fileID: 0}
-    - target: {fileID: 4274227621692826, guid: 00e06d55413c04c55bc809a45578bcab, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114459320415139644, guid: 00e06d55413c04c55bc809a45578bcab,
-        type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 807581983}
     - target: {fileID: 114459320415139644, guid: 00e06d55413c04c55bc809a45578bcab,
         type: 2}
       propertyPath: target
       value: 
       objectReference: {fileID: 807581978}
-    - target: {fileID: 114459320415139644, guid: 00e06d55413c04c55bc809a45578bcab,
-        type: 2}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 1708131200737222, guid: 68587bf4abb0f41b3ad105d9124a1fb7,
-        type: 2}
-    - target: {fileID: 1690801168815338, guid: 00e06d55413c04c55bc809a45578bcab, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 00e06d55413c04c55bc809a45578bcab, type: 2}
   m_IsPrefabParent: 0
@@ -11009,42 +10978,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 19
       objectReference: {fileID: 0}
-    - target: {fileID: 4274227621692826, guid: 00e06d55413c04c55bc809a45578bcab, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.1270041
-      objectReference: {fileID: 0}
-    - target: {fileID: 4274227621692826, guid: 00e06d55413c04c55bc809a45578bcab, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1.127005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4274227621692826, guid: 00e06d55413c04c55bc809a45578bcab, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1.1270039
-      objectReference: {fileID: 0}
-    - target: {fileID: 1690801168815338, guid: 00e06d55413c04c55bc809a45578bcab, type: 2}
-      propertyPath: m_Name
-      value: SimpleDrone (19)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4274227621692826, guid: 00e06d55413c04c55bc809a45578bcab, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114459320415139644, guid: 00e06d55413c04c55bc809a45578bcab,
-        type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 807581983}
     - target: {fileID: 114459320415139644, guid: 00e06d55413c04c55bc809a45578bcab,
         type: 2}
       propertyPath: target
       value: 
       objectReference: {fileID: 807581978}
-    - target: {fileID: 114459320415139644, guid: 00e06d55413c04c55bc809a45578bcab,
-        type: 2}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 1708131200737222, guid: 68587bf4abb0f41b3ad105d9124a1fb7,
-        type: 2}
+    - target: {fileID: 1690801168815338, guid: 00e06d55413c04c55bc809a45578bcab, type: 2}
+      propertyPath: m_Name
+      value: SimpleDrone (19)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 00e06d55413c04c55bc809a45578bcab, type: 2}
   m_IsPrefabParent: 0

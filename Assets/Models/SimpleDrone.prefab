@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 114459320415139644}
   - component: {fileID: 82343495926243742}
   - component: {fileID: 82753373573280684}
+  - component: {fileID: 82017537171232878}
   m_Layer: 0
   m_Name: SimpleDrone
   m_TagString: Enemy
@@ -89,7 +90,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1690801168815338}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.000147, y: -2.1000094, z: 3.070023}
+  m_LocalPosition: {x: 12.000097, y: -2.1000094, z: 3.070023}
   m_LocalScale: {x: 1.1270041, y: 1.127005, z: 1.1270039}
   m_Children:
   - {fileID: 4191664118507628}
@@ -260,6 +261,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.5754957, y: 2.0271862, z: 3.9624012}
   m_Center: {x: -0.000000108212014, y: -0.025029209, z: 0.00000021642391}
+--- !u!82 &82017537171232878
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1690801168815338}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 9965a2316f132498cb5aa5f63a4dc377, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!82 &82343495926243742
 AudioSource:
   m_ObjectHideFlags: 1
@@ -442,6 +523,9 @@ MonoBehaviour:
   pointValue: 0
   blasterSound: {fileID: 82343495926243742}
   explosionSound: {fileID: 82753373573280684}
+  thudSound: {fileID: 82017537171232878}
+  smoke: {fileID: 1000012560919920, guid: 85a8865d1bf4a63478038fae23776de8, type: 2}
+  explosion: {fileID: 1000011128802252, guid: 96730f8640590934eacb6f860058e7f9, type: 2}
   FPS: 0
 --- !u!135 &135111072478373726
 SphereCollider:

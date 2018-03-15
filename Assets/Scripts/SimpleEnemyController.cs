@@ -25,6 +25,9 @@ public class SimpleEnemyController : MonoBehaviour
 
 	public AudioSource blasterSound;
 	public AudioSource explosionSound;
+	public AudioSource thudSound;
+	public GameObject smoke;
+	public GameObject explosion;
 
 	public bool FPS;
 	
@@ -42,7 +45,7 @@ public class SimpleEnemyController : MonoBehaviour
 		scene = SceneManager.GetActiveScene();
 
 		speed = 0.25f;
-		grounded = true;
+		grounded = false;
 
 		id = Random.Range(0,8);
 		fireTime = 0;
@@ -115,6 +118,11 @@ public class SimpleEnemyController : MonoBehaviour
 				}
 			}
 		}
+
+		// if(grounded) {
+		// 	StartCoroutine(WaitToDestroyExpl(Instantiate(explosion, enemy.position, enemy.rotation)));			
+		// 	Destroy(gameObject, 5.0f);
+		// }
 	}
 
 	void MoveDrone()
@@ -124,14 +132,17 @@ public class SimpleEnemyController : MonoBehaviour
 
 	void OnCollisionEnter(Collision collisionInfo)
 	{
+		Debug.Log(collisionInfo.collider.tag);
 		transform.parent = null;
 
 		if(collisionInfo.collider.tag == "Enemy") {
 			hit = true;
 		}
 
-		if(collisionInfo.collider.tag == "Bullet" || transform.parent == null) {
+		// if(collisionInfo.collider.tag == "Bullet" || transform.parent == null) {
+		if(collisionInfo.collider.tag == "Bullet") {
 			if(!hit) {
+				StartCoroutine(WaitToDestroyExpl(Instantiate(smoke, enemy.position, enemy.rotation), 2.0f));
 				explosionSound.Play();
 			}
 
@@ -141,12 +152,29 @@ public class SimpleEnemyController : MonoBehaviour
 			rb.angularVelocity = Vector3.zero;
 		}
 		else if(collisionInfo.collider.tag == "Ground") {
+			// Instantiate(explosion, enemy.position, enemy.rotation);
 			if(!grounded) {
-				explosionSound.Play();
+				// StartCoroutine(WaitToExpl());
+				StartCoroutine(WaitToExpl());
+				thudSound.Play();
+				Destroy(gameObject, 4.75f);
+				grounded = true;
 			}
-			
-			grounded = true;
+			// StartCoroutine(WaitToDestroyExpl(Instantiate(explosion, enemy.position, enemy.rotation)));			
 		}
+	}
+
+	IEnumerator WaitToExpl()
+	{
+		yield return new WaitForSeconds(4.0f);
+		GameObject expl = Instantiate(explosion, enemy.position, enemy.rotation);
+		Destroy(expl, 1.5f);
+	}
+
+	IEnumerator WaitToDestroyExpl(GameObject expl, float duration)
+	{
+		yield return new WaitForSeconds(duration);
+		Destroy(expl);
 	}
 
 	bool canShoot(out Vector3 shotDir)
