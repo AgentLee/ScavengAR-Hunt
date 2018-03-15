@@ -23,6 +23,9 @@ public class SimpleEnemyController : MonoBehaviour
 	public bool hit;
 	public int pointValue;
 
+	public AudioSource blasterSound;
+	public AudioSource explosionSound;
+
 	public bool FPS;
 	
 	void Awake()
@@ -84,7 +87,11 @@ public class SimpleEnemyController : MonoBehaviour
 				Ray ray = new Ray(enemy.position, -enemy.up);
 				if(Physics.Raycast(ray, out intersection)) {
 					if(intersection.collider.tag != "Enemy") {
+
+						// Fire bullet
 						if(fireTime >= fireRate && Random.Range(0,8) == id) {
+							blasterSound.Play();
+
 							SimplePlayerController player = GameObject.Find("Player").GetComponent<SimplePlayerController>();
 							Vector3 shotDir = (player.transform.position - transform.position).normalized;
 
@@ -124,12 +131,20 @@ public class SimpleEnemyController : MonoBehaviour
 		}
 
 		if(collisionInfo.collider.tag == "Bullet" || transform.parent == null) {
+			if(!hit) {
+				explosionSound.Play();
+			}
+
 			hit = true;
 			rb.useGravity = true;
 			rb.velocity = Vector3.zero;
 			rb.angularVelocity = Vector3.zero;
 		}
 		else if(collisionInfo.collider.tag == "Ground") {
+			if(!grounded) {
+				explosionSound.Play();
+			}
+			
 			grounded = true;
 		}
 	}

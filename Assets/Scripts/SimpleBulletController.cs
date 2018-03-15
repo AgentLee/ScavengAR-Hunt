@@ -11,6 +11,8 @@ public class SimpleBulletController : MonoBehaviour
 	public SimplePlayerController player;
 	public bool hit;
 
+	public AudioSource thudSound;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -79,9 +81,11 @@ public class SimpleBulletController : MonoBehaviour
 			hit = true;
 		}
 		else if(collisionInfo.collider.tag == "Ground") {
+			if(!grounded) {
+				thudSound.Play();
+			}
+			
 			grounded = true;
 		}
-
-
 	}
 }

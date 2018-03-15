@@ -21,18 +21,19 @@ public class SimplePlayerController : MonoBehaviour
 	private Transform player;
 	private Rigidbody rb;
 
+	public int score;					
+	public float speed;					
+	public float minBounds, maxBounds;	// Bounds to prevent player from falling off
+
+	private bool hit;					// Flag used to trigger blink effect
+	public int numLives;				// Player starts off with 5 lives
+
 	public GameObject bullet;
-	public int score;
+	public Joystick joystick;			// Takes input from Joystick to allow movement
 
-	public Joystick joystick;
-
-	public float speed;
-	public float minBounds, maxBounds;
-
-	private bool hit;
-	public int numLives;
-
-	public Powerups powerups;
+	public Powerups powerups;			// Data structure to hold the player power ups collected 
+	public AudioSource blasterSound;
+	public AudioSource explosionSound;
 
 	// Use this for initialization
 	void Start () 
@@ -59,6 +60,10 @@ public class SimplePlayerController : MonoBehaviour
 	{
 		MovePlayer();
 
+		for(int i =0; i < Input.touchCount; ++i) {
+			Fire();
+		}
+
 		if(Input.GetKey(KeyCode.Space)) {
 			Fire();
 		}
@@ -73,7 +78,7 @@ public class SimplePlayerController : MonoBehaviour
 
 	public void MovePlayer()
 	{
-		float h;
+		float h = 0;
 		// if(PlayerPrefs.GetInt("Tilt") == 1) {
 		// 	h = Input.acceleration.x;
 		// } 
@@ -82,7 +87,13 @@ public class SimplePlayerController : MonoBehaviour
 				h = Input.GetAxis("Horizontal");
 			}
 			else {
-				h = joystick.InputDirection.x;
+				if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
+					Vector2 delta = Input.GetTouch(0).deltaPosition;
+
+					h = -delta.x;
+				}
+
+				// h = joystick.InputDirection.x;
 			}
 		// }
 		
@@ -95,6 +106,8 @@ public class SimplePlayerController : MonoBehaviour
 
 	public void Fire()
 	{
+		blasterSound.Play();
+		
 		powerups.weaponSpread = PlayerPrefs.HasKey("Fish");
 
 		bool FPS = false;
@@ -137,6 +150,8 @@ public class SimplePlayerController : MonoBehaviour
 		// } 
 		if(collisionInfo.collider.tag == "Enemy Bullet") {
 			if(!hit && !collisionInfo.collider.GetComponent<SimpleEnemyBulletController>().grounded) {
+				explosionSound.Play();
+				
 				// Make sure there are enough lives for the player to blink
 				if(--numLives <= 0) {
 					Destroy(gameObject);

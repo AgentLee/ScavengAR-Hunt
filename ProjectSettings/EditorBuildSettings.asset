@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu2.unity
     guid: fb7b51950e2034e4f96c55f468c147d5
   - enabled: 1
-    path: Assets/Scenes/Scavenger Hunt/All.unity
-    guid: b3a676b4ed1b2471986f9c53efcbcf54
+    path: Assets/Scenes/Scavenger Hunt/0. All.unity
+    guid: e22745766a4b84191a4dd4c5b8a0f6f0
   - enabled: 1
     path: Assets/Scenes/ClassicSpacInvadARs.unity
     guid: f234c4eee547e417fb8c8bfee28eb1a3

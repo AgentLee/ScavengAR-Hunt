@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
 	// End conditions ----------------------
 	public GameObject gameOver;
 	public GameObject gameCompleted;
+	private bool gameOverPlayed;
+	public AudioSource gameOverSound;
 
 	// Controls ----------------------
 	public GameObject joystick;
@@ -105,6 +107,8 @@ public class GameManager : MonoBehaviour
 		increased = false;
 		moveDronesDown = false;
 		currRedUFO = Instantiate(redUFO, redUFO.transform.position, redUFO.transform.rotation);
+
+		gameOverPlayed = false;
 	}
 
 	IEnumerator ShowInstructions()
@@ -298,6 +302,11 @@ public class GameManager : MonoBehaviour
 	private bool GameOver()
 	{
 		if(simplePlayer.numLives <= 0 || bases.transform.childCount <= 0) {
+			if(!gameOverPlayed) {
+				gameOverSound.Play();
+				gameOverPlayed = true;
+			}
+			
 			gameOver.SetActive(true);
 			mainMenu.SetActive(false);
 

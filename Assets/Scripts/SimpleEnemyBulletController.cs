@@ -11,6 +11,8 @@ public class SimpleEnemyBulletController : MonoBehaviour
 	public GameObject shooter;
 	public GameObject playerBase;
 
+	public AudioSource thudSound;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -39,6 +41,10 @@ public class SimpleEnemyBulletController : MonoBehaviour
 			rb.angularVelocity = Vector3.zero;
 		}
 		else if(collisionInfo.collider.tag == "Ground") {
+			if(!grounded) {
+				thudSound.Play();
+			}
+			
 			grounded = true;
 		}
 	}

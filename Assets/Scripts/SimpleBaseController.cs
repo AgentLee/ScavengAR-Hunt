@@ -17,6 +17,7 @@ public class SimpleBaseController : MonoBehaviour
 	public int timesHit;
 	public int shieldLevel;
 	private int vulnerability;
+	private AudioSource shieldRegen;
 
 	// Use this for initialization
 	void Start () 
@@ -53,6 +54,8 @@ public class SimpleBaseController : MonoBehaviour
 			vulnerability 	= 2;
 			material.color 	= Color.red;
 		}
+
+		shieldRegen = GetComponent<AudioSource>();
 	}
  
 	void OnCollisionEnter(Collision collisionInfo)
@@ -67,7 +70,9 @@ public class SimpleBaseController : MonoBehaviour
 			
 			// Physics.IgnoreCollision(collisionInfo.collider, this.GetComponent<Collider>());
 			if(!hit) {
-				StartCoroutine(Blink(3.0f, 0.2f, collisionInfo.collider));
+				shieldRegen.Play();
+
+				StartCoroutine(Blink(4.25f, 0.2f, collisionInfo.collider));
 
 				if(++timesHit >= vulnerability) {
 					// Base is dead
@@ -76,7 +81,7 @@ public class SimpleBaseController : MonoBehaviour
 					}
 					else {
 						StartCoroutine(ChangeShieldLevel());
-						StartCoroutine(RegenShield(3.0f));
+						StartCoroutine(RegenShield(4.25f));
 					}
 				}
 			}
