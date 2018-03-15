@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour 
 {
@@ -239,9 +240,9 @@ public class GameManager : MonoBehaviour
 
 	private void DisplayScores()
 	{
-		scoreText.GetComponent<Text>().text 	= simplePlayer.score.ToString();	
-		myHighScore.GetComponent<Text>().text 	= PlayerPrefs.GetInt("PlayerScore").ToString();		
-		topScore.GetComponent<Text>().text 		= PlayerPrefs.GetInt("TopScore").ToString();
+		scoreText.GetComponent<TextMeshProUGUI>().text 		= simplePlayer.score.ToString();	
+		myHighScore.GetComponent<TextMeshProUGUI>().text 	= PlayerPrefs.GetInt("PlayerScore").ToString();		
+		topScore.GetComponent<TextMeshProUGUI>().text 		= PlayerPrefs.GetInt("TopScore").ToString();
 
 		UpdateScores();
 	}
