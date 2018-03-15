@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 	System.DateTime endTime;
 
 	// Player Controller ----------------------
+	public ARCameraScript arCamera;
 	public SimplePlayerController simplePlayer;
 	public GameObject bases;	
 	public GameObject ground;
@@ -84,6 +85,9 @@ public class GameManager : MonoBehaviour
 			// Debug.Log(endTime);
 		}
 
+		// drones.transform.rotation = arCamera.transform.rotation;
+		// drones.transform.forward = -drones.transform.forward;
+
 		droneMinBound = -18.0f;
 		droneMaxBound = 18.0f;
 		droneSpeed = 0.05f;
@@ -106,7 +110,7 @@ public class GameManager : MonoBehaviour
 
 		increased = false;
 		moveDronesDown = false;
-		currRedUFO = Instantiate(redUFO, redUFO.transform.position, redUFO.transform.rotation);
+		currRedUFO = Instantiate(redUFO, redUFO.transform.position + new Vector3(0,7,0), redUFO.transform.rotation);
 
 		gameOverPlayed = false;
 	}
@@ -149,7 +153,7 @@ public class GameManager : MonoBehaviour
 			// If the Red UFO was hit, instantiate another one and dereference it.
 			if(currRedUFO.GetComponent<SimpleRedUFOController>().hit) {
 				float moveTime = currRedUFO.GetComponent<SimpleRedUFOController>().moveTime;
-				currRedUFO = Instantiate(redUFO, redUFO.transform.position, redUFO.transform.rotation);
+				currRedUFO = Instantiate(redUFO, redUFO.transform.position + new Vector3(0,5,0), redUFO.transform.rotation);
 				// Might have to tweak this a bit.
 				currRedUFO.GetComponent<SimpleRedUFOController>().moveTime += moveTime;
 			}

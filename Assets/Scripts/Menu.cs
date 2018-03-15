@@ -39,16 +39,21 @@ public class Menu : MonoBehaviour
 		// 	toggleTilt.gameObject.SetActive(false);
 		// }
 
-		if(PlayerPrefs.GetInt("Tilt") == 1) {
-			toggleTilt.GetComponent<Image>().color = controlEnabledColor;
-			toggleGamepad.GetComponent<Image>().color = controlDisabledColor;
-		}
-		else {
-			toggleTilt.GetComponent<Image>().color = controlDisabledColor;
-			toggleGamepad.GetComponent<Image>().color = controlEnabledColor;
-		}
+		tiltEnable = (PlayerPrefs.GetInt("Tilt") == 1) ? true : false;
+		normalSetting = (PlayerPrefs.GetInt("Gamepad") == 1) ? true : false;
+		// if(PlayerPrefs.GetInt("Tilt") == 1) {
+		// 	Debug.Log("TILT");
+		// 	tiltEnable = true;
+		// 	toggleTilt.GetComponent<Image>().color = controlEnabledColor;
+		// 	toggleGamepad.GetComponent<Image>().color = controlDisabledColor;
+		// }
+		// else {
+		// 	Debug.Log("NO TILT");
+		// 	toggleTilt.GetComponent<Image>().color = controlDisabledColor;
+		// 	toggleGamepad.GetComponent<Image>().color = controlEnabledColor;
+		// }
 	}
-	
+
 	public GameObject warning;
 	public void Pause()
 	{
@@ -106,10 +111,12 @@ public class Menu : MonoBehaviour
 		Vector3 rhs = gamepad.transform.Find("RHS").position;
 
 		if(normalSetting) {
+			PlayerPrefs.SetInt("Gamepad", 1);
 			manager.fireButton.transform.position = lhs;
 			manager.joystick.transform.position = rhs;
 		}
 		else {
+			PlayerPrefs.SetInt("Gamepad", 0);
 			manager.fireButton.transform.position = rhs;
 			manager.joystick.transform.position = lhs;
 		}

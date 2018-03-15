@@ -60,9 +60,9 @@ public class SimplePlayerController : MonoBehaviour
 	{
 		MovePlayer();
 
-		for(int i =0; i < Input.touchCount; ++i) {
-			Fire();
-		}
+		// for(int i =0; i < Input.touchCount; ++i) {
+		// 	Fire();
+		// }
 
 		if(Input.GetKey(KeyCode.Space)) {
 			Fire();
@@ -79,23 +79,23 @@ public class SimplePlayerController : MonoBehaviour
 	public void MovePlayer()
 	{
 		float h = 0;
-		// if(PlayerPrefs.GetInt("Tilt") == 1) {
-		// 	h = Input.acceleration.x;
-		// } 
-		// else {
+		if(PlayerPrefs.GetInt("Tilt") == 1) {
+			h = Input.acceleration.x;
+		} 
+		else {
 			if(Application.isEditor) {
 				h = Input.GetAxis("Horizontal");
 			}
 			else {
-				if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
-					Vector2 delta = Input.GetTouch(0).deltaPosition;
+				// if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
+				// 	Vector2 delta = Input.GetTouch(0).deltaPosition;
 
-					h = -delta.x;
-				}
+				// 	h = -delta.x;
+				// }
 
-				// h = joystick.InputDirection.x;
+				h = joystick.InputDirection.x;
 			}
-		// }
+		}
 		
 		if(player.position.x < minBounds && h < 0 ||
 			player.position.x > maxBounds && h > 0)
@@ -112,7 +112,7 @@ public class SimplePlayerController : MonoBehaviour
 
 		bool FPS = false;
 		if(FPS) {
-			GameObject spawnedBullet = Instantiate(bullet, Camera.main.transform.position, new Quaternion());
+			GameObject spawnedBullet = Instantiate(bullet, Camera.main.transform.position, bullet.transform.rotation);
 			Physics.IgnoreCollision(spawnedBullet.GetComponent<Collider>(), GetComponent<Collider>(), true);
 			spawnedBullet.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * 5000.0f);
 
@@ -137,7 +137,8 @@ public class SimplePlayerController : MonoBehaviour
 				spawnedBulletR.GetComponent<Rigidbody>().AddForce((player.up + player.right/5) * 500.0f);
 			}
 
-			GameObject spawnedBullet = Instantiate(bullet, player.position, new Quaternion());			
+			// GameObject spawnedBullet = Instantiate(bullet, player.position, new Quaternion());			
+			GameObject spawnedBullet = Instantiate(bullet, player.position, bullet.transform.rotation);
 			Physics.IgnoreCollision(spawnedBullet.GetComponent<Collider>(), GetComponent<Collider>(), true);
 			spawnedBullet.GetComponent<Rigidbody>().AddForce(player.up * 500.0f);
 		}

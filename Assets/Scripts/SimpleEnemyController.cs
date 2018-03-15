@@ -98,7 +98,7 @@ public class SimpleEnemyController : MonoBehaviour
 							SimplePlayerController player = GameObject.Find("Player").GetComponent<SimplePlayerController>();
 							Vector3 shotDir = (player.transform.position - transform.position).normalized;
 
-							GameObject spawnedBullet = Instantiate(bullet, transform.position, transform.rotation);
+							GameObject spawnedBullet = Instantiate(bullet, transform.position, bullet.transform.rotation);
 
 							GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 							for(int i = 0; i < enemies.Length; ++i) {
@@ -152,15 +152,12 @@ public class SimpleEnemyController : MonoBehaviour
 			rb.angularVelocity = Vector3.zero;
 		}
 		else if(collisionInfo.collider.tag == "Ground") {
-			// Instantiate(explosion, enemy.position, enemy.rotation);
 			if(!grounded) {
-				// StartCoroutine(WaitToExpl());
 				StartCoroutine(WaitToExpl());
 				thudSound.Play();
 				Destroy(gameObject, 4.75f);
 				grounded = true;
 			}
-			// StartCoroutine(WaitToDestroyExpl(Instantiate(explosion, enemy.position, enemy.rotation)));			
 		}
 	}
 
