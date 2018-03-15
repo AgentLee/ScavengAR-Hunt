@@ -7,6 +7,8 @@ public class SimpleRedUFOController : SimpleEnemy
 	public float moveTime;
 	private float time;
 
+	GameManager manager;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -21,6 +23,11 @@ public class SimpleRedUFOController : SimpleEnemy
 		moveTime	= Random.Range(6, 20);
 		time 		= 0.0f;
 		pointValue 	= AssignPointValue();
+
+		manager = GameObject.Find("Manager").GetComponent<GameManager>();
+		if(!manager) {
+			Debug.Log("Couldn't find manager");
+		}
 	}
 	
 	int AssignPointValue()
@@ -73,6 +80,11 @@ public class SimpleRedUFOController : SimpleEnemy
 	// Update is called once per frame
 	void Update () 
 	{
+		// Don't want the UFO to be moving while paused.
+		if(manager.paused || manager.showingInstructions) {
+			return;
+		}
+
 		time += Time.deltaTime;
 		if(time >= moveTime && (!grounded || !hit)) {
 			StartCoroutine(Move());

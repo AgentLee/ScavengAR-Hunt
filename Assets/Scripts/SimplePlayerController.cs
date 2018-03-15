@@ -60,9 +60,9 @@ public class SimplePlayerController : MonoBehaviour
 	{
 		MovePlayer();
 
-		// for(int i =0; i < Input.touchCount; ++i) {
-		// 	Fire();
-		// }
+		for(int i =0; i < Input.touchCount; ++i) {
+			Fire();
+		}
 
 		if(Input.GetKey(KeyCode.Space)) {
 			Fire();
@@ -79,10 +79,10 @@ public class SimplePlayerController : MonoBehaviour
 	public void MovePlayer()
 	{
 		float h = 0;
-		if(PlayerPrefs.GetInt("Tilt") == 1) {
-			h = Input.acceleration.x;
-		} 
-		else {
+		// if(PlayerPrefs.GetInt("Tilt") == 1) {
+		// 	h = Input.acceleration.x;
+		// } 
+		// else {
 			if(Application.isEditor) {
 				h = Input.GetAxis("Horizontal");
 			}
@@ -95,7 +95,7 @@ public class SimplePlayerController : MonoBehaviour
 
 				h = joystick.InputDirection.x;
 			}
-		}
+		// }
 		
 		if(player.position.x < minBounds && h < 0 ||
 			player.position.x > maxBounds && h > 0)

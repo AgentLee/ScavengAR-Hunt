@@ -30,6 +30,8 @@ public class SimpleEnemyController : MonoBehaviour
 	public GameObject explosion;
 
 	public bool FPS;
+
+	public GameManager manager;
 	
 	void Awake()
 	{
@@ -57,11 +59,21 @@ public class SimpleEnemyController : MonoBehaviour
 		pointValue = 10;
 
 		hit = false;
+
+		manager = GameObject.Find("Manager").GetComponent<GameManager>();
+		if(!manager) {
+			Debug.Log("Couldn't find manager");
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		// Don't want the enemies to be shooting while paused.
+		if(manager.paused || manager.showingInstructions) {
+			return;
+		}
+
 		if(FPS) {
 			MoveDrone();
 			Fire();
