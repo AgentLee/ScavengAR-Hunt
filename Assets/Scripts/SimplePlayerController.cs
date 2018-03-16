@@ -39,6 +39,8 @@ public class SimplePlayerController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		GetComponent<HighScores>().RetrieveScores();
+		
 		rot = transform.rotation;
 		player = this.transform;
 		score = 0;

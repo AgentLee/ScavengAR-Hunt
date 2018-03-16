@@ -56,7 +56,8 @@ public class GameManager : MonoBehaviour
 	public int buttonPressed;
 
 	int numDrones;
-	public Transform[] droneTransforms;
+	public Vector3[] dronePos;
+	public Quaternion[] droneRot;
 
 	// Use this for initialization
 	void Start () 
@@ -93,9 +94,15 @@ public class GameManager : MonoBehaviour
 		// drones.transform.forward = -drones.transform.forward;
 
 		numDrones = drones.transform.childCount;
+		dronePos = new Vector3[numDrones];
+		droneRot = new Quaternion[numDrones];
 		for(int i = 0; i < numDrones; ++i) {
-			Debug.Log(drones.transform.GetChild(i).name);
-			// droneTransforms[i] = drones.transform.GetChild(i).transform;
+			// Debug.Log(drones.transform.GetChild(i).name);
+			Vector3 pos = drones.transform.GetChild(i).transform.position;
+			Quaternion rot = drones.transform.GetChild(i).transform.rotation;
+
+			dronePos[i] = new Vector3(pos.x, pos.y, pos.z);
+			droneRot[i] = new Quaternion(rot.x, rot.y, rot.z, rot.w);
 		}
 
 		dronesRot = drones.transform.rotation;
@@ -180,15 +187,21 @@ public class GameManager : MonoBehaviour
 				currRedUFO.GetComponent<SimpleRedUFOController>().moveTime += moveTime;
 			}
 
-			// if(drones.transform.childCount == 0) {
-			// 	Debug.Log("NO DRONES");
+			// Debug.Log(drones.transform.childCount);
+			// if(drones.transform.childCount == 0 && !spawned) {
 			// 	for(int i = 0; i < numDrones; ++i) {
-			// 		GameObject d = Instantiate(dronePrefab, droneTransforms[i].position, droneTransforms[i].rotation);
+			// 		GameObject d = Instantiate(dronePrefab, dronePos[i], droneRot[i]);
 			// 		d.transform.parent = drones.transform;
 			// 	}
+
+			// 	spawned = true;
 			// }
 
-			if(drones.transform.childCount > 0 && !spawned) {
+			if(drones.transform.childCount > 0) {
+				// if(spawned) {
+				// 	spawned = false;
+				// 	return;
+				// }
 				MoveDrones();
 			}
 			else {
@@ -281,7 +294,14 @@ public class GameManager : MonoBehaviour
 	{
 		scoreText.GetComponent<TextMeshProUGUI>().text 		= simplePlayer.score.ToString();	
 		myHighScore.GetComponent<TextMeshProUGUI>().text 	= PlayerPrefs.GetInt("PlayerScore").ToString();		
-		topScore.GetComponent<TextMeshProUGUI>().text 		= PlayerPrefs.GetInt("TopScore").ToString();
+		
+		// if(PlayerPrefs.GetInt("TopScore") == 0) {
+		// 	topScore.SetActive(false);
+		// }
+		// else {
+		// 	topScore.SetActive(true);
+			topScore.GetComponent<TextMeshProUGUI>().text = PlayerPrefs.GetInt("TopScore").ToString();
+		// }
 
 		UpdateScores();
 	}
