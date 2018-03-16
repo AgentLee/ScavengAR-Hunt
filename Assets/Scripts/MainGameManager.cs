@@ -56,6 +56,14 @@ public class MainGameManager : MonoBehaviour
 			// }
 		}
 
+		// SimplePlayerController player = GameObject.Find("Player").GetComponent<SimplePlayerController>();
+		// player.ResetPlayer();
+		// if(!player) {
+		// }
+
+		/******** DEBUG *********/
+		// PlayerPrefs.DeleteAll();
+
 		if(PlayerPrefs.HasKey("PlayerEmail")) {
 			ToggleContinue(true);
 		}

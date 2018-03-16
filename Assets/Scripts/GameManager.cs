@@ -117,13 +117,18 @@ public class GameManager : MonoBehaviour
 		gameOverPlayed = false;
 	}
 
+	// Shows instructions for 5 seconds to new user
 	IEnumerator ShowInstructions()
 	{
-		// If the user clicks out of the instructions,
-		// don't need to wait all 5 seconds.
 		float t = 0;
 		instructions.SetActive(true);
-		while(t <= 3.0f || !instructions.activeSelf) {
+		while(t <= 5.0f) {
+			// If the instructions are turned off,
+			// break out of coroutine.
+			if(!showingInstructions) {
+				yield break;
+			}
+
 			t += Time.deltaTime;
 
 			yield return null;
@@ -137,6 +142,8 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{	
+		// Only allow the game to run if the instructions 
+		// and paused menus are off.
 		if(!showingInstructions && !paused) {
 			RunGame();
 		}
@@ -149,8 +156,6 @@ public class GameManager : MonoBehaviour
 		// Keep strack of how many lives the player has and shows it on the bottom.
 		UpdatePlayerLives();
 
-
-		Debug.Log(drones.transform.childCount);
 		if(!GameOver()) {
 			EnableControls();
 			
