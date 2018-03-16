@@ -61,12 +61,6 @@ public class SimpleBaseController : MonoBehaviour
 		shieldRegen = GetComponent<AudioSource>();
 	}
 
-	// void LateUpdate()
-	// {
-	// 	Quaternion quat = transform.rotation;
-	// 	transform.rotation = Quaternion.Euler(quat.eulerAngles.x, rot.eulerAngles.y, quat.eulerAngles.z);
-	// }
- 
 	void OnCollisionEnter(Collision collisionInfo)
 	{
 		if(collisionInfo.collider.tag == "Bullet" || collisionInfo.collider.tag == "Enemy Bullet") {

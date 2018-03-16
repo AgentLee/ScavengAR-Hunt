@@ -58,12 +58,12 @@ public class SimplePlayerController : MonoBehaviour
 	}
 
 	// Lock rotation on pitch (y)
-	void LateUpdate()
-	{
-		Quaternion quat = player.rotation;
-		player.rotation = Quaternion.Euler(quat.eulerAngles.x, rot.eulerAngles.y, quat.eulerAngles.z);
-		// player.rotation = rot;
-	}
+	// void LateUpdate()
+	// {
+	// 	Quaternion quat = player.rotation;
+	// 	player.rotation = Quaternion.Euler(quat.eulerAngles.x, rot.eulerAngles.y, quat.eulerAngles.z);
+	// 	// player.rotation = rot;
+	// }
 	
 	// Update is called once per frame
 	void FixedUpdate () 
@@ -88,15 +88,15 @@ public class SimplePlayerController : MonoBehaviour
 
 	public void MovePlayer()
 	{
-		Touch touch = Input.GetTouch(0);
-		if(touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved) {
-			Vector3 touchPos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
-			transform.position = Vector3.Lerp(transform.position, touchPos, Time.deltaTime);
-		}
+		// Touch touch = Input.GetTouch(0);
+		// if(touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved) {
+		// 	Vector3 touchPos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
+		// 	transform.position = Vector3.Lerp(transform.position, touchPos, Time.deltaTime);
+		// }
 
 		float h = 0;
 		// if(PlayerPrefs.GetInt("Tilt") == 1) {
-		// 	h = Input.acceleration.x;
+			// h = Input.acceleration.x;
 		// } 
 		// else {
 			if(Application.isEditor) {
@@ -109,7 +109,7 @@ public class SimplePlayerController : MonoBehaviour
 				// 	h = -delta.x;
 				// }
 
-				// h = joystick.InputDirection.x;
+				h = joystick.InputDirection.x;
 			}
 		// }
 		

@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
 	public GameObject fireButton;
 
 	// Enemy Controller ----------------------
+	Quaternion dronesRot;
 	public GameObject redUFO;					// Prefab for spawning
 	public GameObject currRedUFO;				// Current red UFO
 	public GameObject drones;					// Container for all 21 drones 
@@ -88,6 +89,7 @@ public class GameManager : MonoBehaviour
 		// drones.transform.rotation = arCamera.transform.rotation;
 		// drones.transform.forward = -drones.transform.forward;
 
+		dronesRot = drones.transform.rotation;
 		droneMinBound = -18.0f;
 		droneMaxBound = 18.0f;
 		droneSpeed = 0.05f;
@@ -147,6 +149,8 @@ public class GameManager : MonoBehaviour
 		// Keep strack of how many lives the player has and shows it on the bottom.
 		UpdatePlayerLives();
 
+
+		Debug.Log(drones.transform.childCount);
 		if(!GameOver()) {
 			EnableControls();
 			
@@ -365,6 +369,7 @@ public class GameManager : MonoBehaviour
 
 	private void MoveDrones()
 	{
+		Debug.Log("move");
 		// drones.transform.LookAt(Camera.main.transform.position);
 
 		// Checks how many drones are left and increases speed as less are active
@@ -389,6 +394,12 @@ public class GameManager : MonoBehaviour
 
 			moveDronesDown = false;
 		}
+	}
+
+	void LateUpdate()
+	{
+		// Quaternion quat = arCamera.transform.rotation;
+		// drones.transform.rotation = Quaternion.Euler(quat.eulerAngles.x, dronesRot.eulerAngles.y, quat.eulerAngles.z);
 	}
 	
 	// Scene changes ------------------------

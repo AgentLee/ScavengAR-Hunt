@@ -144,7 +144,6 @@ public class SimpleEnemyController : MonoBehaviour
 
 	void OnCollisionEnter(Collision collisionInfo)
 	{
-		Debug.Log(collisionInfo.collider.tag);
 		transform.parent = null;
 
 		if(collisionInfo.collider.tag == "Enemy") {

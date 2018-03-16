@@ -38,8 +38,8 @@ public class TestScript : MonoBehaviour
 
     void LateUpdate()
     {
-        Quaternion quat = transform.rotation;
-		transform.rotation = Quaternion.Euler(quat.eulerAngles.x, rot.eulerAngles.y, quat.eulerAngles.z);
+        // Quaternion quat = transform.rotation;
+		// transform.rotation = Quaternion.Euler(quat.eulerAngles.x, rot.eulerAngles.y, quat.eulerAngles.z);
     }
 
     void Rotate()
