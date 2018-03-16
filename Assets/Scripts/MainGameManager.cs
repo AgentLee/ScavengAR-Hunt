@@ -131,6 +131,7 @@ public class MainGameManager : MonoBehaviour
 	public void QuitWarning()
 	{	
 		warning.SetActive(true);
+		continueMenu.SetActive(false);
 		playMenu.SetActive(false);
 	}
 
