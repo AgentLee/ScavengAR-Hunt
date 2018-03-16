@@ -121,21 +121,27 @@ public class MainGameManager : MonoBehaviour
 	private void ChangeMenus()
 	{
 		if(Application.platform == RuntimePlatform.Android) {
-			playMenu 	= androidMenu;
-			quit 		= playMenu.transform.Find("Quit").gameObject;
+			playMenu = androidMenu;
+			quit = playMenu.transform.Find("Quit").gameObject;
 		}
 		else if(Application.platform == RuntimePlatform.IPhonePlayer) {
 			playMenu = iosMenu;
+
+			// Disable all quit options for iOS
+			continueMenu.transform.Find("Quit").gameObject.SetActive(false);
 		}
 		/********** DEBUG **********/
 		else {
-			bool simDroid = true;
+			bool simDroid = false;
 			if(simDroid) {
 				playMenu = androidMenu;
 				quit = playMenu.transform.Find("Quit").gameObject;
 			}
 			else {
 				playMenu = iosMenu;
+				
+				// Disable all quit options for iOS
+				continueMenu.transform.Find("Quit").gameObject.SetActive(false);
 			}
 		}
 

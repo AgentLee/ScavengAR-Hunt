@@ -35,6 +35,6 @@ public class Collectable : MonoBehaviour
 		
 		gameObject.SetActive(false);
 		// Destroy(gameObject);
-		GameObject.Find("Manager").GetComponent<ScavengerManager>().DisplayItems();
+		// GameObject.Find("Manager").GetComponent<ScavengerManager>().DisplayItems();
 	}
 }

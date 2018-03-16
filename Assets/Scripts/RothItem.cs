@@ -36,7 +36,7 @@ public class RothItem : MonoBehaviour
 
 	public void CollectItem()
 	{
-		scavengerManager.rothPowerup = true;
+		// scavengerManager.rothPowerup = true;
 		Destroy(gameObject);
 	}
 }
