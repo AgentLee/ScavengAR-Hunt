@@ -318,6 +318,10 @@ public class GameManager : MonoBehaviour
 			gameOver.SetActive(true);
 			mainMenu.SetActive(false);
 
+			if(gameCompleted.activeSelf) {
+				return false;
+			}
+
 			return true;
 		}
 		else {

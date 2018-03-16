@@ -70,9 +70,9 @@ public class SimplePlayerController : MonoBehaviour
 	{
 		MovePlayer();
 
-		for(int i =0; i < Input.touchCount; ++i) {
-			Fire();
-		}
+		// for(int i =0; i < Input.touchCount; ++i) {
+		// 	Fire();
+		// }
 
 		if(Input.GetKey(KeyCode.Space)) {
 			Fire();
