@@ -89,9 +89,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1690801168815338}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.000147, y: 8.58569, z: 3.070023}
-  m_LocalScale: {x: 1.1270041, y: 1.127005, z: 1.1270039}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 8.58563, z: 3.07}
+  m_LocalScale: {x: 1.1269901, y: 1.1269907, z: 1.1269907}
   m_Children:
   - {fileID: 4191664118507628}
   - {fileID: 4353999004916022}
@@ -527,6 +527,7 @@ MonoBehaviour:
   smoke: {fileID: 1000012560919920, guid: 85a8865d1bf4a63478038fae23776de8, type: 2}
   explosion: {fileID: 1000011128802252, guid: 96730f8640590934eacb6f860058e7f9, type: 2}
   FPS: 0
+  manager: {fileID: 0}
 --- !u!135 &135111072478373726
 SphereCollider:
   m_ObjectHideFlags: 1
