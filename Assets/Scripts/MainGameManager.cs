@@ -62,7 +62,7 @@ public class MainGameManager : MonoBehaviour
 		// }
 
 		/******** DEBUG *********/
-		// PlayerPrefs.DeleteAll();
+		PlayerPrefs.DeleteAll();
 
 		if(PlayerPrefs.HasKey("PlayerEmail")) {
 			ToggleContinue(true);
