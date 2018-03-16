@@ -21,18 +21,36 @@ public enum LEVELS
 	REGISTRATION	= 4,
 }
 
+public struct PlayerScore 
+{
+	public string username;
+	public int score;
+	public string phone;
+	public string email;
+
+	public PlayerScore(string _username, int _score, string _phone, string _email)
+	{
+		username = _username;
+		score = _score;
+		phone = _phone;
+		email = _email;
+	}
+}
 
 public class MainGameManager : MonoBehaviour 
 {
+	// March 20, 2018
+	// 6pm - 10pm
 	const int EST 			= 4;
 	const int releaseMonth 	= 3;
 	const int releaseDay 	= 20;
 	const int releaseYear 	= 2018;
 	const int releaseHour 	= 18;
 	const int releaseMinute = 00;
-	const int endHour		= 20;
+	const int endHour		= 22;
 	const int endMinute		= 15;
 
+	// User system date time
 	int month 	= DateTime.Now.Month;
 	int day 	= DateTime.Now.Day;
 	int year 	= DateTime.Now.Year;
@@ -52,35 +70,12 @@ public class MainGameManager : MonoBehaviour
 	public GameObject highScores;
 	public GameObject continueMenu;
 	public GameObject continueAs;
-	public GameObject hunt;
+	public GameObject warning;
 
 	void Awake()
 	{
 		ChangeMenus();
-	}
-
-	private void ChangeMenus()
-	{
-		if(Application.platform == RuntimePlatform.Android) {
-			playMenu 	= androidMenu;
-			quit 		= playMenu.transform.Find("Quit").gameObject;
-		}
-		else if(Application.platform == RuntimePlatform.IPhonePlayer) {
-			playMenu = iosMenu;
-		}
-		// Debug
-		else {
-			playMenu = iosMenu;
-			// playMenu 	= androidMenu;
-			// quit 		= playMenu.transform.Find("Quit").gameObject;
-		}
-
-		play 		= playMenu.transform.Find("Play Button").gameObject;
-		explore 	= playMenu.transform.Find("Hunt").gameObject;
-		highScores 	= playMenu.transform.Find("High Scores Button").gameObject;
-		about	 	= playMenu.transform.Find("About").gameObject;
-
-		EnableScavengAR();
+		EnableScavengAR();		
 	}
 
 	// Use this for initialization
@@ -110,16 +105,48 @@ public class MainGameManager : MonoBehaviour
 		/******** DEBUG *********/
 		// PlayerPrefs.DeleteAll();
 
+		// If the player email is recorded, then they played the game before.
+		// Ask if they want to continue as that player.
 		if(PlayerPrefs.HasKey("PlayerEmail")) {
 			ToggleContinue(true);
 		}
 		else {
-			// playMenu.SetActive(true);
-			// continueMenu.SetActive(false);
+			// They haven't played the game before so show the main menu.
 			ShowMainMenuElements();
 		}
 	}
 
+	// Detect android or iOS.
+	// Remove quit button if iOS.
+	private void ChangeMenus()
+	{
+		if(Application.platform == RuntimePlatform.Android) {
+			playMenu 	= androidMenu;
+			quit 		= playMenu.transform.Find("Quit").gameObject;
+		}
+		else if(Application.platform == RuntimePlatform.IPhonePlayer) {
+			playMenu = iosMenu;
+		}
+		/********** DEBUG **********/
+		else {
+			bool simDroid = true;
+			if(simDroid) {
+				playMenu = androidMenu;
+				quit = playMenu.transform.Find("Quit").gameObject;
+			}
+			else {
+				playMenu = iosMenu;
+			}
+		}
+
+		// Find the rest of the components
+		play 		= playMenu.transform.Find("Play Button").gameObject;
+		explore 	= playMenu.transform.Find("Hunt").gameObject;
+		highScores 	= playMenu.transform.Find("High Scores Button").gameObject;
+		about	 	= playMenu.transform.Find("About").gameObject;
+	}
+
+	// Checks user's time and enables scavenger hunt
 	private void EnableScavengAR()
 	{
 		if(	month != releaseMonth || day != releaseDay || year != releaseYear ||
@@ -130,6 +157,13 @@ public class MainGameManager : MonoBehaviour
 		}
 	}
 
+	// ----------------------------------------
+	// Button Events --------------------------
+	// ----------------------------------------
+
+	// Displays user name and asks if they want to continue as that user.
+	// If no, then they can reregister under a different ename.
+	// If they happen to register again with the same email, nothing happens.
 	void ToggleContinue(bool status)
 	{
 		if(status)
@@ -143,11 +177,38 @@ public class MainGameManager : MonoBehaviour
 		}
 	}
 
+	// Shows the play options, leaderboard, (quit)
 	public void ShowMainMenuElements()
 	{
 		playMenu.SetActive(true);
 		continueMenu.SetActive(false);
 	}
+
+	// Warns the user before quitting
+	// Only active on android devices
+	public void QuitWarning()
+	{	
+		warning.SetActive(true);
+		continueMenu.SetActive(false);
+		playMenu.SetActive(false);
+	}
+
+	public void CloseWarning()
+	{
+		warning.SetActive(false);
+		playMenu.SetActive(true);
+	}
+
+	// Closes the application.
+	// Only active on android devices	
+	public void Quit()
+	{
+		Application.Quit();
+	}
+
+	// ----------------------------------------
+	// Scene loaders --------------------------
+	// ----------------------------------------
 
 	public void LoadRegistration()
 	{
@@ -156,17 +217,18 @@ public class MainGameManager : MonoBehaviour
 
 	public void LoadScavengerHunt()
 	{
+		// If the player hasn't played before, they register first.
 		if(!PlayerPrefs.HasKey("PlayerEmail")) {
 			LoadRegistration();
 		}
 		else {
 			SceneManager.LoadScene((int)LEVELS.SCAVENGER_HUNT);
 		}
-
 	}
 
 	public void LoadSpaceInvaders()
 	{
+		// If the player hasn't played before, they register first.
 		if(!PlayerPrefs.HasKey("PlayerEmail")) {
 
 			LoadRegistration();
@@ -189,40 +251,5 @@ public class MainGameManager : MonoBehaviour
 	public void PennTeachIn()
 	{
 		Application.OpenURL("http://www.upenn.edu/teachin/");
-	}
-
-	public GameObject warning;
-	public void QuitWarning()
-	{	
-		warning.SetActive(true);
-		continueMenu.SetActive(false);
-		playMenu.SetActive(false);
-	}
-
-	public void CloseWarning()
-	{
-		warning.SetActive(false);
-		playMenu.SetActive(true);
-	}
-
-	public void Quit()
-	{
-		Application.Quit();
-	}
-}
-
-public struct PlayerScore 
-{
-	public string username;
-	public int score;
-	public string phone;
-	public string email;
-
-	public PlayerScore(string _username, int _score, string _phone, string _email)
-	{
-		username = _username;
-		score = _score;
-		phone = _phone;
-		email = _email;
 	}
 }
