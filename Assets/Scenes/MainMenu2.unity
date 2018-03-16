@@ -395,10 +395,11 @@ MonoBehaviour:
   play: {fileID: 1722412541}
   explore: {fileID: 1928445750}
   about: {fileID: 965916829}
-  quit: {fileID: 0}
+  quit: {fileID: 2106985164}
   highScores: {fileID: 60461274}
   continueMenu: {fileID: 2063886485}
   continueAs: {fileID: 221236001}
+  hunt: {fileID: 1928445750}
   warning: {fileID: 2003438239}
 --- !u!114 &56664586
 MonoBehaviour:

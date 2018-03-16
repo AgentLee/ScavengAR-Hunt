@@ -860,7 +860,8 @@ MonoBehaviour:
   redUFO: {fileID: 1231819220437308, guid: 4530a0da38a214bffbdfe006c11bb1a8, type: 2}
   currRedUFO: {fileID: 0}
   drones: {fileID: 2124983935}
-  dronePrefab: {fileID: 0}
+  dronePrefab: {fileID: 1690801168815338, guid: 00e06d55413c04c55bc809a45578bcab,
+    type: 2}
   dronesPrefab: {fileID: 840397550}
   droneMinBound: 0
   droneMaxBound: 0
@@ -870,6 +871,7 @@ MonoBehaviour:
   showingInstructions: 0
   paused: 0
   buttonPressed: 0
+  droneTransforms: []
 --- !u!4 &86385300
 Transform:
   m_ObjectHideFlags: 0
@@ -3899,8 +3901,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 39.999878, y: -290.5001}
-  m_SizeDelta: {x: 160, y: 122.8}
+  m_AnchoredPosition: {x: 39.999878, y: -669.1791}
+  m_SizeDelta: {x: 330.8, y: 118.9}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &627796176
 MonoBehaviour:
@@ -5163,7 +5165,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00012352, y: -338}
+  m_AnchoredPosition: {x: -0.00012352, y: -489.79358}
   m_SizeDelta: {x: 2128, y: 400.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &855170579
@@ -9583,6 +9585,11 @@ Prefab:
     - target: {fileID: 1648284097739800, guid: 3eeee1764d9ed4b26b293e84fb4c74b4, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815531784765668, guid: 3eeee1764d9ed4b26b293e84fb4c74b4,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0.447
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3eeee1764d9ed4b26b293e84fb4c74b4, type: 2}

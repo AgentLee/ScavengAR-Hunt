@@ -55,6 +55,9 @@ public class GameManager : MonoBehaviour
 	public bool paused;
 	public int buttonPressed;
 
+	int numDrones;
+	public Transform[] droneTransforms;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -88,6 +91,12 @@ public class GameManager : MonoBehaviour
 
 		// drones.transform.rotation = arCamera.transform.rotation;
 		// drones.transform.forward = -drones.transform.forward;
+
+		numDrones = drones.transform.childCount;
+		for(int i = 0; i < numDrones; ++i) {
+			Debug.Log(drones.transform.GetChild(i).name);
+			// droneTransforms[i] = drones.transform.GetChild(i).transform;
+		}
 
 		dronesRot = drones.transform.rotation;
 		droneMinBound = -18.0f;
@@ -148,6 +157,9 @@ public class GameManager : MonoBehaviour
 		if(!showingInstructions && !paused) {
 			RunGame();
 		}
+		else {
+			Debug.Log("NO");
+		}
 	}
 
 	void RunGame()
@@ -168,11 +180,20 @@ public class GameManager : MonoBehaviour
 				currRedUFO.GetComponent<SimpleRedUFOController>().moveTime += moveTime;
 			}
 
+			// if(drones.transform.childCount == 0) {
+			// 	Debug.Log("NO DRONES");
+			// 	for(int i = 0; i < numDrones; ++i) {
+			// 		GameObject d = Instantiate(dronePrefab, droneTransforms[i].position, droneTransforms[i].rotation);
+			// 		d.transform.parent = drones.transform;
+			// 	}
+			// }
+
 			if(drones.transform.childCount > 0 && !spawned) {
 				MoveDrones();
 			}
 			else {
 				GameComplete();
+
 				{
 					// PlayerPrefs.SetInt("CurrScore", simplePlayer.score);
 

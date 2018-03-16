@@ -5,9 +5,12 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public enum LEVELS
 {
@@ -18,8 +21,24 @@ public enum LEVELS
 	REGISTRATION	= 4,
 }
 
+
 public class MainGameManager : MonoBehaviour 
 {
+	const int EST 			= 4;
+	const int releaseMonth 	= 3;
+	const int releaseDay 	= 20;
+	const int releaseYear 	= 2018;
+	const int releaseHour 	= 18;
+	const int releaseMinute = 00;
+	const int endHour		= 20;
+	const int endMinute		= 15;
+
+	int month 	= DateTime.Now.Month;
+	int day 	= DateTime.Now.Day;
+	int year 	= DateTime.Now.Year;
+	int hour	= Int32.Parse(DateTime.UtcNow.Hour.ToString()) - EST;
+	int minute	= DateTime.UtcNow.Minute;
+
 	public GameObject welcome;
 
 	// Menu Buttons
@@ -31,6 +50,7 @@ public class MainGameManager : MonoBehaviour
 	public GameObject highScores;
 	public GameObject continueMenu;
 	public GameObject continueAs;
+	public GameObject hunt;
 
 	// Use this for initialization
 	void Start () 
@@ -59,6 +79,16 @@ public class MainGameManager : MonoBehaviour
 		/******** DEBUG *********/
 		// PlayerPrefs.DeleteAll();
 
+		GameObject hunt = GameObject.Find("Hunt");
+		if(!hunt) {
+			Debug.Log("Couldn't find");
+		}
+		if(!EnableScavengAR()) {
+			hunt.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "Hunt Begins\nMarch 20, 2018!";
+			hunt.transform.Find("Text").GetComponent<TextMeshProUGUI>().enableAutoSizing = true;
+			hunt.GetComponent<Button>().interactable = false;
+		}
+		
 		if(PlayerPrefs.HasKey("PlayerEmail")) {
 			ToggleContinue(true);
 		}
@@ -66,6 +96,20 @@ public class MainGameManager : MonoBehaviour
 			// playMenu.SetActive(true);
 			// continueMenu.SetActive(false);
 			ShowMainMenuElements();
+		}
+	}
+
+	bool EnableScavengAR()
+	{
+		if(	month != releaseMonth || day != releaseDay || year != releaseYear ||
+			hour != releaseHour || minute != releaseMinute) 
+		{
+			return false;
+			// hunt.SetActive(false);
+		}
+		else {
+			return true;
+			// hunt.SetActive(true);
 		}
 	}
 
