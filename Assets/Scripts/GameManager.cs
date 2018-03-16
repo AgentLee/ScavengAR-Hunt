@@ -136,6 +136,7 @@ public class GameManager : MonoBehaviour
 
 		instructions.SetActive(false);
 		showingInstructions = false;
+		instructions.transform.Find("Close").gameObject.SetActive(true);
 		paused = false;
 	}
 	
