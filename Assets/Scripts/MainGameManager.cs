@@ -42,6 +42,8 @@ public class MainGameManager : MonoBehaviour
 	public GameObject welcome;
 
 	// Menu Buttons
+	public GameObject androidMenu;
+	public GameObject iosMenu;
 	public GameObject playMenu;
 	public GameObject play;
 	public GameObject explore;
@@ -51,6 +53,35 @@ public class MainGameManager : MonoBehaviour
 	public GameObject continueMenu;
 	public GameObject continueAs;
 	public GameObject hunt;
+
+	void Awake()
+	{
+		ChangeMenus();
+	}
+
+	private void ChangeMenus()
+	{
+		if(Application.platform == RuntimePlatform.Android) {
+			playMenu 	= androidMenu;
+			quit 		= playMenu.transform.Find("Quit").gameObject;
+		}
+		else if(Application.platform == RuntimePlatform.IPhonePlayer) {
+			playMenu = iosMenu;
+		}
+		// Debug
+		else {
+			playMenu = iosMenu;
+			// playMenu 	= androidMenu;
+			// quit 		= playMenu.transform.Find("Quit").gameObject;
+		}
+
+		play 		= playMenu.transform.Find("Play Button").gameObject;
+		explore 	= playMenu.transform.Find("Hunt").gameObject;
+		highScores 	= playMenu.transform.Find("High Scores Button").gameObject;
+		about	 	= playMenu.transform.Find("About").gameObject;
+
+		EnableScavengAR();
+	}
 
 	// Use this for initialization
 	void Start () 
@@ -79,16 +110,6 @@ public class MainGameManager : MonoBehaviour
 		/******** DEBUG *********/
 		// PlayerPrefs.DeleteAll();
 
-		GameObject hunt = GameObject.Find("Hunt");
-		if(!hunt) {
-			Debug.Log("Couldn't find");
-		}
-		if(!EnableScavengAR()) {
-			hunt.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "Hunt Begins\nMarch 20, 2018!";
-			hunt.transform.Find("Text").GetComponent<TextMeshProUGUI>().enableAutoSizing = true;
-			hunt.GetComponent<Button>().interactable = false;
-		}
-		
 		if(PlayerPrefs.HasKey("PlayerEmail")) {
 			ToggleContinue(true);
 		}
@@ -99,17 +120,13 @@ public class MainGameManager : MonoBehaviour
 		}
 	}
 
-	bool EnableScavengAR()
+	private void EnableScavengAR()
 	{
 		if(	month != releaseMonth || day != releaseDay || year != releaseYear ||
-			hour != releaseHour || minute != releaseMinute) 
-		{
-			return false;
-			// hunt.SetActive(false);
-		}
-		else {
-			return true;
-			// hunt.SetActive(true);
+			hour != releaseHour || minute != releaseMinute) {
+			explore.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "Hunt Begins\nMarch 20, 2018!";
+			explore.transform.Find("Text").GetComponent<TextMeshProUGUI>().enableAutoSizing = true;
+			explore.GetComponent<Button>().interactable = false;
 		}
 	}
 

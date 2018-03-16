@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
 	public GameObject drones;					// Container for all 21 drones 
 	public GameObject dronePrefab;				// Prefab for spawning
 	public GameObject dronesPrefab;				// Prefab for spawning
+	public Vector3 dronesPos;
 	private bool moveDronesDown;				// Flag for when the drones reached the bounds
 	private bool increased;						// Flag for when the number of drones decrease
 	public float droneMinBound, droneMaxBound;	// Drone bounds
@@ -55,7 +56,7 @@ public class GameManager : MonoBehaviour
 	public bool paused;
 	public int buttonPressed;
 
-	int numDrones;
+	public int numDrones;
 	public Vector3[] dronePos;
 	public Quaternion[] droneRot;
 
@@ -93,6 +94,7 @@ public class GameManager : MonoBehaviour
 		// drones.transform.rotation = arCamera.transform.rotation;
 		// drones.transform.forward = -drones.transform.forward;
 
+		dronesPos = drones.transform.position;
 		numDrones = drones.transform.childCount;
 		dronePos = new Vector3[numDrones];
 		droneRot = new Quaternion[numDrones];
@@ -164,19 +166,19 @@ public class GameManager : MonoBehaviour
 		if(!showingInstructions && !paused) {
 			RunGame();
 		}
-		else {
-			Debug.Log("NO");
-		}
 	}
 
 	void RunGame()
 	{
+
 		// Shows Top Score, Current Score, My High Score
 		DisplayScores();				
 		// Keep strack of how many lives the player has and shows it on the bottom.
 		UpdatePlayerLives();
 
+		// Check to see if the game is over for the player
 		if(!GameOver()) {
+			// Keep controls showing
 			EnableControls();
 			
 			// If the Red UFO was hit, instantiate another one and dereference it.
@@ -187,107 +189,173 @@ public class GameManager : MonoBehaviour
 				currRedUFO.GetComponent<SimpleRedUFOController>().moveTime += moveTime;
 			}
 
-			// Debug.Log(drones.transform.childCount);
-			// if(drones.transform.childCount == 0 && !spawned) {
-			// 	for(int i = 0; i < numDrones; ++i) {
-			// 		GameObject d = Instantiate(dronePrefab, dronePos[i], droneRot[i]);
-			// 		d.transform.parent = drones.transform;
-			// 	}
+			{
+				// Debug.Log(drones.transform.childCount);
+				// if(drones.transform.childCount == 0 && !spawned) {
+				// 	for(int i = 0; i < numDrones; ++i) {
+				// 		GameObject d = Instantiate(dronePrefab, dronePos[i], droneRot[i]);
+				// 		d.transform.parent = drones.transform;
+				// 	}
 
-			// 	spawned = true;
+				// 	spawned = true;
 			// }
+			}
 
-			if(drones.transform.childCount > 0) {
-				// if(spawned) {
-				// 	spawned = false;
-				// 	return;
+			numDrones = drones.transform.childCount;
+			if(numDrones == 0) {
+				// Spawn More
+				// if(!spawning) {
+				// 	StartCoroutine(SpawnDrones());
 				// }
-				MoveDrones();
+
+				GameComplete();
 			}
 			else {
-				GameComplete();
-
-				{
-					// PlayerPrefs.SetInt("CurrScore", simplePlayer.score);
-
-					// if(GameObject.Find("B1")) {
-					// 	PlayerPrefs.SetInt("Base1", GameObject.Find("B1").GetComponent<SimpleBaseController>().timesHit);
-					// }
-					// else {
-					// 	PlayerPrefs.SetInt("Base1", 100);					
-					// }
-
-					// if(GameObject.Find("B2")) {
-					// 	PlayerPrefs.SetInt("Base2", GameObject.Find("B2").GetComponent<SimpleBaseController>().timesHit);
-					// }
-					// else {
-					// 	PlayerPrefs.SetInt("Base2", 100);					
-					// }
-
-					// if(GameObject.Find("B3")) {
-					// 	PlayerPrefs.SetInt("Base3", GameObject.Find("B3").GetComponent<SimpleBaseController>().timesHit);
-					// }
-					// else {
-					// 	PlayerPrefs.SetInt("Base3", 100);					
-					// }
-
-					// if(GameObject.Find("B4")) {
-					// 	PlayerPrefs.SetInt("Base4", GameObject.Find("B4").GetComponent<SimpleBaseController>().timesHit);
-					// }
-					// else {
-					// 	PlayerPrefs.SetInt("Base4", 100);					
-					// }
-
-				
-					// if(!spawned) {
-					// 	GameObject[] fallenDrones = GameObject.FindGameObjectsWithTag("Enemy");
-					// 	for(int i = 0; i < fallenDrones.Length; ++i) {
-					// 		Destroy(fallenDrones[i]);
-					// 	}
-						
-					// 	// drones.transform.position = dronesPrefab.transform.position;
-					// 	// drones.transform.rotation = dronesPrefab.transform.rotation;
-					// 	GameObject spawnedDrones = Instantiate(dronesPrefab, dronesPrefab.transform.position, dronesPrefab.transform.rotation);
-					// 	spawnedDrones.SetActive(true);
-
-					// 	foreach(Transform sd in spawnedDrones.transform) {
-					// 		sd.parent = drones.transform;
-					// 	}
-
-					// 	// for(int i = 0; i < spawnedDrones.transform.childCount; i++) {
-					// 	// 	spawnedDrones.transform.GetChild(i).parent = drones.transform;
-					// 	// }
-
-
-					// 	spawned = true;
-					// }
-
-					// 	// drones.transform.position = dronesPrefab.transform.position;
-					// 	// drones.transform.rotation = dronesPrefab.transform.rotation;
-					// 	// GameObject spawns = Instantiate(dronesPrefab, drones.transform.position, drones.transform.rotation);
-					// 	// foreach(Transform s in spawns.transform) {
-					// 	// 	s.parent = drones.transform;
-					// 	// }
-
-					// 	// for(int i = 0; i < 3; i++) {
-					// 	// 	for(int j = 0; j < 7; j++) {
-					// 	// 		GameObject spawnedDrone = Instantiate(dronePrefab, dronePrefab.transform.position, dronePrefab.transform.rotation);
-					// 	// 		spawnedDrone.transform.parent = drones.transform;
-					// 	// 		spawnedDrone.transform.position = new Vector3(18f - (j * 6f), 8.3f - (i * 3f), 3.07f);
-					// 	// 	}
-					// 	// }
-
-
-					// 	// Reset
-					// 	droneSpeed = 0.05f;
-					// }
+				if(!spawning) {
+					MoveDrones();
 				}
 			}
+
+
+{
+			// If there are still drones, move them.
+			// if(numDrones > 0) {
+			// 	// if(spawned) {
+			// 	// 	spawned = false;
+			// 	// 	return;
+			// 	// }
+			// 	MoveDrones();
+			// 	spawnMoreDrones = false;
+			// }
+			// // Check for level completion.
+			// else {
+			// 	if(numDrones == 0) {
+			// 		GameComplete();
+			// 		spawnMoreDrones = true;
+			// 		Debug.Log("SPAWN DRONES");
+			// 		numDrones = 1;
+			// 		spawnMoreDrones = false;
+			// 	}
+
+			// 	if(!spawnMoreDrones) {
+			// 		// spawnMoreDrones = true;
+			// 	}
+
+			// 	{
+			// 		// PlayerPrefs.SetInt("CurrScore", simplePlayer.score);
+
+			// 		// if(GameObject.Find("B1")) {
+			// 		// 	PlayerPrefs.SetInt("Base1", GameObject.Find("B1").GetComponent<SimpleBaseController>().timesHit);
+			// 		// }
+			// 		// else {
+			// 		// 	PlayerPrefs.SetInt("Base1", 100);					
+			// 		// }
+
+			// 		// if(GameObject.Find("B2")) {
+			// 		// 	PlayerPrefs.SetInt("Base2", GameObject.Find("B2").GetComponent<SimpleBaseController>().timesHit);
+			// 		// }
+			// 		// else {
+			// 		// 	PlayerPrefs.SetInt("Base2", 100);					
+			// 		// }
+
+			// 		// if(GameObject.Find("B3")) {
+			// 		// 	PlayerPrefs.SetInt("Base3", GameObject.Find("B3").GetComponent<SimpleBaseController>().timesHit);
+			// 		// }
+			// 		// else {
+			// 		// 	PlayerPrefs.SetInt("Base3", 100);					
+			// 		// }
+
+			// 		// if(GameObject.Find("B4")) {
+			// 		// 	PlayerPrefs.SetInt("Base4", GameObject.Find("B4").GetComponent<SimpleBaseController>().timesHit);
+			// 		// }
+			// 		// else {
+			// 		// 	PlayerPrefs.SetInt("Base4", 100);					
+			// 		// }
+
+				
+			// 		// if(!spawned) {
+			// 		// 	GameObject[] fallenDrones = GameObject.FindGameObjectsWithTag("Enemy");
+			// 		// 	for(int i = 0; i < fallenDrones.Length; ++i) {
+			// 		// 		Destroy(fallenDrones[i]);
+			// 		// 	}
+						
+			// 		// 	// drones.transform.position = dronesPrefab.transform.position;
+			// 		// 	// drones.transform.rotation = dronesPrefab.transform.rotation;
+			// 		// 	GameObject spawnedDrones = Instantiate(dronesPrefab, dronesPrefab.transform.position, dronesPrefab.transform.rotation);
+			// 		// 	spawnedDrones.SetActive(true);
+
+			// 		// 	foreach(Transform sd in spawnedDrones.transform) {
+			// 		// 		sd.parent = drones.transform;
+			// 		// 	}
+
+			// 		// 	// for(int i = 0; i < spawnedDrones.transform.childCount; i++) {
+			// 		// 	// 	spawnedDrones.transform.GetChild(i).parent = drones.transform;
+			// 		// 	// }
+
+
+			// 		// 	spawned = true;
+			// 		// }
+
+			// 		// 	// drones.transform.position = dronesPrefab.transform.position;
+			// 		// 	// drones.transform.rotation = dronesPrefab.transform.rotation;
+			// 		// 	// GameObject spawns = Instantiate(dronesPrefab, drones.transform.position, drones.transform.rotation);
+			// 		// 	// foreach(Transform s in spawns.transform) {
+			// 		// 	// 	s.parent = drones.transform;
+			// 		// 	// }
+
+			// 		// 	// for(int i = 0; i < 3; i++) {
+			// 		// 	// 	for(int j = 0; j < 7; j++) {
+			// 		// 	// 		GameObject spawnedDrone = Instantiate(dronePrefab, dronePrefab.transform.position, dronePrefab.transform.rotation);
+			// 		// 	// 		spawnedDrone.transform.parent = drones.transform;
+			// 		// 	// 		spawnedDrone.transform.position = new Vector3(18f - (j * 6f), 8.3f - (i * 3f), 3.07f);
+			// 		// 	// 	}
+			// 		// 	// }
+
+
+			// 		// 	// Reset
+			// 		// 	droneSpeed = 0.05f;
+			// 		// }
+			// 	}
+			// }
+}
 		}
 		else {
 			// Game over, hide the controls
 			DisableControls();
 		}
+	}
+
+	bool spawning = false;
+	IEnumerator SpawnDrones()
+	{
+		Debug.Log("SPAWN DRONES");
+		spawning = true;
+		// Wait before jumping into moving the drones
+		yield return new WaitForSeconds(2.0f);
+
+		// Reset container position
+		drones.transform.position = dronesPos;	
+		
+		// This spawns nonstop
+		// Instantiate drones
+		// for(int i = 0; i < 2; ++i) {
+		// 	GameObject drone = Instantiate(dronePrefab, dronePos[i], droneRot[i]);
+		// 	// Parent drones to container
+		// 	drone.transform.parent = drones.transform;
+		// }
+
+		// This spawns half
+		GameObject dronez = Instantiate(dronesPrefab, drones.transform.position, drones.transform.rotation);
+		foreach(Transform d in dronez.transform) {
+			d.parent = drones.transform;
+		}
+
+		Destroy(dronez);
+
+		// Update numDrones
+		numDrones = drones.transform.childCount;
+
+		spawning = false;
 	}
 
 	private void DisplayScores()
@@ -356,6 +424,7 @@ public class GameManager : MonoBehaviour
 
 	private bool GameOver()
 	{
+		// If the player lost all their lives or lost all their bases then the game is over.
 		if(simplePlayer.numLives <= 0 || bases.transform.childCount <= 0) {
 			if(!gameOverPlayed) {
 				gameOverSound.Play();
@@ -372,15 +441,35 @@ public class GameManager : MonoBehaviour
 			return true;
 		}
 		else {
-			gameOver.SetActive(false);
-			mainMenu.SetActive(true);
+			gameOver.SetActive(false);		
+			mainMenu.SetActive(true);		// Pause Menu
 			
 			return false;
 		}
 	}
 
+	bool spawnMoreDrones = false;
 	private void GameComplete()
 	{
+		// Spawn more drones
+		// if(spawnMoreDrones) {
+		// 	for(int i = 0; i < numDrones; ++i) {
+		// 		GameObject d = Instantiate(dronePrefab, dronePos[i], droneRot[i]);
+		// 		d.transform.parent = drones.transform;
+		// 	}
+			
+		// 	spawnMoreDrones = false;
+		// }
+
+		// if(drones.transform.childCount == 0 && !spawned) {
+			// for(int i = 0; i < numDrones; ++i) {
+			// 	GameObject d = Instantiate(dronePrefab, dronePos[i], droneRot[i]);
+			// 	d.transform.parent = drones.transform;
+			// }
+
+		// 	spawned = true;
+		// }
+
 		gameCompleted.SetActive(true);
 		mainMenu.SetActive(true);
 	}
@@ -420,7 +509,6 @@ public class GameManager : MonoBehaviour
 
 	private void MoveDrones()
 	{
-		Debug.Log("move");
 		// drones.transform.LookAt(Camera.main.transform.position);
 
 		// Checks how many drones are left and increases speed as less are active
