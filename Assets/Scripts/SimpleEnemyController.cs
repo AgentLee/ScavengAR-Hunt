@@ -153,7 +153,7 @@ public class SimpleEnemyController : MonoBehaviour
 		// if(collisionInfo.collider.tag == "Bullet" || transform.parent == null) {
 		if(collisionInfo.collider.tag == "Bullet") {
 			if(!hit) {
-				StartCoroutine(WaitToDestroyExpl(Instantiate(smoke, enemy.position, enemy.rotation), 2.0f));
+				// StartCoroutine(WaitToDestroyExpl(Instantiate(smoke, enemy.position, enemy.rotation), 2.0f));
 				explosionSound.Play();
 			}
 

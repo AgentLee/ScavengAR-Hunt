@@ -291,13 +291,13 @@ public class GameManager : MonoBehaviour
 		// Update scores on the server if the player beats their high score
 		if(simplePlayer.score > PlayerPrefs.GetInt("PlayerScore", simplePlayer.score)) {
 			simplePlayer.UpdateScores();
-			myHighScore.GetComponent<Text>().text = PlayerPrefs.GetInt("PlayerScore").ToString();		
+			myHighScore.GetComponent<TextMeshProUGUI>().text = PlayerPrefs.GetInt("PlayerScore").ToString();		
 		}
 
 		// Update scores on the server if the player beats the top score
 		if(simplePlayer.score > PlayerPrefs.GetInt("TopScore")) {
 			simplePlayer.UpdateScores();
-			topScore.GetComponent<Text>().text = PlayerPrefs.GetInt("PlayerScore").ToString();		
+			topScore.GetComponent<TextMeshProUGUI>().text = PlayerPrefs.GetInt("PlayerScore").ToString();		
 		}
 	}
 
