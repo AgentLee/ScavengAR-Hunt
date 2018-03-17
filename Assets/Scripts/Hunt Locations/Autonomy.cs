@@ -10,8 +10,8 @@ using TMPro;
 public class Autonomy : MonoBehaviour 
 {
 	GameObject intro;
-	GameObject page1;
-	GameObject nextClue;
+	public GameObject page1;
+	public GameObject nextClue;
 	GameObject panel1;
 	GameObject panel2;
 	GameObject question;
@@ -58,6 +58,14 @@ public class Autonomy : MonoBehaviour
 			default:
 				break;
 		}
+	}
+
+	// Cars to Clue
+	public void GetNextClue()
+	{
+		page1.SetActive(false);
+		nextClue.SetActive(true);
+		currPage = 2;
 	}
 
 	IEnumerator DelayText(GameObject obj)

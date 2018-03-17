@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Gaming : MonoBehaviour 
 {
-	GameObject intro;
-	GameObject deepBlue;
-	GameObject watson;
-	GameObject alphaGo;
-	GameObject nextClue;
+	public GameObject intro;
+	public GameObject deepBlue;
+	public GameObject watson;
+	public GameObject alphaGo;
+	public GameObject nextClue;
 
 	int currPage;
 	bool fading;
@@ -86,6 +86,18 @@ public class Gaming : MonoBehaviour
 		// }
 	}
 
+	public void WatsonToAlpha()
+	{
+		watson.SetActive(false);
+		alphaGo.SetActive(true);
+	}
+	
+	public void AlphaToClue()
+	{
+		alphaGo.SetActive(false);
+		nextClue.SetActive(true);
+	}
+	
 	// Fade In: start = 0.01, end = 1.0
 	// Fade Out: start = 1.0, end = 0.0
 	IEnumerator Fade(CanvasGroup group, GameObject next, float start, float end, float timeLerp = 0.5f)

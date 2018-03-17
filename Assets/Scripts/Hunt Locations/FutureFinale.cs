@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FutureFinale : MonoBehaviour 
 {
@@ -31,5 +32,15 @@ public class FutureFinale : MonoBehaviour
 	{
 		future.transform.Find("Page1").gameObject.SetActive(false);
 		future.transform.Find("Page2").gameObject.SetActive(true);
+	}
+
+	public void PennTeachIn()
+	{
+		Application.OpenURL("http://pennteachin.org");
+	}
+
+	public void LoadMainMenu()
+	{
+		SceneManager.LoadScene((int)LEVELS.MAIN_MENU);
 	}
 }
