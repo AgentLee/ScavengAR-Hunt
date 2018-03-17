@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="flyer" size="1275.000000 1648.000000" />
+    <ImageTarget name="Chess" size="1700.000000 2200.000000" />
+    <ImageTarget name="Cars" size="2200.000000 1700.000000" />
+    <ImageTarget name="Jeopardy" size="2200.000000 1700.000000" />
+    <ImageTarget name="Sophia" size="1700.000000 2200.000000" />
+    <ImageTarget name="drones" size="1700.000000 2200.000000" />
     <ImageTarget name="PennShield" size="6.000000 6.708000" />
   </Tracking>
 </QCARConfig>

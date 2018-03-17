@@ -288,9 +288,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 111385105}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75178343, y: 0.751784, z: 0.751784}
   m_Children:
   - {fileID: 335443329}
   - {fileID: 1114438443}
@@ -1858,19 +1858,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c72f045654f1454ea469e7b686968ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rothPowerup: 0
-  imageTarget: {fileID: 0}
-  starter: {fileID: 0}
-  GRASPPanel: {fileID: 0}
-  autonomousPanel: {fileID: 0}
-  nextGRASPClue: {fileID: 0}
-  nextGRASPCluePanel1: {fileID: 0}
-  nextGRASPCluePanel2: {fileID: 0}
-  fish: {fileID: 0}
   warning: {fileID: 0}
   buttonPressed: 0
   pauseMenu: {fileID: 0}
   instructions: {fileID: 0}
+  instructionsPanel: {fileID: 0}
   pauseButtons: {fileID: 0}
   paused: 0
 --- !u!4 &780641919
@@ -3627,8 +3619,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1445926280}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.2282474, z: 0}
-  m_LocalScale: {x: 0.22179855, y: 0.22179882, z: 0.22179882}
+  m_LocalPosition: {x: 0, y: 0.9233763, z: 0}
+  m_LocalScale: {x: 0.16674447, y: 0.16674474, z: 0.16674474}
   m_Children: []
   m_Father: {fileID: 1536064004}
   m_RootOrder: 1
@@ -3682,7 +3674,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.28947368, y: 0, z: 0.5}
+      m_Extent: {x: 0.38683254, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -3735,7 +3727,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: e53594be00000000000000bf000000000000803f000000000000000000000000e53594be000000000000003f000000000000803f00000000000000000000803fe535943e00000000000000bf000000000000803f000000000000803f00000000e535943e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: ea0ec6be00000000000000bf000000000000803f000000000000000000000000ea0ec6be000000000000003f000000000000803f00000000000000000000803fea0ec63e00000000000000bf000000000000803f000000000000803f00000000ea0ec63e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -4023,7 +4015,7 @@ Transform:
   m_GameObject: {fileID: 1536064003}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 5.54}
-  m_LocalScale: {x: 4.904344, y: 4.904344, z: 4.904344}
+  m_LocalScale: {x: 6.523613, y: 6.523613, z: 6.523613}
   m_Children:
   - {fileID: 111385106}
   - {fileID: 1445926281}
@@ -4104,15 +4096,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: Astronaut
+  mTrackableName: flyer
   mPreserveChildSize: 0
   mInitializedInEditor: 1
-  mDataSetPath: Vuforia/VuforiaMars_Images.xml
+  mDataSetPath: Vuforia/Penn.xml
   mExtendedTracking: 1
-  mAspectRatio: 1.7272727
+  mAspectRatio: 1.292549
   mImageTargetType: 0
-  mWidth: 2.8393571
-  mHeight: 4.904344
+  mWidth: 5.04709
+  mHeight: 6.523611
 --- !u!1 &1536624057
 GameObject:
   m_ObjectHideFlags: 0
@@ -4651,7 +4643,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: AstronautMaterial
+  m_Name: flyerMaterial
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -4664,7 +4656,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 9acbce508a2246108d4c0212523d1e6b, type: 3}
+        m_Texture: {fileID: 2800000, guid: b4369cffef044411b59d627348509e08, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []

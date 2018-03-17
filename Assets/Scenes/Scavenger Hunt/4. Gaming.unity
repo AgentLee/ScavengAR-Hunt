@@ -2879,13 +2879,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c72f045654f1454ea469e7b686968ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rothPowerup: 0
-  imageTarget: {fileID: 0}
-  starter: {fileID: 0}
   warning: {fileID: 0}
   buttonPressed: 0
   pauseMenu: {fileID: 0}
   instructions: {fileID: 0}
+  instructionsPanel: {fileID: 0}
   pauseButtons: {fileID: 0}
   paused: 0
 --- !u!4 &872949331

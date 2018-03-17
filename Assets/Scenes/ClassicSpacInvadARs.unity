@@ -3755,7 +3755,7 @@ Transform:
   m_GameObject: {fileID: 542177367}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.8, z: 8.69}
-  m_LocalScale: {x: 6.7080154, y: 6.7080154, z: 6.7080154}
+  m_LocalScale: {x: 6.708, y: 6.708, z: 6.708}
   m_Children:
   - {fileID: 426012128}
   m_Father: {fileID: 1642489653}
@@ -3842,8 +3842,8 @@ MonoBehaviour:
   mExtendedTracking: 1
   mAspectRatio: 1.118
   mImageTargetType: 0
-  mWidth: 6.000014
-  mHeight: 6.7080154
+  mWidth: 6
+  mHeight: 6.708
 --- !u!114 &542177374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9051,7 +9051,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 720e4f29544e42dba798e7245e219fc5, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4f71bb083f9346a8b52e8db05200d273, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []

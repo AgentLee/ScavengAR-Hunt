@@ -880,7 +880,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.28947368, y: 0, z: 0.5}
+      m_Extent: {x: 0.38636363, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -933,7 +933,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: e53594be00000000000000bf000000000000803f000000000000000000000000e53594be000000000000003f000000000000803f00000000000000000000803fe535943e00000000000000bf000000000000803f000000000000803f00000000e535943e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: 74d1c5be00000000000000bf000000000000803f00000000000000000000000074d1c5be000000000000003f000000000000803f00000000000000000000803f74d1c53e00000000000000bf000000000000803f000000000000803f0000000074d1c53e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -3059,13 +3059,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c72f045654f1454ea469e7b686968ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rothPowerup: 0
-  imageTarget: {fileID: 0}
-  starter: {fileID: 0}
   warning: {fileID: 0}
   buttonPressed: 0
   pauseMenu: {fileID: 0}
   instructions: {fileID: 0}
+  instructionsPanel: {fileID: 0}
   pauseButtons: {fileID: 0}
   paused: 0
 --- !u!4 &969611116
@@ -3763,7 +3761,7 @@ Transform:
   m_GameObject: {fileID: 1254209569}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 5.54}
-  m_LocalScale: {x: 4.211319, y: 4.211319, z: 4.211319}
+  m_LocalScale: {x: 6.1906786, y: 6.1906786, z: 6.1906786}
   m_Children:
   - {fileID: 2096523244}
   m_Father: {fileID: 877322131}
@@ -3843,15 +3841,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: Drone
+  mTrackableName: drones
   mPreserveChildSize: 0
   mInitializedInEditor: 1
-  mDataSetPath: Vuforia/VuforiaMars_Images.xml
+  mDataSetPath: Vuforia/Penn.xml
   mExtendedTracking: 1
-  mAspectRatio: 1.7272727
+  mAspectRatio: 1.2941177
   mImageTargetType: 0
-  mWidth: 2.438132
-  mHeight: 4.211319
+  mWidth: 4.783706
+  mHeight: 6.1906786
 --- !u!1 &1353847799
 GameObject:
   m_ObjectHideFlags: 0
@@ -4254,7 +4252,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: DroneMaterial
+  m_Name: dronesMaterial
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -4267,7 +4265,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 9c4e7c8fc8274d33a063152a2a6bb51a, type: 3}
+        m_Texture: {fileID: 2800000, guid: ee03af7860a44914b9388c580a1686cc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
@@ -5427,9 +5425,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2096523243}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.68026775, y: 0.68026835, z: 0.68026835}
   m_Children:
   - {fileID: 1677087829}
   - {fileID: 371986767}
