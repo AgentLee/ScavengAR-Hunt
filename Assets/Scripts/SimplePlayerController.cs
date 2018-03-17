@@ -54,7 +54,7 @@ public class SimplePlayerController : MonoBehaviour
 		// rb.useGravity = true;
 
 		hit = false;
-		numLives = 5;
+		numLives = (PlayerPrefs.GetInt("PowerUpFish") == 1) ? 6 : 5;
 
 		powerups = new Powerups(true);
 	}
@@ -126,7 +126,7 @@ public class SimplePlayerController : MonoBehaviour
 	{
 		blasterSound.Play();
 		
-		powerups.weaponSpread = PlayerPrefs.HasKey("Fish");
+		// powerups.weaponSpread = PlayerPrefs.HasKey("Fish");
 
 		bool FPS = false;
 		if(FPS) {
@@ -145,7 +145,7 @@ public class SimplePlayerController : MonoBehaviour
 			}
 		}
 		else {
-			if(powerups.weaponSpread) {
+			if(PlayerPrefs.GetInt("WeaponSpread") == 1) {
 				GameObject spawnedBulletL = Instantiate(bullet, player.position - new Vector3(0.5f, 0, 0), new Quaternion());			
 				Physics.IgnoreCollision(spawnedBulletL.GetComponent<Collider>(), GetComponent<Collider>(), true);
 				spawnedBulletL.GetComponent<Rigidbody>().AddForce((player.up - player.right/5) * 500.0f);

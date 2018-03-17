@@ -44,26 +44,37 @@ public class ScavengerManager : MonoBehaviour
 		// Shield
 		if(PlayerPrefs.GetInt("PowerUpShield") == 1) {
 			inventory.transform.Find("Shield").Find("Image").gameObject.SetActive(true);
+			inventory.transform.Find("Shield").Find("Text").gameObject.SetActive(true);
 		}
 
 		// Bar
 		if(PlayerPrefs.GetInt("PowerUpBar") == 1) {
 			inventory.transform.Find("Bar").Find("Image").gameObject.SetActive(true);			
+			inventory.transform.Find("Bar").Find("Text").gameObject.SetActive(true);			
 		}
 
 		// Books
 		if(PlayerPrefs.GetInt("PowerUpBook") == 1) {
 			inventory.transform.Find("Book").Find("Image").gameObject.SetActive(true);			
+			inventory.transform.Find("Book").Find("Text").gameObject.SetActive(true);			
 		}
 
 		// Fish
 		if(PlayerPrefs.GetInt("PowerUpFish") == 1) {
 			inventory.transform.Find("Fish").Find("Image").gameObject.SetActive(true);			
+			inventory.transform.Find("Fish").Find("Text").gameObject.SetActive(true);			
 		}
 
 		// Penn
 		if(PlayerPrefs.GetInt("PowerUpPenn") == 1) {
+			// inventory.transform.Find("Button").GetComponent<Button>().interactable = true;	
+			// inventory.transform.Find("Button").GetComponent<Button>().GetComponent<UnityEngine.UI.Image>().color = Color.green;	
+			// inventory.transform.Find("Button").Find("Penn").Find("Image").gameObject.SetActive(true);			
+			// inventory.transform.Find("Button").Find("Penn").Find("Text").gameObject.SetActive(true);			
+			// inventory.transform.Find("Button").GetComponent<Button>().interactable = true;	
+			// inventory.transform.Find("Button").GetComponent<Button>().GetComponent<UnityEngine.UI.Image>().color = Color.green;	
 			inventory.transform.Find("Penn").Find("Image").gameObject.SetActive(true);			
+			inventory.transform.Find("Penn").Find("Text").gameObject.SetActive(true);			
 		}
 	}
 
@@ -71,6 +82,23 @@ public class ScavengerManager : MonoBehaviour
 	{
 		inventory.SetActive(false);
 		Pause();
+	}
+
+	public void WeaponSpread()
+	{
+		switch(PlayerPrefs.GetInt("WeaponSpread")) 
+		{
+			// Turn on
+			case 0:
+				PlayerPrefs.SetInt("WeaponSpread", 1);		
+				inventory.transform.Find("Button").GetComponent<Button>().GetComponent<UnityEngine.UI.Image>().color = Color.green;	
+				break;
+			// Turn off
+			case 1:
+				PlayerPrefs.SetInt("WeaponSpread", 0);
+				inventory.transform.Find("Button").GetComponent<Button>().GetComponent<UnityEngine.UI.Image>().color = Color.red;	
+				break;		
+		}
 	}
 
 	public void ToSpace()
