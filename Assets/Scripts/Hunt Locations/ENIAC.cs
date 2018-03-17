@@ -35,6 +35,9 @@ public class ENIAC : MonoBehaviour
 			case 1:
 				page1.SetActive(false);
 				nextClue.SetActive(true);
+				// Give Level 2 shield to player
+				PlayerPrefs.SetInt("PowerUpShield", 1);
+				Debug.Log("Shield: " + PlayerPrefs.GetInt("PowerUpShield"));
 				++currPage;
 				break;
 			default:
@@ -45,8 +48,15 @@ public class ENIAC : MonoBehaviour
 	public void NextClue()
 	{
 		// Give Level 2 shield to player
-		PlayerPrefs.SetInt("L2 Shield", 1);
-		
+		PlayerPrefs.SetInt("PowerUpShield", 1);
+		Debug.Log("Shield: " + PlayerPrefs.GetInt("PowerUpShield"));
+
+		// PlayerPrefs.SetInt("PowerUpShield", 0);		// ENIAC 	- Shield		- L2
+		// PlayerPrefs.SetInt("PowerUpBar", 0);		// AddLab 	- Bar			- L3 (if completed)
+		// PlayerPrefs.SetInt("PowerUpFish", 0);		// GRASP 	- Franklin Fish	- Life
+		// PlayerPrefs.SetInt("PowerUpBook", 0);		// SigLab 	- Book			- 
+		// PlayerPrefs.SetInt("PowerUpPenn", 0);		// SigLab 	- Penn Dots		- 
+
 		page1.SetActive(false);
 		nextClue.SetActive(true);
 	}

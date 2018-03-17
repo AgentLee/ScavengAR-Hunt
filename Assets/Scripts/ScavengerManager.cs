@@ -19,18 +19,44 @@ public class ScavengerManager : MonoBehaviour
 	public GameObject pauseButtons;
 	public bool paused = false;
 
-	// Use this for initialization
-	void Start () 
+	public GameObject inventory;
+
+	public void ShowInventory()
 	{
-		
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-		
+		inventory.SetActive(true);
+		Pause();
+
+		// Shield
+		if(PlayerPrefs.GetInt("PowerUpShield") == 1) {
+			inventory.transform.Find("Shield").Find("Image").gameObject.SetActive(true);
+		}
+
+		// Bar
+		if(PlayerPrefs.GetInt("PowerUpBar") == 1) {
+			inventory.transform.Find("Bar").Find("Image").gameObject.SetActive(true);			
+		}
+
+		// Books
+		if(PlayerPrefs.GetInt("PowerUpBook") == 1) {
+			inventory.transform.Find("Book").Find("Image").gameObject.SetActive(true);			
+		}
+
+		// Fish
+		if(PlayerPrefs.GetInt("PowerUpFish") == 1) {
+			inventory.transform.Find("Fish").Find("Image").gameObject.SetActive(true);			
+		}
+
+		// Penn
+		if(PlayerPrefs.GetInt("PowerUpPenn") == 1) {
+			inventory.transform.Find("Penn").Find("Image").gameObject.SetActive(true);			
+		}
 	}
 
+	public void CloseInventory()
+	{
+		inventory.SetActive(false);
+		Pause();
+	}
 
 	public void ToSpace()
 	{

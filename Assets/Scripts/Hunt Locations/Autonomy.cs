@@ -68,7 +68,14 @@ public class Autonomy : MonoBehaviour
 		currPage = 2;
 
 		// Give player extra life
-		PlayerPrefs.SetInt("ExtraLife", 1);
+		PlayerPrefs.SetInt("PowerUpFish", 1);
+		Debug.Log("Fish: " + PlayerPrefs.GetInt("PowerUpFish"));
+		
+		// PlayerPrefs.SetInt("PowerUpShield", 0);		// ENIAC 	- Shield		- L2
+		// PlayerPrefs.SetInt("PowerUpBar", 0);		// AddLab 	- Bar			- L3 (if completed)
+		// PlayerPrefs.SetInt("PowerUpFish", 0);		// GRASP 	- Franklin Fish	- Life
+		// PlayerPrefs.SetInt("PowerUpBook", 0);		// SigLab 	- Book			- 
+		// PlayerPrefs.SetInt("PowerUpPenn", 0);		// SigLab 	- Penn Dots		- 
 	}
 
 	IEnumerator DelayText(GameObject obj)

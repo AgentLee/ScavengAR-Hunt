@@ -96,8 +96,14 @@ public class Gaming : MonoBehaviour
 	public void AlphaToClue()
 	{
 		// Give player spread
-		PlayerPrefs.SetInt("BulletSpread", 1);
+		PlayerPrefs.SetInt("PowerUpPenn", 1);
 		
+		// PlayerPrefs.SetInt("PowerUpShield", 0);		// ENIAC 	- Shield		- L2
+		// PlayerPrefs.SetInt("PowerUpBar", 0);			// AddLab 	- Bar			- L3 (if completed)
+		// PlayerPrefs.SetInt("PowerUpFish", 0);		// GRASP 	- Franklin Fish	- Life
+		// PlayerPrefs.SetInt("PowerUpBook", 0);		// SigLab 	- Book			- 
+		// PlayerPrefs.SetInt("PowerUpPenn", 0);		// SigLab 	- Penn Dots		- 
+
 		alphaGo.SetActive(false);
 		nextClue.SetActive(true);
 	}
@@ -106,6 +112,8 @@ public class Gaming : MonoBehaviour
 	{
 		deepBlue.transform.Find("Book").gameObject.SetActive(true);
 		deepBlue.transform.Find("Panel1").gameObject.SetActive(false);
+
+		PlayerPrefs.SetInt("PowerUpBook", 1);		// SigLab 	- Book			-
 	}
 
 	// Fade In: start = 0.01, end = 1.0
