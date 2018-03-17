@@ -21,6 +21,21 @@ public class ScavengerManager : MonoBehaviour
 
 	public GameObject inventory;
 
+	void Start()
+	{
+		// DeletePowerUps();
+	}
+
+	/******* DEBUG *******/
+	private void DeletePowerUps()
+	{
+		PlayerPrefs.DeleteKey("PowerUpShield");
+		PlayerPrefs.DeleteKey("PowerUpBar");
+		PlayerPrefs.DeleteKey("PowerUpBook");
+		PlayerPrefs.DeleteKey("PowerUpFish");
+		PlayerPrefs.DeleteKey("PowerUpPenn");
+	}
+
 	public void ShowInventory()
 	{
 		inventory.SetActive(true);

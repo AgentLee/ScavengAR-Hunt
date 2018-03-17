@@ -29,34 +29,74 @@ public class SimpleBaseController : MonoBehaviour
 		hit 			= false;
 		timesHit 		= 0;
 
-		// Debug.Log(PlayerPrefs.GetInt("Shield"));
 
-		// PlayerPrefs.DeleteKey("Shield");
-		if(PlayerPrefs.HasKey("Shield")) {
-			switch(PlayerPrefs.GetInt("Shield"))
-			{
-				case 1:
-					shieldLevel 	= 1;
-					vulnerability 	= 5;
-					material.color 	= Color.yellow;
-					break;
-				case 2:
-					shieldLevel 	= 2;
-					vulnerability 	= 10;
-					material.color 	= Color.green;
-					break;
-				// case 3:
-				// 	shieldLevel 	= 3;
-				// 	vulnerability 	= 10;
-				// 	material.color 	= Color.green;
-				// 	break;
-			}
+
+
+		// Level 3
+		if(PlayerPrefs.GetInt("PowerUpBar") == 1 && PlayerPrefs.GetInt("PowerUpShield") == 1) {
+			shieldLevel = 3;
+			vulnerability = 10;
+			material.color = Color.green;
+		}
+		else if(PlayerPrefs.GetInt("PowerUpBar") == 1 && PlayerPrefs.GetInt("PowerUpShield") == 0 ||
+				PlayerPrefs.GetInt("PowerUpBar") == 0 && PlayerPrefs.GetInt("PowerUpShield") == 1) {
+			shieldLevel = 2;
+			vulnerability = 5;
+			material.color = Color.yellow;
 		}
 		else {
-			shieldLevel 	= 1;
-			vulnerability 	= 2;
-			material.color 	= Color.red;
+			shieldLevel = 1;
+			vulnerability = 2;
+			material.color = Color.red;		
 		}
+
+		// // Level 3
+		// if(PlayerPrefs.HasKey("PowerUpBar") && PlayerPrefs.HasKey("PowerUpShield")) {
+		// 	shieldLevel = 3;
+		// 	vulnerability = 10;
+		// 	material.color = Color.green;
+		// } 
+		// // Level 2
+		// else if(PlayerPrefs.HasKey("PowerUpBar") || PlayerPrefs.HasKey("PowerUpShield")) {
+		// 	shieldLevel = 2;
+		// 	vulnerability = 5;
+		// 	material.color = Color.red;
+		// }
+		// // Level 1
+		// else {
+		// 	shieldLevel = 1;
+		// 	vulnerability = 2;
+		// 	material.color = Color.red;
+		// }
+
+
+
+		// PlayerPrefs.DeleteKey("Shield");
+		// if(PlayerPrefs.HasKey("Shield")) {
+		// 	switch(PlayerPrefs.GetInt("Shield"))
+		// 	{
+		// 		case 1:
+		// 			shieldLevel 	= 1;
+		// 			vulnerability 	= 5;
+		// 			material.color 	= Color.yellow;
+		// 			break;
+		// 		case 2:
+		// 			shieldLevel 	= 2;
+		// 			vulnerability 	= 10;
+		// 			material.color 	= Color.green;
+		// 			break;
+		// 		// case 3:
+		// 		// 	shieldLevel 	= 3;
+		// 		// 	vulnerability 	= 10;
+		// 		// 	material.color 	= Color.green;
+		// 		// 	break;
+		// 	}
+		// }
+		// else {
+		// 	shieldLevel 	= 1;
+		// 	vulnerability 	= 2;
+		// 	material.color 	= Color.red;
+		// }
 
 		shieldRegen = GetComponent<AudioSource>();
 	}

@@ -11,7 +11,9 @@ public class Menu : MonoBehaviour
 	GameManager manager;
 
 	// Pause Menu --------------------
+	public GameObject pauseIcon;
 	public GameObject pauseMenu;
+	public GameObject inventory;
 	public GameObject instructions;
 	public GameObject pauseButtons;
 	private bool _paused, _showingInstructions;
@@ -52,6 +54,45 @@ public class Menu : MonoBehaviour
 		// 	toggleTilt.GetComponent<Image>().color = controlDisabledColor;
 		// 	toggleGamepad.GetComponent<Image>().color = controlEnabledColor;
 		// }
+	}
+
+	public void ShowInventory()
+	{
+		inventory.SetActive(true);
+		manager.showingInventory = true;
+		pauseButtons.SetActive(false);
+
+		// Shield
+		if(PlayerPrefs.GetInt("PowerUpShield") == 1) {
+			inventory.transform.Find("Shield").Find("Image").gameObject.SetActive(true);
+		}
+
+		// Bar
+		if(PlayerPrefs.GetInt("PowerUpBar") == 1) {
+			inventory.transform.Find("Bar").Find("Image").gameObject.SetActive(true);			
+		}
+
+		// Books
+		if(PlayerPrefs.GetInt("PowerUpBook") == 1) {
+			inventory.transform.Find("Book").Find("Image").gameObject.SetActive(true);			
+		}
+
+		// Fish
+		if(PlayerPrefs.GetInt("PowerUpFish") == 1) {
+			inventory.transform.Find("Fish").Find("Image").gameObject.SetActive(true);			
+		}
+
+		// Penn
+		if(PlayerPrefs.GetInt("PowerUpPenn") == 1) {
+			inventory.transform.Find("Penn").Find("Image").gameObject.SetActive(true);			
+		}
+	}
+
+	public void CloseInventory()
+	{
+		inventory.SetActive(false);
+		manager.showingInventory = false;
+		pauseButtons.SetActive(true);
 	}
 
 	public GameObject warning;

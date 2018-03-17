@@ -13,17 +13,18 @@ public class FutureFinale : MonoBehaviour
 	// Sophia to Future page
 	public void NextPage()
 	{	
-		// Check for all first
-		// Give player Level 3 shields
 		PlayerPrefs.SetInt("PowerUpBar", 1);
 
+		// Check for all first
 		if(	PlayerPrefs.GetInt("PowerUpShield") == 1 &&
 			PlayerPrefs.GetInt("PowerUpBar") == 1 &&
 			PlayerPrefs.GetInt("PowerUpBook") == 1 &&
 			PlayerPrefs.GetInt("PowerUpFish") == 1 &&
 			PlayerPrefs.GetInt("PowerUpPenn") == 1) 
 		{
+			// Give player Level 3 shields
 			puzzleDesc.GetComponent<TextMeshProUGUI>().text += "\nYou now have Level 3 shields!";
+			PlayerPrefs.SetInt("L3", 1);
 		}
 		else {
 			puzzleDesc.SetActive(false);			
@@ -31,7 +32,7 @@ public class FutureFinale : MonoBehaviour
 
 
 		// PlayerPrefs.SetInt("PowerUpShield", 0);		// ENIAC 	- Shield		- L2
-		// PlayerPrefs.SetInt("PowerUpBar", 0);		// AddLab 	- Bar			- L3 (if completed)
+		// PlayerPrefs.SetInt("PowerUpBar", 0);			// AddLab 	- Bar			- L3 (if completed)
 		// PlayerPrefs.SetInt("PowerUpFish", 0);		// GRASP 	- Franklin Fish	- Life
 		// PlayerPrefs.SetInt("PowerUpBook", 0);		// SigLab 	- Book			- 
 		// PlayerPrefs.SetInt("PowerUpPenn", 0);		// SigLab 	- Penn Dots		- 

@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
 	public GameObject mainMenu;
 	public GameObject instructions;
 	public bool showingInstructions;
+	public bool showingInventory;
 	public bool paused;
 	public int buttonPressed;
 
@@ -163,7 +164,7 @@ public class GameManager : MonoBehaviour
 	{	
 		// Only allow the game to run if the instructions 
 		// and paused menus are off.
-		if(!showingInstructions && !paused) {
+		if(!showingInstructions && !paused && !showingInstructions) {
 			RunGame();
 		}
 	}
