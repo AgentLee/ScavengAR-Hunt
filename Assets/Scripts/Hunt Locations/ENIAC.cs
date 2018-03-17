@@ -44,6 +44,9 @@ public class ENIAC : MonoBehaviour
 
 	public void NextClue()
 	{
+		// Give Level 2 shield to player
+		PlayerPrefs.SetInt("L2 Shield", 1);
+		
 		page1.SetActive(false);
 		nextClue.SetActive(true);
 	}

@@ -66,6 +66,9 @@ public class Autonomy : MonoBehaviour
 		page1.SetActive(false);
 		nextClue.SetActive(true);
 		currPage = 2;
+
+		// Give player extra life
+		PlayerPrefs.SetInt("ExtraLife", 1);
 	}
 
 	IEnumerator DelayText(GameObject obj)

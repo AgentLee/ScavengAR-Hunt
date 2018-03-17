@@ -8,21 +8,12 @@ public class FutureFinale : MonoBehaviour
 	public GameObject sophia;
 	public GameObject future;
 
-	// Use this for initialization
-	void Start () 
-	{
-		
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-		
-	}
-
 	// Sophia to Future page
 	public void NextPage()
 	{	
+		// Give player Level 3 shields
+		PlayerPrefs.SetInt("L3 Shield", 1);
+		
 		sophia.SetActive(false);
 		future.SetActive(true);
 	}

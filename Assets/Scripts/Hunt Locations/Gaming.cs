@@ -95,6 +95,9 @@ public class Gaming : MonoBehaviour
 	
 	public void AlphaToClue()
 	{
+		// Give player spread
+		PlayerPrefs.SetInt("BulletSpread", 1);
+		
 		alphaGo.SetActive(false);
 		nextClue.SetActive(true);
 	}
