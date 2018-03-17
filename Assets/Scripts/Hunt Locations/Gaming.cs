@@ -9,6 +9,7 @@ public class Gaming : MonoBehaviour
 	public GameObject watson;
 	public GameObject alphaGo;
 	public GameObject nextClue;
+	public GameObject book;
 
 	int currPage;
 	bool fading;
@@ -98,6 +99,12 @@ public class Gaming : MonoBehaviour
 		nextClue.SetActive(true);
 	}
 	
+	public void GetBook()
+	{
+		deepBlue.transform.Find("Book").gameObject.SetActive(true);
+		deepBlue.transform.Find("Panel1").gameObject.SetActive(false);
+	}
+
 	// Fade In: start = 0.01, end = 1.0
 	// Fade Out: start = 1.0, end = 0.0
 	IEnumerator Fade(CanvasGroup group, GameObject next, float start, float end, float timeLerp = 0.5f)
