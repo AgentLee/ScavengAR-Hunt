@@ -18,6 +18,7 @@ public class ScavengerManager : MonoBehaviour
 	public GameObject instructionsPanel;
 	public GameObject pauseButtons;
 	public bool paused = false;
+	public GameObject pauseIcon;
 
 	public GameObject inventory;
 
