@@ -149,13 +149,15 @@ public class ScavengerManager : MonoBehaviour
 	public void OpenInstructions()
 	{
 		instructionsPanel.SetActive(true);
-		pauseButtons.SetActive(false);
+		// pauseButtons.SetActive(false);
+		pauseMenu.SetActive(!pauseMenu.activeSelf);
 	}
 
 	public void CloseInstructions()
 	{
 		instructionsPanel.SetActive(false);
-		pauseButtons.SetActive(true);
+		// pauseButtons.SetActive(true);
+		pauseMenu.SetActive(!pauseMenu.activeSelf);
 	}
 
 	public void LoadMainMenu()
