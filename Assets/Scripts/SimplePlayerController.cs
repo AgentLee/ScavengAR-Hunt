@@ -173,8 +173,9 @@ public class SimplePlayerController : MonoBehaviour
 				
 				// Make sure there are enough lives for the player to blink
 				if(--numLives <= 0) {
-					Destroy(gameObject);
+					// Destroy(gameObject);
 					UpdateScores();
+					gameObject.SetActive(false);
 				}
 				else {
 					StartCoroutine(Blink());

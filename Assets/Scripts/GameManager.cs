@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
 		
 		// Only allow the game to run if the instructions 
 		// and paused menus are off.
-		if(!showingInstructions && !paused && !showingInstructions) {
+		if(!showingInstructions && !paused && !showingInventory) {
 			RunGame();
 		}
 	}

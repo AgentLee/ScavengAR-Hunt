@@ -183,7 +183,7 @@ public class Menu : MonoBehaviour
 
 	public void InitGamepad()
 	{
-		if(PlayerPrefs.GetInt("Gamepad") == 1) {
+		if(PlayerPrefs.GetInt("Gamepad") == 0) {
 			southpawGamepad.SetActive(true);
 			gamepad.SetActive(false);
 

@@ -28,6 +28,7 @@ public class SimpleEnemyController : MonoBehaviour
 	public AudioSource thudSound;
 	public GameObject smoke;
 	public GameObject explosion;
+	public SimplePlayerController player;
 
 	public bool FPS;
 
@@ -97,6 +98,10 @@ public class SimpleEnemyController : MonoBehaviour
 			}
 		}
 		else {
+			if(!player.gameObject.activeSelf) {
+				return;
+			}
+			
 			if(!hit) {
 				RaycastHit intersection;
 				Ray ray = new Ray(enemy.position, -enemy.up);
@@ -105,12 +110,18 @@ public class SimpleEnemyController : MonoBehaviour
 
 						// Fire bullet
 						if(fireTime >= fireRate && Random.Range(0,8) == id) {
-							blasterSound.Play();
-
-							SimplePlayerController player = GameObject.Find("Player").GetComponent<SimplePlayerController>();
+							// if(!GameObject.Find("Player").GetComponent<SimplePlayerController>()) 
+							// 	return;
+								
+							// SimplePlayerController player = GameObject.Find("Player").GetComponent<SimplePlayerController>();
 							Vector3 shotDir = (player.transform.position - transform.position).normalized;
 
+							if(player.numLives <= 0) {
+								return;
+							}
+
 							GameObject spawnedBullet = Instantiate(bullet, transform.position, bullet.transform.rotation);
+							blasterSound.Play();
 
 							GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 							for(int i = 0; i < enemies.Length; ++i) {
