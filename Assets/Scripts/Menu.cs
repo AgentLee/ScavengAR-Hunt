@@ -113,7 +113,7 @@ public class Menu : MonoBehaviour
 	public void CloseInventory()
 	{
 		inventory.SetActive(false);
-		pauseIcon.SetActive(true);
+		pauseIcon.SetActive(false);
 		manager.showingInventory = false;
 		pauseButtons.SetActive(true);
 	}
@@ -122,24 +122,28 @@ public class Menu : MonoBehaviour
 	public void Pause()
 	{
 		manager.paused = !manager.paused;
+		pauseIcon.SetActive(false);
 		pauseMenu.SetActive(manager.paused);		
 	}
 
 	public void Resume()
 	{
 		manager.paused = false;
+		pauseIcon.SetActive(true);		
 		pauseMenu.SetActive(false);
 	}
 
 	public void LeaveSpaceWarning()
 	{
 		warning.SetActive(true);
+		pauseIcon.SetActive(false);
 		pauseButtons.SetActive(false);
 	}
 
 	public void CloseWarning()
 	{
 		warning.SetActive(false);
+		pauseIcon.SetActive(false);
 		pauseButtons.SetActive(true);
 	}
 
@@ -167,7 +171,7 @@ public class Menu : MonoBehaviour
 	{
 		instructions.SetActive(false);
 		manager.showingInstructions = false;
-		pauseIcon.SetActive(true);
+		pauseIcon.SetActive(false);
 		pauseButtons.SetActive(true);
 	}
 

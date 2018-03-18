@@ -126,7 +126,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.1
+  bundleVersion: 1.2
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -161,8 +161,8 @@ PlayerSettings:
     Android: com.JonathanLee.DRONE
     iOS: com.JonathanLee.PennScavengARHunt
   buildNumber:
-    iOS: 1
-  AndroidBundleVersionCode: 3
+    iOS: 0
+  AndroidBundleVersionCode: 4
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -263,7 +263,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: b2c01a2119bab451db788d235f66232c, type: 3}
+      m_Icon: {fileID: 2800000, guid: 0deba073e43a94660a666a1d544ed178, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
