@@ -162,6 +162,8 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{	
+		simplePlayer.GetComponent<MeshRenderer>().enabled = false;
+		
 		// Only allow the game to run if the instructions 
 		// and paused menus are off.
 		if(!showingInstructions && !paused && !showingInstructions) {

@@ -3977,11 +3977,11 @@ MonoBehaviour:
     lineCount: 2
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -4219,11 +4219,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -5894,7 +5894,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 807581978}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -5932,8 +5932,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.6996863, y: 1, z: 4.272927}
+  m_Center: {x: 0.059397362, y: 0, z: 1.3186772}
 --- !u!33 &807581981
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5950,7 +5950,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -390.04993, y: -195.07214, z: 2.6296709}
   m_LocalScale: {x: 2.1060207, y: 0.8437481, z: 0.8437481}
-  m_Children: []
+  m_Children:
+  - {fileID: 1683950705}
   m_Father: {fileID: 426012128}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11317,11 +11318,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -12340,6 +12341,77 @@ Transform:
   m_PrefabParentObject: {fileID: 4274227621692826, guid: 00e06d55413c04c55bc809a45578bcab,
     type: 2}
   m_PrefabInternal: {fileID: 1665771793}
+--- !u!1001 &1683950701
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 807581982}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 564c86c1543c6eb4e8525374599f15cc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.00020286888
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 564c86c1543c6eb4e8525374599f15cc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2407051
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 564c86c1543c6eb4e8525374599f15cc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.82332456
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 564c86c1543c6eb4e8525374599f15cc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 564c86c1543c6eb4e8525374599f15cc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 564c86c1543c6eb4e8525374599f15cc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 564c86c1543c6eb4e8525374599f15cc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 564c86c1543c6eb4e8525374599f15cc, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 564c86c1543c6eb4e8525374599f15cc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.090903796
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 564c86c1543c6eb4e8525374599f15cc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.22689874
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 564c86c1543c6eb4e8525374599f15cc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.22689874
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 564c86c1543c6eb4e8525374599f15cc, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 564c86c1543c6eb4e8525374599f15cc, type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 564c86c1543c6eb4e8525374599f15cc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a514b444dba54df418424449041a3aa6, type: 2}
+    m_RemovedComponents:
+    - {fileID: 11100000, guid: 564c86c1543c6eb4e8525374599f15cc, type: 3}
+  m_ParentPrefab: {fileID: 100100000, guid: 564c86c1543c6eb4e8525374599f15cc, type: 3}
+  m_IsPrefabParent: 0
+--- !u!4 &1683950705 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 564c86c1543c6eb4e8525374599f15cc, type: 3}
+  m_PrefabInternal: {fileID: 1683950701}
 --- !u!1001 &1684852887
 Prefab:
   m_ObjectHideFlags: 0
@@ -13189,11 +13261,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -14923,11 +14995,11 @@ MonoBehaviour:
     lineCount: 8
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
