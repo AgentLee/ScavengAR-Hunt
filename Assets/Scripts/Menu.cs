@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour 
 {
 	GameManager manager;
+	public SimplePlayerController player;
 
 	// Pause Menu --------------------
 	public GameObject pauseIcon;
@@ -21,6 +22,8 @@ public class Menu : MonoBehaviour
 	// Toggle Gamepad --------------------
 	public Button toggleGamepad;
 	public GameObject gamepad;
+	public GameObject normalGamepad;
+	public GameObject southpawGamepad;
 	bool normalSetting = true;
 
 	// Toggle Tilt --------------------
@@ -54,6 +57,9 @@ public class Menu : MonoBehaviour
 		// 	toggleTilt.GetComponent<Image>().color = controlDisabledColor;
 		// 	toggleGamepad.GetComponent<Image>().color = controlEnabledColor;
 		// }
+
+		// Load playerprefs
+		InitGamepad();
 	}
 
 	public void ShowInventory()
@@ -175,23 +181,40 @@ public class Menu : MonoBehaviour
 		pauseButtons.SetActive(true);
 	}
 
-	public void ToggleGamepad()
+	public void InitGamepad()
 	{
-		Vector3 lhs = gamepad.transform.Find("LHS").position;
-		Vector3 rhs = gamepad.transform.Find("RHS").position;
+		if(PlayerPrefs.GetInt("Gamepad") == 1) {
+			southpawGamepad.SetActive(true);
+			gamepad.SetActive(false);
 
-		if(normalSetting) {
-			PlayerPrefs.SetInt("Gamepad", 1);
-			manager.fireButton.transform.position = lhs;
-			manager.joystick.transform.position = rhs;
+			player.joystick = southpawGamepad.transform.Find("Joystick").GetComponent<Joystick>();
+			PlayerPrefs.SetInt("Gamepad", 0);
 		}
 		else {
-			PlayerPrefs.SetInt("Gamepad", 0);
-			manager.fireButton.transform.position = rhs;
-			manager.joystick.transform.position = lhs;
-		}
+			gamepad.SetActive(true);
+			southpawGamepad.SetActive(false);
 
-		normalSetting = !normalSetting;
+			player.joystick = gamepad.transform.Find("Joystick").GetComponent<Joystick>();
+			PlayerPrefs.SetInt("Gamepad", 1);
+		}
+	}
+
+	public void ToggleGamepad()
+	{
+		if(gamepad.activeSelf) {
+			southpawGamepad.SetActive(true);
+			gamepad.SetActive(false);
+
+			player.joystick = southpawGamepad.transform.Find("Joystick").GetComponent<Joystick>();
+			PlayerPrefs.SetInt("Gamepad", 0);
+		}
+		else {
+			gamepad.SetActive(true);
+			southpawGamepad.SetActive(false);
+
+			player.joystick = gamepad.transform.Find("Joystick").GetComponent<Joystick>();
+			PlayerPrefs.SetInt("Gamepad", 1);
+		}
 	}
 
 	public void ToggleTilt()

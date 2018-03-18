@@ -100,11 +100,11 @@ public class SimplePlayerController : MonoBehaviour
 		// if(PlayerPrefs.GetInt("Tilt") == 1) {
 			// h = Input.acceleration.x;
 		// } 
-		// else {
-			if(Application.isEditor) {
-				h = Input.GetAxis("Horizontal");
-			}
-			else {
+		// // else {
+		// 	if(Application.isEditor) {
+		// 		h = Input.GetAxis("Horizontal");
+		// 	}
+		// 	else {
 				// if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
 				// 	Vector2 delta = Input.GetTouch(0).deltaPosition;
 
@@ -112,7 +112,7 @@ public class SimplePlayerController : MonoBehaviour
 				// }
 
 				h = joystick.InputDirection.x;
-			}
+			// }
 		// }
 		
 		if(player.position.x < minBounds && h < 0 ||
