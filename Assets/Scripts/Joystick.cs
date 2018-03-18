@@ -31,7 +31,8 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
 			pos.y = (pos.y / bgImage.rectTransform.sizeDelta.y);
 
 			float x = (bgImage.rectTransform.pivot.x == 1) ? pos.x * 2 + 1 : pos.x * 2 - 1;
-			float y = (bgImage.rectTransform.pivot.y == 1) ? pos.y * 2 + 1 : pos.y * 2 - 1;
+			// float y = (bgImage.rectTransform.pivot.y == 1) ? pos.y * 2 + 1 : pos.y * 2 - 1;
+			float y = 0.0f;
 
 			InputDirection = new Vector3(x, 0, y);
 			InputDirection = (InputDirection.magnitude > 1) ? InputDirection.normalized : InputDirection; 
