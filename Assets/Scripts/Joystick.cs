@@ -45,7 +45,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
 	{
 		OnDrag(pointerEventData);
 
-		StartCoroutine(HideJoystick());
+		// StartCoroutine(HideJoystick());
 	}
 
 	IEnumerator HideJoystick()
