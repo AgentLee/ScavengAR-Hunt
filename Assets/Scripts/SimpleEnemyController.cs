@@ -74,29 +74,29 @@ public class SimpleEnemyController : MonoBehaviour
 			return;
 		}
 
-		if(FPS) {
-			MoveDrone();
-			Fire();
+		// if(FPS) {
+		// 	MoveDrone();
+		// 	Fire();
 
-			if(enemy.position.z <= -50.0f || enemy.position.y <= -50.0f) {
-				Destroy(gameObject);
-			}
-		}
+		// 	if(enemy.position.z <= -50.0f || enemy.position.y <= -50.0f) {
+		// 		Destroy(gameObject);
+		// 	}
+		// }
 
-		if(scene.name == "DroneTest2") {
-			if(fireTime >= fireRate) {
-				Fire();
-				fireTime = 0;
-			}
-			else {
-				fireTime += Time.deltaTime;
-			}
+		// if(scene.name == "DroneTest2") {
+		// 	if(fireTime >= fireRate) {
+		// 		Fire();
+		// 		fireTime = 0;
+		// 	}
+		// 	else {
+		// 		fireTime += Time.deltaTime;
+		// 	}
 
-			if(enemy.position.y < -25.0f) {
-				Destroy(gameObject);
-			}
-		}
-		else {
+		// 	if(enemy.position.y < -25.0f) {
+		// 		Destroy(gameObject);
+		// 	}
+		// }
+		// else {
 			if(!hit) {
 				RaycastHit intersection;
 				Ray ray = new Ray(enemy.position, -enemy.up);
@@ -107,8 +107,8 @@ public class SimpleEnemyController : MonoBehaviour
 						if(fireTime >= fireRate && Random.Range(0,8) == id) {
 							blasterSound.Play();
 
-							SimplePlayerController player = GameObject.Find("Player").GetComponent<SimplePlayerController>();
-							Vector3 shotDir = (player.transform.position - transform.position).normalized;
+							// SimplePlayerController player = GameObject.Find("Player").GetComponent<SimplePlayerController>();
+							// Vector3 shotDir = (player.transform.position - transform.position).normalized;
 
 							GameObject spawnedBullet = Instantiate(bullet, transform.position, bullet.transform.rotation);
 
@@ -129,7 +129,7 @@ public class SimpleEnemyController : MonoBehaviour
 					}
 				}
 			}
-		}
+		// }
 
 		// if(grounded) {
 		// 	StartCoroutine(WaitToDestroyExpl(Instantiate(explosion, enemy.position, enemy.rotation)));			

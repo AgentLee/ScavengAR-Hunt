@@ -174,7 +174,6 @@ public class GameManager : MonoBehaviour
 
 	void RunGame()
 	{
-
 		// Shows Top Score, Current Score, My High Score
 		DisplayScores();				
 		// Keep strack of how many lives the player has and shows it on the bottom.
