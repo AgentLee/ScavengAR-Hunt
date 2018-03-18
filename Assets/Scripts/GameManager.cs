@@ -163,7 +163,7 @@ public class GameManager : MonoBehaviour
 	void Update () 
 	{	
 		// Turn off proxy
-		simplePlayer.GetComponent<MeshRenderer>().enabled = false;
+		// simplePlayer.GetComponent<MeshRenderer>().enabled = false;
 		
 		// Only allow the game to run if the instructions 
 		// and paused menus are off.
