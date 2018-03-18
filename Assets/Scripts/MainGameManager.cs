@@ -75,7 +75,7 @@ public class MainGameManager : MonoBehaviour
 	void Awake()
 	{
 		ChangeMenus();
-		EnableScavengAR();		
+		// EnableScavengAR();		
 	}
 
 	// Use this for initialization

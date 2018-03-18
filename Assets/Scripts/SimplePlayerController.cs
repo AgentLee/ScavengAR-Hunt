@@ -54,7 +54,7 @@ public class SimplePlayerController : MonoBehaviour
 		// rb.useGravity = true;
 
 		hit = false;
-		numLives = (PlayerPrefs.GetInt("PowerUpFish") == 1) ? 6 : 5;
+		numLives = (PlayerPrefs.GetInt("PowerUpFish") == 1) ? 4 : 3	;
 
 		powerups = new Powerups(true);
 	}
