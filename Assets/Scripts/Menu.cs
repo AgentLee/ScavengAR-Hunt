@@ -60,6 +60,7 @@ public class Menu : MonoBehaviour
 	{
 		inventory.SetActive(true);
 		manager.showingInventory = true;
+		pauseIcon.SetActive(false);
 		pauseButtons.SetActive(false);
 
 		// Shield
@@ -112,6 +113,7 @@ public class Menu : MonoBehaviour
 	public void CloseInventory()
 	{
 		inventory.SetActive(false);
+		pauseIcon.SetActive(true);
 		manager.showingInventory = false;
 		pauseButtons.SetActive(true);
 	}
@@ -157,6 +159,7 @@ public class Menu : MonoBehaviour
 	{
 		instructions.SetActive(true);
 		manager.showingInstructions = true;
+		pauseIcon.SetActive(false);
 		pauseButtons.SetActive(false);
 	}
 
@@ -164,6 +167,7 @@ public class Menu : MonoBehaviour
 	{
 		instructions.SetActive(false);
 		manager.showingInstructions = false;
+		pauseIcon.SetActive(true);
 		pauseButtons.SetActive(true);
 	}
 
