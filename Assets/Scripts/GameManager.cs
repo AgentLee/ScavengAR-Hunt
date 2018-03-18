@@ -118,16 +118,16 @@ public class GameManager : MonoBehaviour
 		// If it's the player's first time playing, 
 		// FirstPlayed in PlayerPrefs will be set and 
 		// the instructions will be shown.
-		if(simplePlayer.FirstTime()) {
-			showingInstructions = true;
-			paused = true;
-			StartCoroutine(ShowInstructions());
-		}
-		// Otherwise, start the game immediately.
-		else {
+		// if(simplePlayer.FirstTime()) {
+		// 	showingInstructions = true;
+		// 	paused = true;
+		// 	// StartCoroutine(ShowInstructions());
+		// }
+		// // Otherwise, start the game immediately.
+		// else {
 			showingInstructions = false;
 			paused = false;
-		}
+		// }
 
 		increased = false;
 		moveDronesDown = false;
@@ -162,6 +162,7 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{	
+		// Turn off proxy
 		simplePlayer.GetComponent<MeshRenderer>().enabled = false;
 		
 		// Only allow the game to run if the instructions 

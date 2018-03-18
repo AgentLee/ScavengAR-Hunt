@@ -14,11 +14,12 @@ using UnityEngine.UI;
 
 public enum LEVELS
 {
-	MAIN_MENU		= 0,
-	SCAVENGER_HUNT 	= 1,
-	SPACE_INVADERS 	= 2,
-	HIGH_SCORES 	= 3,
-	REGISTRATION	= 4,
+	SPLASH			= 0,
+	MAIN_MENU		= 1,
+	SCAVENGER_HUNT 	= 2,
+	SPACE_INVADERS 	= 3,
+	HIGH_SCORES 	= 4,
+	REGISTRATION	= 5,
 }
 
 public struct PlayerScore 
