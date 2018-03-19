@@ -123,19 +123,22 @@ public class MainGameManager : MonoBehaviour
 	{
 		if(Application.platform == RuntimePlatform.Android) {
 			playMenu = androidMenu;
+			highScores 	= playMenu.transform.Find("High Scores Button").gameObject;
 			quit = playMenu.transform.Find("Quit").gameObject;
 		}
 		else if(Application.platform == RuntimePlatform.IPhonePlayer) {
 			playMenu = iosMenu;
-
+			
 			// Disable all quit options for iOS
 			continueMenu.transform.Find("Quit").gameObject.SetActive(false);
+			// highScores 	= playMenu.transform.Find("High Scores Button").gameObject;
 		}
 		/********** DEBUG **********/
 		else {
 			bool simDroid = false;
 			if(simDroid) {
 				playMenu = androidMenu;
+				highScores 	= playMenu.transform.Find("High Scores Button").gameObject;
 				quit = playMenu.transform.Find("Quit").gameObject;
 			}
 			else {
@@ -143,13 +146,13 @@ public class MainGameManager : MonoBehaviour
 				
 				// Disable all quit options for iOS
 				continueMenu.transform.Find("Quit").gameObject.SetActive(false);
+				// highScores 	= playMenu.transform.Find("High Scores Button").gameObject;
 			}
 		}
 
 		// Find the rest of the components
 		play 		= playMenu.transform.Find("Play Button").gameObject;
 		explore 	= playMenu.transform.Find("Hunt").gameObject;
-		highScores 	= playMenu.transform.Find("High Scores Button").gameObject;
 		about	 	= playMenu.transform.Find("About").gameObject;
 	}
 
@@ -167,6 +170,32 @@ public class MainGameManager : MonoBehaviour
 	// ----------------------------------------
 	// Button Events --------------------------
 	// ----------------------------------------
+
+	public GameObject howToPlay;
+	public void OpenHowToPlay()
+	{
+		playMenu.SetActive(false);
+		howToPlay.SetActive(true);
+	}
+	
+	public void CloseHowToPlay()
+	{
+		playMenu.SetActive(true);
+		howToPlay.SetActive(false);
+	}
+
+	public GameObject aboutDesc;
+	public void OpenAbout()
+	{
+		playMenu.SetActive(false);
+		aboutDesc.SetActive(true);
+	}
+
+	public void CloseAbout()
+	{
+		playMenu.SetActive(true);
+		aboutDesc.SetActive(false);
+	}
 
 	// Displays user name and asks if they want to continue as that user.
 	// If no, then they can reregister under a different ename.
