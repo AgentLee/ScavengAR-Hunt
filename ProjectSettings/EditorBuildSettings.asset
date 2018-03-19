@@ -15,14 +15,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Scavenger Hunt/0. All 1.unity
     guid: dc71b969411e24a57872b43b3b38c51e
   - enabled: 1
-    path: Assets/Scenes/si.unity
-    guid: c41183fb7a113478685213695f8e5f25
+    path: Assets/Scenes/iOSClassicSpacInvadARs.unity
+    guid: be6ae95d96be74652927805b9c12e941
   - enabled: 1
     path: Assets/Scenes/HighScores.unity
     guid: 50dd3143e1a4e43ebabc8647e581baaf
   - enabled: 1
     path: Assets/Scenes/Registration.unity
     guid: 145ebbd0fcfc54ef98655841b93efec5
-  - enabled: 0
-    path: Assets/Scenes/asdfsdfsdfsafsa.unity
-    guid: 0f8c458f395c94a19ad5b0d1d622ac88
