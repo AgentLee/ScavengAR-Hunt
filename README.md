@@ -1,180 +1,59 @@
-# AI ScavengAR Hunt
-AR Scavenger Hunt for the University of Pennsylvania
+# ScavengAR Hunt
+
+![](./Images/Gameplay/droneinvaders2.PNG)
 
 ## Overview
-This goal of this application is to expose students and faculty to the wonders of Artificial Intelligence through an Augmented Reality scavenger hunt. 
+This goal of this application is to expose students and faculty to the wonders of Artificial Intelligence through an Augmented Reality scavenger hunt during Penn's Teach-In event. 2018 is the first year since 1969 that Penn is hosting a [Teach-In event](http://pennteachin.org).
 
-## Requirements
-A smartphone or tablet will be required to run this application.
-- An iPhone or iPad running iOS9 or higher
-- An Android running 4.4 or higher
+I also designed the stylized posters used as the image targets for the event. They are available [here](http://JonLee.xyz/TeachIn)
 
-## Development
-### 2/11/18
-One of the goals for today was to be able to manipulate objects that get projected through AR. I was able to find an asset on the Unity store called [Lean Touch](https://assetstore.unity.com/packages/tools/input-management/lean-touch-30111) that does just this and more. At this current state, I can move objects and scale them around the AR marker.
+To handle AR, I used the Vuforia package in Unity. Unity was also an obvious choice to develop for both iOS and Android with tight time constraints.
 
-Here's a screenshot of the current state. Users can click on as many cubes as they want and move/scale them to their liking.
+### Where to download
 
-![Floating Cubes](Images/floatingCubes.png)
+<img src="./Images/icon.png" height="50%" width="50%" />
 
-Build: MoveObjects1
+[App Store](https://itunes.apple.com/us/app/penn-scavengar-hunt/id1357409012?ls=1&mt=8) | 
+[Google Play](https://play.google.com/store/apps/details?id=com.JonathanLee.DRONE) 
 
-### 2/12/18
-Goal: Game management, player, inventory systems
+#### Requirements
+- iOS 9 or higher
+- Android 4.1 or higher
 
-Today I was able to implement a basic inventory UI and multiple targets. This is the basis of the game. Each marker will have a different object or video associated with it for the player to collect. What I want to get working is to make the objects more interactive. The objects can move and scale based on the yesterday's work. To combine that with the UI requires double clicking, which I wasn't able to figure yet.
-![Targets](Images/targets.png)
+## Gameplay
+The game is broken down into two games: the hunt and Drone InvadARs. 
 
-When users collect items, they'll show up in the inventory. Users can access this at any time by clicking the inventory button on the top right and exit with the close button. Something to look forward to with this is bringing the objects back into the scene and playing around with it. If we go with building the robot route, this might have to come into play or an animation will play snapping the piece to the robot. 
-![Targets](Images/inventory.png)
+### The AI Hunt
+Image targets were placed all around the School of Engineering. Each image target had a short tidbit about some of the milestones in artificial intelligence. 
 
-Bugs
-- *Double Click* - If you move the cube and then deselect, it wont' select again.
+The hunt starts at the ENIAC, because without it, none of this would be possible.
+![](./Images/Gameplay/ENIAC.PNG)
+![](./Images/Gameplay/AI.PNG)
 
-**TODO**
-- Double Click
-- Video
+The other goal was to participants unfamiliar with the building to visit different labs and learn about some of their research.
 
-Build: MoveObjects2, MoveObjects3
+GRASP Lab (Robotics)
+![](./Images/Gameplay/GRASP.PNG)
 
-### 2/13/18
-Met with Dr. Lane and Dr. Arriata to discuss the project further. We settled on a way to make the scavenger hunt more enticing for players. Each poster they go to provides them with a power up. This power up will make the game easier as they progress. In order to be able to win prizes, the player must get the top three scores of the night. 
+SigLab (Computer Graphics)
+![](./Images/Gameplay/SIGLAB.PNG)
 
-See [Workplan](workplan.md) for more details.
+AddLab (3D Printing)
+![](./Images/Gameplay/Sophia.PNG)
 
-### 2/14/18
-*Note: You have to turn off render from webcam in the Vuforia project settings.*
+At each location, players receive a piece of the puzzle. Some items give powerups for Drone InvadARs.
 
-Today's goal was to set up Space Invaders with rigid bodies. This didn't take too long as I already had made a version last semester. Messing with the rigid bodies to get the behavior that I wanted took a little bit of time mainly because I forgot that I turned off collisions for bullet-player and never turned it back on. The next goal is to port this to AR.
+### Drone InvadARs
+![](./Images/Gameplay/droneinvaders.PNG)
 
-Here's how the game starts.
-![](images/spaceInvaders1.png)
+Drone InvadARs is an augmented reality spin on Space Invaders. The idea behind this was to be able to have clear winners for the prizes at the end of the night.
 
-Here's a screenshot with the rigid body dynamic.
-![](images/spaceInvaders2.png)
+Players needed to find any Penn Shield to activate the game. Initially players start off with Level 1 shields and 3 lives. As they progress through the scavenger hunt and collect items, their shields can reach up to Level 3, which can take more hits before being destroyed and allow them to potentially get a higher score.
 
-Scene:
-- SpaceInvaders
+A simple registration system and leaderboard was created using [dreamlo](http://dreamlo.com).
 
-Classes created:
-- `SpaceInvadersManager`
-    - Manages enemy movement
-- `PlayerController`
-    - Manages player input for movement and shooting
-- `Enemy`
-    - Manages collisions and shooting
-- `BulletBase` 
-    - Manages movement
-    - `Bullet`
-    - `EnemyBullet`
-
-
-**TODO**
-- Move enemies down 
-- Move to AR
-- Check bullet-bullet interaction
-- Player lives
-- Win/lose
-
-### 2/15/18
-**Goals:**
-- ~~Move enemies down~~
-- ~~Check bullet-bullet interaction~~ *This should be inherent*
-
-**TODO**
-- Move to AR
-    - Look into how other AR shooters work to make this as seemless as possible.
-- Player lives
-- Win/lose
-
-### 2/17/18
-I was able to port Space Invaders to AR. I utilized Vuforia's Ground Plane detection. This allows users to play anywhere as long as they specify the horizontal plane. 
-
-There was an issue with Vuforia's
-[Ground Plane Documentation](https://library.vuforia.com/articles/Solution/ground-plane-guide.html). When using their `DeployStageOnce` script, the Plane Finder doesn't call `OnInteractiveHitTest()`. To fix this, go to `Plane Finder->Plane Finder Behavior->Advanced`. Then drag the Plane Finder game object to the empty slot and set the function to `DeployStageOnce.OnInteractiveHitTest()`. This solution was found in [Matthew Hallberg's Tutorial](https://www.youtube.com/watch?v=0O6VxnNRFyg).
-
-**Notes**
-- The default set up for Vuforia's ground plane creates a new ground plane and object each time the user taps the screen. This was modified using the official Vuforia tutorial on ground planes. 
-- Another modification I set up was to allow LeanTouch to work. Whenever you set the position for tracking and then touch the joystick/fire buttons, the ground plane would move to that spot and would require you never lift your finger after setting the ground to use the buttons. In the `DeployStageOnce` script, I just set a flag for when the ground plane gets set so it doesn't reset after the first time.
-
-View from Unity Editor
-![](Images/spaceInvadARs1.png)
-
-In game looking at the player (on the right)
-![](Images/spaceInvadARs2.png)
-
-Looking up at the enemies
-![](Images/spaceInvadARs3.png)
-
-Hitting an enemy
-![](Images/spaceInvadARs5.png)
-
-**Bugs**
-- Game itself is way too big. Need to scale this down.
-- The game is currently scaled to iPhone 6 plus screens.
-
-**TODO**
-- Get the tracker to find the horizontal plane to work.
-- Player lives
-- Win/lose
-- Score count
-    - Write to databse
-- Test first person mode rather than moving the player ship. 
-
-### 2/27/18
-So a lot of my time was spent working on the ground plane. I realized really late that this was unsupported on a lot of devices. I resorted back to the image target AR experience. 
-
-Classic Space Invaders is level one. Drones flying around will be level two. Added a simple professor page that loads a power up. I have to write a manager script for the entire game in order for this to have any effect. 
-
-**TODO**
-- RNG for enemy shots.
-
-### 3/4/18
-Completed:
-- Menu
-- Login/Registration
-- High scor database
-
-Resources:
-- [dreamlo](http://dreamlo.com/) for database
-- [TextMeshPro](https://assetstore.unity.com/packages/essentials/beta-projects/textmesh-pro-84126) for high quality texts
-
-### 3/5/18
-
-Once Vuforia is enabled in one scene, it gets enabled for every scene, even if you don't want it there. To get around this, I had to add a `Vuforia Behavior` script to each camera and disable it in the inspector. 
-[Unity Forum Post](https://forum.unity.com/threads/do-not-run-vufory-when-the-application-starts.498351/)
-
-Fixed issue with main menu. Added a continue overlay. The player can change their email address or reregister on the same device.
-
-Removed `PlayerStats.cs` completely. Too much to fiddle around, resorting to `PlayerPrefs` instead. Scores get updated to the server whenever the player beats their own score. 
-
-**Bugs**
-- Can't see high scores if player beats it
-- You need to restart the app
-
-### 3/6/18
-
-**Pushed Beta Version to [https://play.google.com/store/apps/details?id=com.JonathanLee.DRONE](Google Play)!** I need developer access to push to the App Store. :/
-
-Fixed an issue where scores weren't being pushed to the database - needed a loop for the `WWW` class so mobile won't time out.
-
-Fixed an issue where players can get `max int` as their score causing `long` numbers and thus can't save to `PlayerPrefs`. Drones won't count towards the score when they collide with another drone or get hit with a bullet.  
-
-The player ship rigid body disappears on mobile. (*hack*) had to make the player a kinematic body without gravity and is close to the ground.
-
-Fixed game over screen. `numLives` didn't update to 0 on the loss screen. 
-
-Changed the image target to the Penn shield. Tested on a few shields and they seem to work just fine. 
-
-**TODO**
-- Add complexity to the drones at the end of each level.
-- Add Red UFO drone
-- Create the different power up capabilities for the player.
-- Map out the scavenger hunt
-    - Use the Penn Teach In posters
-    - Decide on QR codes or something to differentiate the posters for different professors.
-- Need to model/find shield components.
-- Vuforia Text Recognition.
+#### Bugs
+When viewing the leaderboard, the scores sometimes won't update when the player gets a high score. Based on different Unity forum posts, I found that this has to do with a mobile request timeout. Because of this, the leaderboard option is only available on Android. The app was rejected several times because this was considered a *crash* to Apple. Instead, I allowed iOS players to view the leaderboard on my website on the night of the event.
 
 ## Resources
 - [Unity 2017.3](https://unity3d.com/)

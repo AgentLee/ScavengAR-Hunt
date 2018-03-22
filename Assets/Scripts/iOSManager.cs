@@ -35,14 +35,10 @@ public class iOSManager : MonoBehaviour
 	public GameObject welcome;
 
 	// Menu Buttons
-	public GameObject androidMenu;
-	public GameObject iosMenu;
 	public GameObject playMenu;
 	public GameObject play;
 	public GameObject explore;
 	public GameObject about;
-	public GameObject quit;
-	public GameObject highScores;
 	public GameObject continueMenu;
 	public GameObject continueAs;
 	public GameObject warning;
@@ -70,6 +66,8 @@ public class iOSManager : MonoBehaviour
 			// 	ToggleContinue(true);
 			// }
 		}
+
+		// playMenu = iosMenu;
 
 		/******** DEBUG *********/
 		// PlayerPrefs.DeleteAll();
