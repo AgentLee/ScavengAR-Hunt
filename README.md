@@ -12,8 +12,7 @@ I also designed the stylized posters used as the image targets for the event. Th
 To handle AR, I used the Vuforia package in Unity. Unity was also an obvious choice to develop for both iOS and Android with tight time constraints.
 
 You can download the app on both the
-[App Store](https://itunes.apple.com/us/app/penn-scavengar-hunt/id1357409012?ls=1&mt=8) and  
-[Google Play](https://play.google.com/store/apps/details?id=com.JonathanLee.DRONE) 
+[App Store](https://itunes.apple.com/us/app/penn-scavengar-hunt/id1357409012?ls=1&mt=8) and [Google Play](https://play.google.com/store/apps/details?id=com.JonathanLee.DRONE) 
 
 #### Requirements
 - iOS 9 or higher
